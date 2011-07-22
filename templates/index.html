@@ -26,7 +26,12 @@
             class="wide-input ui-widget-content ui-corner-all" />
         <div id="cli-output"></div>
     </div>
-	<div id="tabs-diagnostics">Comming Soon...</div>
+	<div id="tabs-diagnostics">
+        <div class="group-box ui-corner-all ui-widget-content">
+            <button id="watch-fs-log">{{_("Watch FreeSWITCH Log")}}</button>
+        </div>
+        
+    </div>
 	<div id="tabs-settings">Comming Soon...</div>
 </div>
 
@@ -59,6 +64,12 @@ $(document).ready(function(){
             }
         }
     );
+    
+    $("#watch-fs-log").click(function(){
+        window.open('/fslog','logdmp','width=580,height=600');
+    });    
+    
+    $("button").button();
     
 });
 

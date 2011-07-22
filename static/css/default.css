@@ -20,7 +20,7 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 .wide-input {width: 98%} 
 .clear {clear: both}
 .striked { text-decoration: line-through;}
-
+.group-box {margin: 1.0em 0em 1.0em 0em; padding: 0em 1.0em 1.0em 1.0em;}
 
 /* FONT*/
 

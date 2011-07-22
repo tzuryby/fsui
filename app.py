@@ -22,6 +22,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", DashboardHandler),
             (r"/cli", CLIHandler),
+            (r"/fslog", FSLogHandler),
         ]
 
         settings = dict(
