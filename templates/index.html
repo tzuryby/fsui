@@ -69,12 +69,14 @@ $(document).ready(function(){
         }
     );
     
-    function loadDashboardData (){
-        var url="/dashboard";
-        $("#dashboard-users").load(url);
+    dashBoard = {
+        loopId: 0,
+        loader:     function(){ $("#dashboard-users").load("/dashboard"); },
+        startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 3*1000) },
+        stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);}
     }
     
-    loadDashboardData();
+    dashBoard.startLoop();
     
     //~ $("#watch-fs-log").click(function(){
         //~ window.open('/fslog','logdmp','width=580,height=600');
