@@ -75,7 +75,7 @@ class StreamHandler(FSUIHandler):
 class FSLogHandler(StreamHandler):
     def _get_pipe(self):
         # dirty way to kill previous tails
-        shell("killall tail")
+        common.shell("killall tail")
         return self._spawn_process("tail -f /usr/local/freeswitch/log/freeswitch.log").stdout
 
 class SyslogHandler(StreamHandler):
