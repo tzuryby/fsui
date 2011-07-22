@@ -51,7 +51,7 @@ def xshell(args, shell=True):
        
 def shell(args, shell=True):
     '''execute a command and returns the output in a block mode'''    
-    return ''.join(line for line in xshell(args, shell))
+    return '\n'.join(line for line in xshell(args, shell))
         
 def get_dev_addr(dev='eth0'):
     '''returns the first ip address of a given ethernet device'''
