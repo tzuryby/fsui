@@ -22,7 +22,7 @@
 	<div id="tabs-conference">Comming Soon...</div>
 	<div id="tabs-cli">
         <input id="cli-input" type="text" placeholder='{{_("Type CLI command here")}}' class="wide-input" />
-        <div id="cli-output" class="mono"></div>
+        <div id="cli-output"></div>
     </div>
 	<div id="tabs-diagnostics">Comming Soon...</div>
 	<div id="tabs-settings">Comming Soon...</div>
@@ -49,6 +49,7 @@ $(document).ready(function(){
                     params = {"x": $(this).val()};
                     
                 $("#cli-output").load(url, params);
+                $("#cli-output").css("height", "80%");
             }
         }
     );

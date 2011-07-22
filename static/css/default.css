@@ -2,7 +2,7 @@
 body {margin: 0em; background-color: #FFF}
 body, td {font-size:0.8em;}
 
-code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !important; font-size: 0.8em}
+code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !important; font-size: 0.9em}
 
 #header {
 	padding: 0em 1em 0em 1em;	
@@ -15,7 +15,7 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 #content { margin: 1em }
 
 
-#cli-out {width:90%; height:90%; overflow:auto}
+#cli-output {overflow:auto}
 
 .clear {clear: both}
 .striked { text-decoration: line-through;}
