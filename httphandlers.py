@@ -6,6 +6,8 @@ __version__ = "0.1"
 
 import subprocess
 import tornado.web
+from tornado.escape import xhtml_escape
+
 from lib.utils import common
 
 global_client_params = {}
@@ -98,7 +100,7 @@ class CLIHandler(FSUIHandler):
         print command
         output = common.shell(command)
         self.write("<pre>")
-        self.write(output)
+        self.write(xhtml_escape(output))
         self.write("</pre>")
         
         
