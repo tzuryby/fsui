@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<center>
+    <div class="hide_on_load ui-corner-all" id="notification_div">
+        <p id="notification_message">
+        </p>
+    </div>
+</center>
+<div id="main_tabs">
+	<ul>
+		<li><a href="#tabs-dashboard">{{_("Dashboard")}}</a></li>
+		<li><a href="#tabs-extensions">{{_("Extensions")}}</a></li>
+		<li><a href="#tabs-conference">{{_("Confenernces")}}</a></li>
+		<li><a href="#tabs-cli">{{_("CLI")}}</a></li>
+		<li><a href="#tabs-diagnostics">{{_("Diagnostics")}}</a></li>
+		<li><a href="#tabs-settings">{{_("Settings")}}</a></li>
+	</ul>
+	<div id="tabs-dashboard">Comming Soon...</div>
+	<div id="tabs-extensions">Comming Soon...</div>
+	<div id="tabs-conference">Comming Soon...</div>
+	<div id="tabs-cli">
+        <input id="cli-input" type="text" placeholder='{{_("Type CLI command here")}}' class="wide-input" />
+        <div id="cli-output" class="mono"></div>
+    </div>
+	<div id="tabs-diagnostics">Comming Soon...</div>
+	<div id="tabs-settings">Comming Soon...</div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    
+    // in case someone decided to use IE6 -- LULZec come over here ;-)
+    window.console = window.console || {log: function(){}}
+    
+    // tabify dashboard
+    $("#main_tabs").tabs({ cookie: { expires: 30 } });
+    
+    
+    // bind cli interaction
+    $("#cli-input").keypress(
+        function(evt){
+            var keyCode = evt.keyCode;
+            console.log(keyCode);
+            if (keyCode === 13){
+                var url = "/cli", 
+                    params = {"x": $(this).val()};
+                    
+                $("#cli-output").load(url, params);
+            }
+        }
+    );
+    
+});
+
+
+</script>
+
+{% end %}
+
+
+

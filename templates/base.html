@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>{{ modules.Title(global_client_params) }}</title>
+        <link rel="stylesheet" href="{{ static_url('css/default.css') }}" type="text/css" />
+        <link rel="icon" type="image/gif" href="/static/favicon.gif">
+        <script type="text/javascript" src="{{ static_url('js/all.js') }}"></script>
+    </head>
+    <body>
+        <div id="header">
+            {{ modules.Header(global_client_params) }}
+        </div>
+        <div id="content">{% block body %}{% end %}</div>
+        
+        <div id="footer">
+            {{ modules.Footer(global_client_params) }}
+        </div>
+    </body>
+</html>
