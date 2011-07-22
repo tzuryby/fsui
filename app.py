@@ -19,13 +19,6 @@ define("port", default=5678, help="fsui port 5678", type=int)
 class Application(tornado.web.Application):
     def __init__(self):
         
-        handlers = [
-            (r"/", MaindHandler),
-            (r"/dashboard", DashboardHandler),
-            (r"/cli", CLIHandler),
-            (r"/fslog", FSLogHandler),
-        ]
-
         settings = dict(
             app_title=u"FSUI - FREESWITCH HTML5 INTERFACE",
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
@@ -37,7 +30,7 @@ class Application(tornado.web.Application):
             }
         )
         
-        tornado.web.Application.__init__(self, handlers, **settings)
+        tornado.web.Application.__init__(self, HANDLERS, **settings)
 
 def main():
     tornado.options.parse_command_line()

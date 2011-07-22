@@ -122,3 +122,12 @@ class DashboardHandler(FSUIHandler):
             
     def get(self):
         self.render("dashboard.html", data=self.get_state())
+        
+        
+        
+HANDLERS = [
+    (r"/", MainHandler),
+    (r"/dashboard", DashboardHandler),
+    (r"/cli", CLIHandler),
+    (r"/fslog", FSLogHandler),
+]
