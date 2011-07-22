@@ -114,9 +114,8 @@ class DashboardHandler(FSUIHandler):
         
     def get_state(self):
         online_users = self._get_online_users()
-        online_users_ids = (user['Auth-User'] for user in online_users)
-        all_users = ((user, user in online_users_ids) for user in self._get_directory_entries())
-        
+        online_users_ids = [user['Auth-User'] for user in online_users]
+        all_users = [(user, user in online_users_ids) for user in self._get_directory_entries()]
         return {
             "online_users": online_users,
             "all_users": all_users
