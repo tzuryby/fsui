@@ -44,8 +44,10 @@ $(document).ready(function(){
     // bind cli interaction
     $("#cli-input").keypress(
         function(evt){
-            var xcommand = $(this).val() || "sofia status profile internal"
-            $(this).val(xcommand);
+            var user_input = $(this).val();
+            var xcommand =  user_input || "sofia status profile internal"
+            if (!user_input)
+                $(this).val(xcommand);
             
             var keyCode = evt.keyCode;
             console.log(keyCode);
