@@ -44,11 +44,14 @@ $(document).ready(function(){
     // bind cli interaction
     $("#cli-input").keypress(
         function(evt){
+            var xcommand = $(this).val() || "sofia status profile internal"
+            $(this).val(xcommand);
+            
             var keyCode = evt.keyCode;
             console.log(keyCode);
             if (keyCode === 13){
                 var url = "/cli", 
-                    params = {"x": $(this).val()};
+                    params = {"x": xcommand};
                     
                 $("#cli-output").load(url, params);
                 $("#cli-output").css("height", "80%");
