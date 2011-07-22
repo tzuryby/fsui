@@ -22,7 +22,7 @@
 	<div id="tabs-conference">Comming Soon...</div>
 	<div id="tabs-cli">
         <input 
-            id="cli-input" type="text" placeholder='{{_("Type CLI command here")}}' 
+            id="cli-input" type="text" placeholder='{{_("Enter FS CLI command")}}' 
             class="wide-input ui-widget-content ui-corner-all" />
         <div id="cli-output"></div>
     </div>
@@ -62,7 +62,7 @@ $(document).ready(function(){
                     params = {"x": xcommand};
                     
                 $("#cli-output").load(url, params);
-                $("#cli-output").css("height", "80%");
+                $("#cli-output").css("height", "70%");
             }
         }
     );
