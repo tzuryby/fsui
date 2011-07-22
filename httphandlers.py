@@ -81,7 +81,7 @@ class FSLogHandler(StreamHandler):
 class SyslogHandler(StreamHandler):
     def _get_pipe(self):
         # dirty way to kill previous tails
-        shell("killall tail")
+        common.shell("killall tail")
         return self._spawn_process("tail -f /var/log/syslog").stdout
 
 
