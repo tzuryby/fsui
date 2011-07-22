@@ -26,4 +26,6 @@ class CLIHandler(tornado.web.RequestHandler):
         command = "/usr/local/freeswitch/bin/fs_cli -x '%s'" % (command)
         print command
         output = common.shell(command)
+        self.write("<pre>")
         self.write(output)
+        self.write("</pre>")
