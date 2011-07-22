@@ -1,0 +1,11 @@
+{% for user in data['all_users']%}
+    <div class="user-entity
+        {% if user[1] %}
+            online
+        {% end %}
+        ui-corner-all
+    ">
+    {{ user[0] }}
+    </div>
+{% end %}
+<div class="clear" />

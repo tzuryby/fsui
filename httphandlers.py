@@ -8,6 +8,7 @@ import subprocess
 import tornado.web
 from tornado.escape import xhtml_escape
 
+from lib.conf import *
 from lib.utils import common
 
 global_client_params = {}
@@ -19,7 +20,7 @@ init_global_client_params()
 class FSUIHandler(tornado.web.RequestHandler):
     pass
 
-class DashboardHandler(FSUIHandler):
+class MainHandler(FSUIHandler):
     def get(self):
         self.render("index.html", global_client_params=global_client_params)
 
@@ -87,20 +88,39 @@ class SyslogHandler(StreamHandler):
         common.shell("killall tail")
         return self._spawn_process("tail -f /var/log/syslog").stdout
 
-
-
-
 class CLIHandler(FSUIHandler):
     def get(self):
         self.post()
         
     def post(self):
         command = self.get_argument("x", "sofia status profile internal")
-        command = "/usr/local/freeswitch/bin/fs_cli -x '%s'" % (command)
-        print command
-        output = common.shell(command)
+        output = common.shell(FS_CLI_COMMAND % command)
         self.write("<pre>")
         self.write(xhtml_escape(output))
         self.write("</pre>")
         
+class DashboardHandler(FSUIHandler):
+    def _get_online_users(self):
+        output = common.shell(FS_CLI_COMMAND % "sofia status profile internal")       
+        items = re.findall("Call-ID.*?Auth-Realm:.*?\n", output, re.DOTALL)
+        users = (line for line in (item.split("\n") for item in items))
+        online_users = [dict((map(str.strip, entry.split(": ")) for entry in user if entry)) for user in users]
+        return online_users
         
+    def _get_directory_entries(self):
+        return [filename.strip().replace(".xml", "") for filename in shell("cd %s; ls -m *.xml" % FS_DIR_PATH).split(",") if filename]
+        
+    def get_state(self):
+        online_users = self._get_online_users()
+        online_users_ids = (user['Auth-User'] for user in online_users)
+        all_users = ((user, user in online_users_ids) for user in self._get_directory_entries())
+        
+        for user in all_users:
+            if usr in 
+        return {
+            "online_users": online_users,
+            "all_users": all_users
+        }
+            
+    def get(self):
+        self.render("dashboard.html", data=self.get_state())

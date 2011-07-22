@@ -17,7 +17,9 @@
 		<li><a href="#tabs-diagnostics">{{_("Diagnostics")}}</a></li>
 		<li><a href="#tabs-settings">{{_("Settings")}}</a></li>
 	</ul>
-	<div id="tabs-dashboard">Comming Soon...</div>
+	<div id="tabs-dashboard">
+        <div id="dashboard-users"></div>
+    </div>
 	<div id="tabs-extensions">Comming Soon...</div>
 	<div id="tabs-conference">Comming Soon...</div>
 	<div id="tabs-cli">
@@ -66,6 +68,13 @@ $(document).ready(function(){
             }
         }
     );
+    
+    function loadDashboardData (){
+        var url="/dashboard";
+        $("#dashboard-users").load(url);
+    }
+    
+    loadDashboardData();
     
     //~ $("#watch-fs-log").click(function(){
         //~ window.open('/fslog','logdmp','width=580,height=600');

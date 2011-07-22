@@ -20,7 +20,8 @@ class Application(tornado.web.Application):
     def __init__(self):
         
         handlers = [
-            (r"/", DashboardHandler),
+            (r"/", MaindHandler),
+            (r"/dashboard", DashboardHandler),
             (r"/cli", CLIHandler),
             (r"/fslog", FSLogHandler),
         ]

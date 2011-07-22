@@ -21,6 +21,9 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 .clear {clear: both}
 .striked { text-decoration: line-through;}
 .group-box {margin: 1.0em 0em 1.0em 0em; padding: 0em 1.0em 1.0em 1.0em;}
+.user-entity { width: 120px; height:24; float:left; display:box; border: 1px solid; font-size:0.9em; margin:4px; padding:4px}
+.online { color:#337519!important;}
+
 
 /* FONT*/
 
