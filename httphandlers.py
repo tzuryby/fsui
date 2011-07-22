@@ -108,7 +108,9 @@ class DashboardHandler(FSUIHandler):
         return online_users
         
     def _get_directory_entries(self):
-        return [filename.strip().replace(".xml", "") for filename in shell("cd %s; ls -m *.xml" % FS_DIR_PATH).split(",") if filename]
+        return [filename.strip().replace(".xml", "") 
+            for filename in common.shell("cd %s; ls -m *.xml" % FS_DIR_PATH).split(",") 
+                if filename]
         
     def get_state(self):
         online_users = self._get_online_users()
