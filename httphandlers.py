@@ -115,8 +115,6 @@ class DashboardHandler(FSUIHandler):
         online_users_ids = (user['Auth-User'] for user in online_users)
         all_users = ((user, user in online_users_ids) for user in self._get_directory_entries())
         
-        for user in all_users:
-            if usr in 
         return {
             "online_users": online_users,
             "all_users": all_users
