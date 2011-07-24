@@ -94,7 +94,10 @@ $(document).ready(function(){
                          api: {
                             onShow: function(e){
                                 dashBoard.stopLoop();
-                                $(".qtip-wrapper .in-place-edit").editable({onSubmit:inline_editor_save})                                
+                                $(".qtip-wrapper .in-place-edit").editable({
+                                    onSubmit:inline_editor_save,
+                                    type: 'password'
+                                });
                             },
                             onHide: function(e){
                                 dashBoard.startLoop()
@@ -119,6 +122,7 @@ $(document).ready(function(){
         }
         
         if (content.current !== content.previous){
+        /*
             var that = $(this),
                 serial_no = that.attr("id").split("__")[1],
                 group1 = that.parent().parent().find("#group1__" + serial_no).html(),
@@ -129,6 +133,7 @@ $(document).ready(function(){
             
             $(".qtip-active").hide()
             loadMonitoredEntities();
+        */
         }        
     }
 
