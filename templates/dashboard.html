@@ -29,12 +29,16 @@
             </div>
         </div>
     {% end %}
+    <div class="clear" />
 {% end %}
 
 {% if data['offline_users']%}
-    <h3>{{_("Online Users")}}</h3>
+    <h3>{{_("Offline Users")}}</h3>
     {% for user in data['offline_users'] %}
-        <div class="user-entity ui-corner-all">{{ user[0] }}</div>
+        <div class="user-entity ui-corner-all">
+            <span class="xtn-no">{{user[0]}}</span>
+            <span class="ui-icon ui-icon-pencil" style="float:left"></span>        
+        </div>
     {% end %}
 {% end %}
 <div class="clear" />
