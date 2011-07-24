@@ -3,8 +3,8 @@
     {% for user in data['online_users'] %}
         <div class="user-entity-online ui-corner-all" rel="{{user[0]}}">
             <span class="xtn-no">{{user[0]}}</span>
-            <span class="ui-icon ui-icon-plusthick" style="float:left"></span>
-            <span class="ui-icon ui-icon-pencil" style="float:left"></span>
+            <span class="moreinfo-qtip ui-icon ui-icon-plusthick" style="float:left"rel="{{user[0]}}"></span>
+            <span class="ui-icon ui-icon-pencil" style="float:left"rel="{{user[0]}}"></span>
             <div class="hideme tip_frame" id="tip_frame_{{user[0]}}" >
                 <div class="more_info_caption">{{_("Call-ID")}}:</div>
                 <div class="more_info_detail">{{data['online_users_data'][user[0]]['Call-ID']}}</div>

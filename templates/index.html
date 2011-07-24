@@ -72,7 +72,43 @@ $(document).ready(function(){
     dashBoard = {    
         loopId:    0,
         uiHandler: function(){
-            $(".hideme").hide();            
+            $(".hideme").hide();
+            var more_info_button_selector = $(".moreinfo-qtip");
+            //more_info_button_selector.click(function(){window.last_qtip_target = $(this);});
+            
+            more_info_button_selector
+                .each(function(){
+                    $(this).qtip({
+                         content: {
+                            text: $("#" + $(this).attr("rel")),
+                            title: {
+                               text: ''{{_("More Info")}},
+                               button: 'x' 
+                            }
+                         },
+                         position: {
+                            corner: { target: 'bottomLeft', tooltip: 'topMiddle'},
+                            adjust: { screen: true }
+                         },
+                         show: { when: 'click', solo: true },
+                         hide: 'unfocus',
+                         style: {
+                            tip: true, 
+                            border: {
+                               width: 0,
+                               radius: 4
+                            },
+                            name: 'light', 
+                            width: 220 
+                         },
+                         api: {
+                            onShow: function(e){
+                                //$(".qtip-wrapper .in-place-edit").editable({onSubmit:inline_editor_save})
+                            }
+                        }
+                  });
+                });
+            
         }, 
         loader:    function(){ $("#dashboard-users").load("/dashboard", dashBoard.uiHandler);},
         startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 3*1000) },
