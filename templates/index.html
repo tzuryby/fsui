@@ -80,9 +80,9 @@ $(document).ready(function(){
                 .each(function(){
                     $(this).qtip({
                          content: {
-                            text: $("#" + $(this).attr("rel")),
+                            text: $("#tip_frame_" + $(this).attr("rel")),
                             title: {
-                               text: ''{{_("More Info")}},
+                               text: '{{_("More Info")}}',
                                button: 'x' 
                             }
                          },
