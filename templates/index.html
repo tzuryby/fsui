@@ -111,7 +111,7 @@ $(document).ready(function(){
             
         }, 
         loader:    function(){ $("#dashboard-users").load("/dashboard", dashBoard.uiHandler);},
-        startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 3*1000) },
+        startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 15*1000) },
         stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);}
     }
     
