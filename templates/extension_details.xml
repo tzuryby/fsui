@@ -1,0 +1,11 @@
+<include>
+  <user id="{{ data['id'] }}">
+    <params>
+      <param name="password" value="{{ data['password'] }}"/>
+      <param name="vm-password" value="{{ data['password'] }}"/>
+    </params>
+    <variables>
+      <variable name="user_context" value="from-sip"/>
+    </variables>
+  </user>
+</include>

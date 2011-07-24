@@ -1,11 +1,18 @@
-{% for user in data['all_users']%}
-    <div class="user-entity
-        {% if user[1] %}
-            online
-        {% end %}
-        ui-corner-all
-    ">
-    {{ user[0] }}
-    </div>
+{% if data['online_users']%}
+    <h3>{{_("Online Users")}}</h3>
+    {% for user in data['online_users'] %}
+        <div class="user-entity online ui-corner-all" rel="{{user[0]}}">{{user[0]}}</div>
+    {% end %}
+{% end %}
+
+{% if data['offline_users']%}
+    <h3>{{_("Online Users")}}</h3>
+    {% for user in data['offline_users'] %}
+        <div class="user-entity ui-corner-all">{{ user[0] }}</div>
+    {% end %}
 {% end %}
 <div class="clear" />
+
+<script>
+    var _online_users_data = {{data['online_users_data']}}
+</script>

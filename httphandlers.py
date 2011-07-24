@@ -101,29 +101,35 @@ class CLIHandler(FSUIHandler):
         
 class DashboardHandler(FSUIHandler):
     def _get_online_users(self):
-        output = common.shell(FS_CLI_COMMAND % "sofia status profile internal")       
+        output = common.shell(FS_CLI_COMMAND % "sofia status profile internal")
         items = re.findall("Call-ID.*?Auth-Realm:.*?\n", output, re.DOTALL)
         users = (line for line in (item.split("\n") for item in items))
         online_users = [dict((map(str.strip, entry.split(": ")) for entry in user if entry)) for user in users]
         return online_users
         
     def _get_directory_entries(self):
-        return [filename.strip().replace(".xml", "") 
-            for filename in common.shell("cd %s; ls -m *.xml" % FS_DIR_PATH).split(",") 
+        return [filename.strip().replace(".xml", "")
+            for filename in common.shell("cd %s; ls -m *.xml" % FS_DIR_PATH).split(",")
                 if filename]
         
     def get_state(self):
-        online_users = self._get_online_users()
-        online_users_ids = [user['Auth-User'] for user in online_users]
+        all_users_ids = [user for user in self._get_directory_entries()]
+        online_users_data = self._get_online_users()
+        
+        online_users = [(user['Auth-User'], 1) for user in online_users_data]
+        offline_users = [(user['Auth-User'], 0) for user in 
+            all_users_ids if user not in online_users]
+                
         all_users = [(user, user in online_users_ids) for user in self._get_directory_entries()]
+        
         return {
+            "online_users_data": online_users_data,
             "online_users": online_users,
-            "all_users": all_users
+            "offline_users": offline_users
         }
-            
+        
     def get(self):
         self.render("dashboard.html", data=self.get_state())
-        
         
         
 HANDLERS = [
