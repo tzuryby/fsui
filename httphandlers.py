@@ -121,7 +121,7 @@ class DashboardHandler(FSUIHandler):
         all_users_ids = [user for user in self._get_directory_entries()]
         online_users_data = self._get_online_users()
         
-        online_users = [(user['Auth-User'], 1) for user in online_users_data.iterkeys()]
+        online_users = [(user, 1) for user in online_users_data.iterkeys()]
         print "online_users", online_users
         
         offline_users = [(user, 0) for user in all_users_ids 
