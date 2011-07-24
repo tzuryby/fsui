@@ -120,7 +120,7 @@ class DashboardHandler(FSUIHandler):
         offline_users = [
             (user['Auth-User'], 0) for 
                 user in all_users_ids 
-                    if (user['Auth-User'], 1) not in online_users]
+                    if (user, 1,) not in online_users]
                 
         all_users = [(user, user in online_users_ids) for user in self._get_directory_entries()]
         
