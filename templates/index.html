@@ -11,7 +11,6 @@
 <div id="main_tabs">
 	<ul>
 		<li><a href="#tabs-dashboard">{{_("Dashboard")}}</a></li>
-		<li><a href="#tabs-extensions">{{_("Extensions")}}</a></li>
 		<li><a href="#tabs-conference">{{_("Confenernces")}}</a></li>
 		<li><a href="#tabs-cli">{{_("CLI")}}</a></li>
 		<li><a href="#tabs-diagnostics">{{_("Diagnostics")}}</a></li>
@@ -20,7 +19,6 @@
 	<div id="tabs-dashboard">
         <div id="dashboard-users"></div>
     </div>
-	<div id="tabs-extensions">Comming Soon...</div>
 	<div id="tabs-conference">Comming Soon...</div>
 	<div id="tabs-cli">
         <input 
@@ -28,14 +26,7 @@
             class="wide-input ui-widget-content ui-corner-all" />
         <div id="cli-output"></div>
     </div>
-	<div id="tabs-diagnostics">
-        <!-- 
-        <div class="group-box ui-corner-all ui-widget-content">
-            <button id="watch-fs-log">{{_("Watch FreeSWITCH Log")}}</button>
-        </div>
-        -->
-        
-    </div>
+	<div id="tabs-diagnostics">Comming Soon...</div>
 	<div id="tabs-settings">Comming Soon...</div>
 </div>
 
@@ -117,6 +108,7 @@ $(document).ready(function(){
         stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);}
     }
     
+    dashBoard.loader();
     dashBoard.startLoop();
     
     //~ $("#watch-fs-log").click(function(){
