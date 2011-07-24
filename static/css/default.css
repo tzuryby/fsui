@@ -20,10 +20,13 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 .clear {clear: both}
 .striked { text-decoration: line-through;}
 .group-box {margin: 1.0em 0em 1.0em 0em; padding: 0em 1.0em 1.0em 1.0em;}
-.user-entity { width: 100px; float:left; display:box; border: 1px solid; font-size:0.9em; margin:4px; padding:4px; text-align: center}
+.user-entity { 
+	width: 100px; float:left; display:box; border: 1px solid; 
+	font-size:0.9em; margin:4px; padding:4px; text-align: left
+	}
 .user-entity-online { 
 	width: 100px; float:left; display:box; border: 1px solid; 
-	font-size:0.9em; margin:4px; padding:4px; text-align: center;
+	font-size:0.9em; margin:4px; padding:4px; text-align: left;
 	color:#14A800!important; 
 	background-color:#FFFDD1!important
 }
