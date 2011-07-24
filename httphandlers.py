@@ -109,6 +109,7 @@ class DashboardHandler(FSUIHandler):
         for user in online_users:
             ret[user["Auth-User"]] = user
             
+        print ret
         return ret
         
     def _get_directory_entries(self):
