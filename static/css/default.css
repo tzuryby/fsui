@@ -28,7 +28,7 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 	background-color:#FFFDD1!important
 }
 
-.in-place-edit { background-image: url(/static/pencil.png);	background-position: 180px 0px;	background-repeat:no-repeat; display:box }
+.in-place-edit { background-image: url(/static/pencil.png);	background-position: right center;	background-repeat:no-repeat; display:box }
 .in-place-edit:hover { background-color:#FDFFBF; }
 .more_info_detail { font-weight:700; }
 
