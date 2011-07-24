@@ -24,8 +24,8 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 .user-entity-online { 
 	width: 72px; float:left; display:box; border: 1px solid; 
 	font-size:0.9em; margin:4px; padding:4px; text-align: center;
-	color:#ffffff!important; 
-	background-color:#337519!important
+	color:#14A800!important; 
+	background-color:#FFFDD1!important
 }
 
 
