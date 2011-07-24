@@ -94,6 +94,7 @@ $(document).ready(function(){
                          api: {
                             onShow: function(e){
                                 dashBoard.stopLoop();
+                                $(".qtip-wrapper .in-place-edit").editable({onSubmit:inline_editor_save})                                
                             },
                             onHide: function(e){
                                 dashBoard.startLoop()
@@ -110,7 +111,27 @@ $(document).ready(function(){
     
     dashBoard.loader();
     dashBoard.startLoop();
-    
+
+    function inline_editor_save(content){
+        // checkbox click 
+        if (!content.previous){
+            content = {current:1, previous:0}
+        }
+        
+        if (content.current !== content.previous){
+            var that = $(this),
+                serial_no = that.attr("id").split("__")[1],
+                group1 = that.parent().parent().find("#group1__" + serial_no).html(),
+                management_ip = that.parent().parent().find("#management_ip__" + serial_no).html(),
+                auto_monitor = that.parent().parent().find("#auto_monitor__" + serial_no).attr("checked")+0,
+                params = {group1:group1, management_ip:management_ip, auto_monitor: auto_monitor};
+            $.post("/entities/save/"+ serial_no, params, function(){});
+            
+            $(".qtip-active").hide()
+            loadMonitoredEntities();
+        }        
+    }
+
     //~ $("#watch-fs-log").click(function(){
         //~ window.open('/fslog','logdmp','width=580,height=600');
     //~ });    
