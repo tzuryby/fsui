@@ -108,8 +108,7 @@ class DashboardHandler(FSUIHandler):
         ret = {}
         for user in online_users:
             ret[user["Auth-User"]] = user
-            
-        print ret
+        
         return ret
         
     def _get_directory_entries(self):
@@ -119,11 +118,9 @@ class DashboardHandler(FSUIHandler):
         
     def get_state(self):
         all_users_ids = [user for user in self._get_directory_entries()]
-        online_users_data = self._get_online_users()
-        
+        online_users_data = self._get_online_users()        
         online_users = [(user, 1) for user in online_users_data.iterkeys()]
-        print "online_users", online_users
-        
+
         offline_users = [(user, 0) for user in all_users_ids 
             if (user, 1,) not in online_users]
                 
