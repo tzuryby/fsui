@@ -69,9 +69,12 @@ $(document).ready(function(){
         }
     );
     
-    dashBoard = {
-        loopId: 0,
-        loader:     function(){ $("#dashboard-users").load("/dashboard"); },
+    dashBoard = {    
+        loopId:    0,
+        uiHandler: function(){
+            $(".hideme").hide();            
+        }, 
+        loader:    function(){ $("#dashboard-users").load("/dashboard", dashBoard.uiHandler);},
         startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 3*1000) },
         stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);}
     }

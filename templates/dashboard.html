@@ -3,18 +3,30 @@
     {% for user in data['online_users'] %}
         <div class="user-entity-online ui-corner-all" rel="{{user[0]}}">
             <span class="xtn-no">{{user[0]}}</span>
-            <div class="more-info">
-                <h4><a href="#">{{_("More info...")}}</a></h4>
-                <table>
-                    <tbody>
-                        <tr><th>{{_("User")}}</th><td>{{data["online_users_data"][user[0]]["User"]}}</td></tr>
-                        <tr><th>{{_("Agent")}}</th><td>{{data["online_users_data"][user[0]]["Agent"]}}</td></tr>
-                        <tr><th>{{_("Status")}}</th><td>{{data["online_users_data"][user[0]]["Status"]}}</td></tr>
-                        <tr><th>{{_("IP")}}</th><td>{{data["online_users_data"][user[0]]["IP"]}}</td></tr>
-                    </tbody>
-                </table>
+            <span class="ui-icon ui-icon-plusthick"></span>
+            <span class="ui-icon ui-icon-pencil"></span>
+            <div class="hideme tip_frame" id="tip_frame_{{user[0]}}" >
+                <div class="more_info_caption">{{_("Call-ID")}}:</div>
+                <div class="more_info_detail">{{data['online_users_data'][user[0]['Call-ID']}}</div>
+                <div class="more_info_caption">{{_("User")}}:</div>
+                <div class="more_info_detail">{{data['online_users_data'][user[0]['User']}}</div>
+                <div class="more_info_caption">{{_("Contact")}}:</div>
+                <div class="more_info_detail">{{data['online_users_data'][user[0]['Contact']}}</div>
+                <div class="more_info_caption">{{_("Agent")}}:</div>
+                <div class="more_info_detail">{{data['online_users_data'][user[0]['Agent']}}</div>
+                <div class="more_info_caption">{{_("Status")}}:</div>
+                <div class="more_info_detail">{{data['online_users_data'][user[0]['Status']}}</div>
+                <div class="more_info_caption">{{_("Host")}}:</div>
+                <div class="more_info_detail">{{data['online_users_data'][user[0]['Host']}}</div>
+                <div class="more_info_caption">{{_("IP")}}:</div>
+                <div class="more_info_detail">
+                    {{data['online_users_data'][user[0]['IP']}}:{{data['online_users_data'][user[0]['Port']}}
+                </div>
+                <div class="more_info_caption">{{_("Auth-User")}}:</div>
+                <div class="more_info_detail">{{data['online_users_data'][user[0]['Auth-User']}}</div>
+                <div class="more_info_caption">{{_("Auth-Realm")}}:</div>
+                <div class="more_info_detail">{{data['online_users_data'][user[0]['Auth-Realm']}}</div>
             </div>
-        </div>
     {% end %}
 {% end %}
 
