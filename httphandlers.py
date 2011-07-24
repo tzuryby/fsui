@@ -104,8 +104,12 @@ class DashboardHandler(FSUIHandler):
         output = common.shell(FS_CLI_COMMAND % "sofia status profile internal")
         items = re.findall("Call-ID.*?Auth-Realm:.*?\n", output, re.DOTALL)
         users = (line for line in (item.split("\n") for item in items))
-        online_users = [dict((map(str.strip, entry.split(": ")) for entry in user if entry)) for user in users]
-        return online_users
+        online_users = (dict((map(str.strip, entry.split(": ")) for entry in user if entry)) for user in users)
+        ret = {}
+        for user in online_users:
+            ret[user["Auth-User"]] = user
+            
+        return ret
         
     def _get_directory_entries(self):
         return [filename.strip().replace(".xml", "")

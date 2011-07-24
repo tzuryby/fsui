@@ -7,7 +7,6 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 #header {
 	padding: 0em 1em 0em 1em;	
 	border: 1px solid #aaaaaa; background: #cccccc url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; color: #222222; font-weight: bold;
-	/*border: 1px solid #494437; background: #817865 url(images/ui-bg_gloss-wave_45_817865_500x100.png) 50% 50% repeat-x; color: #ffffff;*/
 }
  
 #header h3, #header a { color: #000000; font-weight: normal!important; }
