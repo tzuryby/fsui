@@ -74,7 +74,6 @@ $(document).ready(function(){
         uiHandler: function(){
             $(".hideme").hide();
             var more_info_button_selector = $(".moreinfo-qtip");
-            //more_info_button_selector.click(function(){window.last_qtip_target = $(this);});
             
             more_info_button_selector
                 .each(function(){
@@ -103,7 +102,10 @@ $(document).ready(function(){
                          },
                          api: {
                             onShow: function(e){
-                                //$(".qtip-wrapper .in-place-edit").editable({onSubmit:inline_editor_save})
+                                dashBoard.stopLoop();
+                            },
+                            onHide: function(e){
+                                dashBoard.startLoop()
                             }
                         }
                   });
@@ -111,7 +113,7 @@ $(document).ready(function(){
             
         }, 
         loader:    function(){ $("#dashboard-users").load("/dashboard", dashBoard.uiHandler);},
-        startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 15*1000) },
+        startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 8*1000) },
         stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);}
     }
     
