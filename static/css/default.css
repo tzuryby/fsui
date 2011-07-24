@@ -33,7 +33,7 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 
 .in-place-edit { background-image: url(/static/pencil.png);	background-position: right center;	background-repeat:no-repeat; display:box }
 .in-place-edit:hover { background-color:#FDFFBF; }
-.more_info_detail { font-weight:700; }
+.more_info_caption { font-weight:700; }
 
 
 /* FONT*/
