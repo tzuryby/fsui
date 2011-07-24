@@ -72,7 +72,7 @@ $(document).ready(function(){
                          content: {
                             text: $("#tip_frame_" + $(this).attr("rel")),
                             title: {
-                               text: '{{_("More Info")}}',
+                               text: $(this).attr("rel")) + '{{_(" details")}}',
                                button: 'x' 
                             }
                          },
