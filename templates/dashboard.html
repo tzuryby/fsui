@@ -1,49 +1,20 @@
 {% if data['online_users']%}
     <h3>{{_("Online Users")}}</h3>
     {% for user in data['online_users'] %}
-        <div class="user-entity online ui-corner-all" rel="{{user[0]}}">{{user[0]}}</div>
-        <div class="hideme tip_frame" id="tip_frame_{{user[0]}}" >
-            <div>
-                <div class="more_info_caption">{{_("Serial No")}}:</div>
-                <div class="more_info_detail">{{entity.serial_no}}</div>
-            </div>
-            <div>
-                <div class="more_info_caption">{{_("Model")}}:</div>
-                <div class="more_info_detail">{{entity.model}}</div>
-            </div>
-            <div>
-                <div class="more_info_caption">{{_("Public IP Address")}}:</div>
-                <div class="more_info_detail">{{entity.last_seen_from_ip}}</div>
-            </div>
-            <div>
-                <div class="more_info_caption">{{_("Last update")}}:</div>
-                <div class="more_info_detail
-                    {% if entity.time_delta > 30 %}
-                        issues
-                    {% end %}
-                ">{{entity.last_seen_time}}</div>
-            </div>
-            <div>
-                <div class="more_info_caption">{{_("Group")}}:</div>            
-                <div class="in-place-edit more_info_detail" id="group1__{{entity.serial_no}}">{{entity.group1}}</div>
-            </div>
-            <div>
-                <div class="more_info_caption">{{_("Private IP Address")}}:</div>
-                <div class="more_info_detail in-place-edit" id="management_ip__{{entity.serial_no}}">{{entity.management_ip}}</div>
-            </div>
-            <div>
-                <input 
-                    class="in-place-edit-check" 
-                    type="checkbox" 
-                    id="auto_monitor__{{entity.serial_no}}"
-                    {% if entity["auto_monitor"] %}
-                        checked="checked"
-                    {% end %}
-                >
-                <label for="auto_monitor__{{entity.serial_no}}">{{_("Auto Monitor")}}</label></input>
+        <div class="user-entity-online ui-corner-all" rel="{{user[0]}}">
+            <span class="xtn-no">{{user[0]}}</span>
+            <div class="more-info">
+                <h4><a href="#">{{_("More info...")}}</a></h4>
+                <table>
+                    <tbody>
+                        <tr><th>{{_("User")}}</th><td>{{data["online_users_data"][user]["User"]}}</td></tr>
+                        <tr><th>{{_("Agent")}}</th><td>{{data["online_users_data"][user]["Agent"]}}</td></tr>
+                        <tr><th>{{_("Status")}}</th><td>{{data["online_users_data"][user]["Status"]}}</td></tr>
+                        <tr><th>{{_("IP")}}</th><td>{{data["online_users_data"][user]["IP"]}}</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        
     {% end %}
 {% end %}
 

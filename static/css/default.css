@@ -22,7 +22,12 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 .striked { text-decoration: line-through;}
 .group-box {margin: 1.0em 0em 1.0em 0em; padding: 0em 1.0em 1.0em 1.0em;}
 .user-entity { width: 72px; float:left; display:box; border: 1px solid; font-size:0.9em; margin:4px; padding:4px; text-align: center}
-.online { color:#ffffff!important; background-color:#337519!important}
+.user-entity-online { 
+	width: 72px; float:left; display:box; border: 1px solid; 
+	font-size:0.9em; margin:4px; padding:4px; text-align: center;
+	color:#ffffff!important; 
+	background-color:#337519!important
+}
 
 
 /* FONT*/
