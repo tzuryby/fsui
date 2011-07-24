@@ -117,8 +117,10 @@ class DashboardHandler(FSUIHandler):
         online_users_data = self._get_online_users()
         
         online_users = [(user['Auth-User'], 1) for user in online_users_data]
-        offline_users = [(user['Auth-User'], 0) for user in 
-            all_users_ids if user not in online_users]
+        offline_users = [
+            (user['Auth-User'], 0) for 
+                user in all_users_ids 
+                    if (user['Auth-User'], 1) not in online_users]
                 
         all_users = [(user, user in online_users_ids) for user in self._get_directory_entries()]
         
@@ -138,3 +140,14 @@ HANDLERS = [
     (r"/cli", CLIHandler),
     (r"/fslog", FSLogHandler),
 ]
+
+
+'''    HTTPRequest(protocol='http', host='localhost:5678', method='GET', uri='/dashboard', version='HTTP/1.1', remote_ip='127.0.0.1', body='', headers={'Accept-Language': 'en-US,en;q=0.8', 'Accept-Encoding': 'gzip,deflate,sdch', 'Host': 'localhost:5678', 'Accept': 'text/html, */*; q=0.01', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.124 Safari/534.30', 'Accept-Charset': 'UTF-8,*;q=0.5', 'Connection': 'keep-alive', 'X-Requested-With': 'XMLHttpRequest', 'Referer': 'http://localhost:5678/', 'Cookie': 'ui-tabs-1=0'})
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.6/dist-packages/tornado/web.py", line 850, in _execute
+        getattr(self, self.request.method.lower())(*args, **kwargs)
+      File "/usr/src/snoip/fsui/httphandlers.py", line 132, in get
+        self.render("dashboard.html", data=self.get_state())
+      File "/usr/src/snoip/fsui/httphandlers.py", line 121, in get_state
+        all_users_ids if user not in online_users]
+    TypeError: string indices must be integers, not str
