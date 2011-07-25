@@ -159,7 +159,7 @@ class ConferenceHandler(FSUIHandler):
         
     def post(self):
         if not self.get_argument("password"):
-            self.get()
+            self._do_get()
         else:
             # save changes
             profile = self.get_argument("profile")
