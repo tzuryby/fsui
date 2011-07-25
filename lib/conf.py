@@ -7,10 +7,11 @@ __version__ = "0.1"
 import os
 from lxml import etree
 
-FS_ROOT_DIR = "/usr/local/freeswitch" 
-FS_CLI_COMMAND = os.path.join(FS_ROOT_DIR, "bin", "fs_cli") + " -x '%s'"
-FS_DIR_PATH = os.path.join(FS_ROOT_DIR, "conf", "directory", "default")
-CONF_PROFILES_PATH = os.path.join(FS_ROOT_DIR, "conf/autoload_configs", "conference.conf.xml")
+FS_ROOT_DIR         = "/usr/local/freeswitch" 
+FS_DIR_PATH         = os.path.join(FS_ROOT_DIR, "conf", "directory", "default")
+DIALPLAN_PATH       = os.path.join(FS_ROOT_DIR, "dialplan", "snoip.xml")
+CONF_PROFILES_PATH  = os.path.join(FS_ROOT_DIR, "conf/autoload_configs", "conference.conf.xml")
+FS_CLI_COMMAND      = os.path.join(FS_ROOT_DIR, "bin", "fs_cli") + " -x '%s'"
 
 class XMLHandler(object):
     filename = None
@@ -70,6 +71,7 @@ class ExtensionFileHandler(XMLHandler):
     def __init__(self, xt_number):
         self.filename = os.path.join(FS_DIR_PATH, xt_number + ".xml")
         XMLHandler.__init__(self)
+        
 
 class ConferenceProfilesHandler(XMLHandler):
     filename = CONF_PROFILES_PATH
