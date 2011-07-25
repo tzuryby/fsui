@@ -149,7 +149,7 @@ $(document).ready(function(){
     var conferences = {        
         load: function(url, params, callback){
                 IAmBusy.show()
-                url = url || "/admin/set/conferences"
+                url = url || "/admin/x"
                 params = params || {};
                 callback = callback || IAmBusy.hide;
                 
@@ -160,7 +160,7 @@ $(document).ready(function(){
             var pin = $(this).val(),
                 profile = $(this).attr("rel");
                 
-            confrences.load(null, {pin: pin, profile: profile}, IAmBusy.hide);
+            confrences.load("/admin/x", {pin: pin, profile: profile}, IAmBusy.hide);
         }
     }
     
