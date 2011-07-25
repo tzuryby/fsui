@@ -171,7 +171,6 @@ class FileCatter(FSUIHandler):
         fd = common.shell('[ -e %s ] && cat %s || echo "file not found"' % (self.input_path, self.input_path))
         self.set_header(self.header_type);
         self.set_header('Content-disposition', 'attachment;filename=%s'% (self.output_name))
-        self.set_header)
         self.write(fd)
 
 class SyslogCatter(FileCatter):
