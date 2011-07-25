@@ -110,8 +110,7 @@ $(document).ready(function(){
         startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 8*1000) },
         stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);},        
         restart:      function(){
-            //~ dashBoard.stopLoop();
-            //~ dashBoard.loader();
+            dashBoard.loader();
             dashBoard.startLoop();
         }
     }
@@ -133,7 +132,7 @@ $(document).ready(function(){
                 "/admin/set/password", 
                 { extension: extension, password: password },
                 function(){
-                    dashBoard.restart();
+                    //dashBoard.restart();
                 }
             );
         }        
