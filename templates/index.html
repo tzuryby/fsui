@@ -45,7 +45,8 @@
             <button id="tcpdump-start">{{_("Capture")}}</button>
             <p>
                 <label for="timeout">{{_("Number of seconds")}}:</label>
-                <input type="text" id="timeout" style="border:0; color:#f6931f; font-weight:bold;" />
+                <input type="text" id="timeout" style="border:0; color:#f6931f; font-weight:bold; width:40px" disabled="disabled"/>
+                {{_("seconds")}}
             </p>
 
             <div id="slider"></div>
@@ -218,10 +219,10 @@ $(document).ready(function(){
     $( "#slider" ).slider({
         value:30, min: 10, max: 600, step: 10,
         slide: function( event, ui ) {
-            $( "#timeout" ).val( "$" + ui.value );
+            $( "#timeout" ).val( ui.value);
         }
     });
-    $( "#timeout" ).val( $( "#slider" ).slider( "value" ) + "sec." );
+    $( "#timeout" ).val( $("#slider").slider("value"));
 
 
     // <--
