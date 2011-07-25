@@ -135,10 +135,18 @@ class DashboardHandler(FSUIHandler):
     def get(self):
         self.render("dashboard.html", data=self.get_state())
         
+def PasswordHandler(FSUIHandler):
+    def post(self):
+        extension = self.get_argument("extension")
+        password = self.get_argument("password")
         
+        if extension and password:
+            ExtensionFileHandler(extension).set(**{"password": password})
+
 HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
     (r"/cli", CLIHandler),
     (r"/fslog", FSLogHandler),
+    (r"/admin/set/password", PasswordHandler),
 ]

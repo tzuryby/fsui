@@ -95,8 +95,7 @@ $(document).ready(function(){
                             onShow: function(e){
                                 dashBoard.stopLoop();
                                 $(".qtip-wrapper .in-place-edit").editable({
-                                    onSubmit:inline_editor_save,
-                                    type: 'password'
+                                    onSubmit:inline_editor_save
                                 });
                             },
                             onHide: function(e){
@@ -109,11 +108,14 @@ $(document).ready(function(){
         }, 
         loader:    function(){ $("#dashboard-users").load("/dashboard", dashBoard.uiHandler);},
         startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 8*1000) },
-        stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);}
+        stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);},        
+        restart:      function(){
+            dashBoard.loader();
+            dashBoard.startLoop();
+        }
     }
-    
-    dashBoard.loader();
-    dashBoard.startLoop();
+        
+    dashBoard.restart();
 
     function inline_editor_save(content){
         // checkbox click 
@@ -122,27 +124,19 @@ $(document).ready(function(){
         }
         
         if (content.current !== content.previous){
-        /*
-            var that = $(this),
-                serial_no = that.attr("id").split("__")[1],
-                group1 = that.parent().parent().find("#group1__" + serial_no).html(),
-                management_ip = that.parent().parent().find("#management_ip__" + serial_no).html(),
-                auto_monitor = that.parent().parent().find("#auto_monitor__" + serial_no).attr("checked")+0,
-                params = {group1:group1, management_ip:management_ip, auto_monitor: auto_monitor};
-            $.post("/entities/save/"+ serial_no, params, function(){});
+            var _this = $(this),
+                extension = _this.attr("rel"),
+                password = content.current;
             
-            $(".qtip-active").hide()
-            loadMonitoredEntities();
-        */
+            $.post(
+                "/admin/set/password", 
+                { extension: extension, password: password },
+                function(){
+                    dashBoard.restart();
+                }
+            );
         }        
-    }
-
-    //~ $("#watch-fs-log").click(function(){
-        //~ window.open('/fslog','logdmp','width=580,height=600');
-    //~ });    
-    
-    //~ $("button").button();
-    
+    }    
 });
 
 
