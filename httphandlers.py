@@ -40,6 +40,9 @@ class StreamHandler(FSUIHandler):
         self.pipe = self.get_pipe()        
         self.ioloop.add_handler(self.pipe.fileno(), self.async_callback (self.on_read), self.ioloop.READ)
         
+        # close pipe after 180 seconds
+        self.ioloop.add_timeout(time.time()+(180), self.close_pipe);
+        
     def close_pipe(self):
         self.ioloop.remove_handler(self.pipe.fileno())
         self.write(self.end_page)
@@ -48,6 +51,7 @@ class StreamHandler(FSUIHandler):
         
         try:
             self.process.kill()
+            
         except:
             pass
         
@@ -76,17 +80,6 @@ class StreamHandler(FSUIHandler):
     def get_pipe(self):
         return self._get_pipe()
         
-#~ class FSLogHandler(StreamHandler):
-    #~ def _get_pipe(self):
-        #~ # dirty way to kill previous tails
-        #~ common.shell("killall tail")
-        #~ return self._spawn_process("tail -f /usr/local/freeswitch/log/freeswitch.log").stdout
-
-#~ class SyslogHandler(StreamHandler):
-    #~ def _get_pipe(self):
-        #~ # dirty way to kill previous tails
-        #~ common.shell("killall tail")
-        #~ return self._spawn_process("tail -f /var/log/syslog").stdout
 
 class CLIHandler(FSUIHandler):
     def get(self):
@@ -172,11 +165,13 @@ class ConferenceHandler(FSUIHandler):
 class FileCatter(FSUIHandler):        
     input_path =  '/tmp/non-exists.log' 
     output_name = 'null'
+    header_type = ('Content-type', 'text/plain')
     
     def get(self):
-        fd = common.shell('[ -e %s ] && cat %s || echo "log file not found"' % (self.input_path, self.input_path))
-        self.set_header('Content-type', 'text/plain');
+        fd = common.shell('[ -e %s ] && cat %s || echo "file not found"' % (self.input_path, self.input_path))
+        self.set_header(self.header_type);
         self.set_header('Content-disposition', 'attachment;filename=%s'% (self.output_name))
+        self.set_header)
         self.write(fd)
 
 class SyslogCatter(FileCatter):
@@ -187,14 +182,29 @@ class FSLogCatter(FileCatter):
     input_path =  '/usr/local/freeswitch/log/freeswitch.log'
     output_name = 'switch.log'
     
+class PcapFileCatter(FileCatter):
+    input_path =  '/tmp/eth1.cap'
+    output_name = 'traffic.cap'
+    header_type = ('Content-type', 'application/octet-stream')
+
+class TCPDumpHandler(StreamHandler):
+    end_page = '</pre><hr/><a href="/dl/pcap">Download PCAP File</a>'
+    
+    def _get_pipe(self):
+        # dirty way to kill previous tails        
+        common.shell("killall tcpdump")
+        # write to file and console at the same time 
+        return self._spawn_process("tcpdump -s 0 -i eth1 -c 10 -w - -U | tee /tmp/eth1.cap | tcpdump -xX -n -r -").stdout
 
         
 HTTP_HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
     (r"/cli", CLIHandler),
+    (r"/tcpdump", TCPDumpHandler),
     (r"/dl/syslog", SyslogCatter),
     (r"/dl/switchlog", FSLogCatter),
+    (r"/dl/pcap", PcapFileCatter),
     (r"/admin/set/extension/password", ExtensionPasswordHandler),
     (r"/admin/conferences", ConferenceHandler),
 ]

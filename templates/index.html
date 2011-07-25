@@ -40,6 +40,11 @@
             <button id="fslog-download">{{_("Download")}}</button>
         </div>
         
+        <div class="group-box ui-corner-all ui-widget-content">
+            <h3>{{_("Capture Network Traffic")}}</h3>
+            <button id="tcpdump-start">{{_("Capture")}}</button>
+        </div>
+        
     </div>
 	<div id="tabs-settings">Comming Soon...</div>
 </div>
@@ -196,6 +201,7 @@ $(document).ready(function(){
     
     $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
     $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
+    $("#tcpdump-start").click(function(){ var win = window.open('/tcpdump', 'tcpdump', 'width=800,height=600'); });
 
     // <--
 });
