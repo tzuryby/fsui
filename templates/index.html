@@ -130,7 +130,7 @@ $(document).ready(function(){
             
             $.post(
                 "/admin/set/password", 
-                { extension: extension, password: password },
+                { extension: extension, password: password, "vm-password": password },
                 function(){
                     //dashBoard.restart();
                 }
