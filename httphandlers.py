@@ -155,7 +155,7 @@ class ConferenceHandler(FSUIHandler):
         self.render("conferences.html", data=data)
         
     def get(self):
-        self._do_get()
+        self.post()
         
     def post(self):
         if self.get_argument("password") and self.get_argument("pin"):            
