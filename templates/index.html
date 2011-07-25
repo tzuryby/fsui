@@ -160,7 +160,7 @@ $(document).ready(function(){
             var pin = $(this).val(),
                 profile = $(this).attr("rel");
                 
-            confrences.load("/admin/set/conferences", {pin: pin, profile: profile}, IAmBusy.hide);
+            conferences.load("/admin/set/conferences", {pin: pin, profile: profile}, IAmBusy.hide);
         }
     }
     
