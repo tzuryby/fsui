@@ -174,9 +174,9 @@ class FileCatter(FSUIHandler):
     output_name = 'null'
     
     def get(self):
-        fd = common.shell('[ -e %s ] && cat %s || echo "log file not found"' % (input_path, input_path))
+        fd = common.shell('[ -e %s ] && cat %s || echo "log file not found"' % (self.input_path, self.input_path))
         self.set_header('Content-type', 'text/plain');
-        self.set_header('Content-disposition', 'attachment;filename=%s'% (output_name))
+        self.set_header('Content-disposition', 'attachment;filename=%s'% (self.output_name))
         self.write(fd)
 
 class SyslogCatter(FileCatter):
