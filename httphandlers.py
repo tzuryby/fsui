@@ -174,7 +174,7 @@ class FileCatter(FSUIHandler):
     output_name = 'null'
     
     def get(self):
-        fd = shell('[ -e %s ] && cat %s || echo "log file not found"' % (input_path, input_path))
+        fd = common.shell('[ -e %s ] && cat %s || echo "log file not found"' % (input_path, input_path))
         self.set_header('Content-type', 'text/plain');
         self.set_header('Content-disposition', 'attachment;filename=%s'% (output_name))
         self.write(fd)
