@@ -143,6 +143,7 @@ class ExtensionPasswordHandler(FSUIHandler):
         if extension and password:
             ExtensionFileHandler(extension).set(**{"password": password})
             
+
 class ConferenceHandler(FSUIHandler):        
     def post(self):
         if self.get_argument("password") and self.get_argument("pin"):
@@ -162,11 +163,11 @@ class ConferenceHandler(FSUIHandler):
         self.render("conferences.html", data=data)
         
         
-HANDLERS = [
+HTTP_HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
     (r"/cli", CLIHandler),
     (r"/fslog", FSLogHandler),
     (r"/admin/set/extension/password", ExtensionPasswordHandler),    
-    (r"/admin/set/conferences", ConferenceHandler),
+    (r"/admin/conferences", ConferenceHandler),
 ]

@@ -30,7 +30,7 @@ class Application(tornado.web.Application):
             }
         )
         
-        tornado.web.Application.__init__(self, HANDLERS, **settings)
+        tornado.web.Application.__init__(self, HTTP_HANDLERS, **settings)
 
 def main():
     tornado.options.parse_command_line()
