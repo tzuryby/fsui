@@ -107,7 +107,9 @@ class DashboardHandler(FSUIHandler):
         online_users = (dict((map(str.strip, entry.split(": ")) for entry in user if entry)) for user in users)
         ret = {}
         for user in online_users:
-            ret[user["Auth-User"]] = user
+            extension = user["Auth-User"]
+            ret[extension] = user
+            ret[extension]["password"] = ExtensionFileHandler(extension)get()['password']
         
         return ret
         
