@@ -167,7 +167,7 @@ $(document).ready(function(){
     }
     
     $(".conference_pin").live("keypress", 
-        function(){
+        function(evt){
             var keyCode = evt.keyCode;
             if (keyCode === 13){
                 conferences.save();
