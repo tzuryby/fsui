@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="reactor-in-action"></div>
+<div class="reactor-in-action hide-on-load"></div>
 <center>
-    <div class="hide_on_load ui-corner-all" id="notification_div">
+    <div class="hide-on-load ui-corner-all" id="notification_div">
         <p id="notification_message">
         </p>
     </div>
@@ -34,6 +34,8 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+    
+    $(".hide-on-load").hide();
     
     // in case someone decided to use IE6 -- LULZec come over here ;-)
     window.console = window.console || {log: function(){}}
@@ -105,15 +107,13 @@ $(document).ready(function(){
                         }
                   });
                 });
+            IAmBusy.hide();
             
         }, 
-        loader:    function(){ $("#dashboard-users").load("/dashboard", dashBoard.uiHandler);},
+        loader:    function(){ IAmBusy.show(); $("#dashboard-users").load("/dashboard", dashBoard.uiHandler); },
         startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 8*1000) },
         stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);},        
-        restart:      function(){
-            dashBoard.loader();
-            dashBoard.startLoop();
-        }
+        restart:   function(){ dashBoard.loader(); dashBoard.startLoop(); }
     }
         
     dashBoard.restart();
@@ -130,14 +130,20 @@ $(document).ready(function(){
                 password = content.current;
             
             $.post(
+                IAmBusy.show();
                 "/admin/set/password", 
                 { extension: extension, password: password, "vm-password": password },
                 function(){
-                    //dashBoard.restart();
+                    IAmBusy.hide();
                 }
             );
         }        
-    }    
+    }
+    
+    IAmBusy = {
+        show:   function(){ $('reactor-in-action').show()},
+        hide:   function(){ $('reactor-in-action').hide()}
+    }
 });
 
 
