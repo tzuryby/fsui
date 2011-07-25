@@ -143,8 +143,8 @@ class ExtensionPasswordHandler(FSUIHandler):
         if extension and password:
             ExtensionFileHandler(extension).set(**{"password": password})
             
-class ConferenceHandler(FSUIHandler):        
-    def get(self):
+class ConferenceHandler(FSUIHandler):
+    def _do_get(self):
         data = []
         profiles = ConferenceProfilesHandler().get_all()[0]
         for profile in profiles:
@@ -153,6 +153,9 @@ class ConferenceHandler(FSUIHandler):
             data.append(p)
         
         self.render("conferences.html", data=data)
+        
+    def get(self):
+        self._do_get()
         
     def post(self):
         if not self.get_argument("password"):
@@ -164,7 +167,7 @@ class ConferenceHandler(FSUIHandler):
             ConferencePINHandler(profile).set(**{"pin": pin})
             
             # render response
-            self.get()
+            self._do_get()
         
 HANDLERS = [
     (r"/", MainHandler),
