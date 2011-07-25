@@ -194,8 +194,8 @@ $(document).ready(function(){
     conferences.load();
     $("button").button();
     
-    $("#syslog-download").click(function(){ $.get("/dl/syslog")});
-    $("#fslog-download").click(function(){ $.get("/dl/switchlog")});
+    $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
+    $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
 
     // <--
 });
