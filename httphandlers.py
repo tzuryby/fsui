@@ -153,6 +153,10 @@ class ConferenceHandler(FSUIHandler):
             data.append(p)
         
         self.render("confrences.html", data=data)
+        
+    def post(self):
+        self.get()
+        
 HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
