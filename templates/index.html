@@ -43,8 +43,15 @@
         <div class="group-box ui-corner-all ui-widget-content">
             <h3>{{_("Capture Network Traffic")}}</h3>
             <button id="tcpdump-start">{{_("Capture")}}</button>
+            <p>
+                <label for="timeout">{{_("Number of seconds")}}:</label>
+                <input type="text" id="timeout" style="border:0; color:#f6931f; font-weight:bold;" />
+            </p>
+
+            <div id="slider"></div>
+            
             <br/>
-            <a class="hide-on-load" href="/dl/pcap">{{_("Download PCAP file")}}</a>
+            <a id="download-pcap-file" class="hide-on-load" href="/dl/pcap">{{_("Download PCAP file")}}</a>
         </div>
         
     </div>
@@ -184,6 +191,9 @@ $(document).ready(function(){
         }
     }
     
+    function showTcpdumpDownloadLink(){
+        $("#download-pcap-file").show();
+    }
     
     // -->
     
@@ -203,7 +213,16 @@ $(document).ready(function(){
     
     $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
     $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
-    $("#tcpdump-start").click(function(){ var win = window.open('/tcpdump', 'tcpdump', 'width=800,height=600'); });
+    $("#tcpdump-start").click(function(){ var win = window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); });
+
+    $( "#slider" ).slider({
+        value:30, min: 10, max: 600, step: 10,
+        slide: function( event, ui ) {
+            $( "#timeout" ).val( "$" + ui.value );
+        }
+    });
+    $( "#timeout" ).val( $( "#slider" ).slider( "value" ) + "sec." );
+
 
     // <--
 });
