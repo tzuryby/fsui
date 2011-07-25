@@ -156,7 +156,9 @@ $(document).ready(function(){
                 $("#conferences-profiles").load(url, params, callback);
         },
         
-        save: function(){
+        save: function(evt){
+            IAmBusy.show()
+            
             var pin = $(this).val(),
                 profile = $(this).attr("rel");
                 
