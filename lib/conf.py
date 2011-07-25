@@ -77,10 +77,10 @@ class ConferencePINHandler(XMLHandler):
     
     def __init__(self, profile):
         self.profile = profile
-        , 
-            ,
-            {"pin": ("/configuration/profiles/profile[@name='%s']/param[@name='pin']" % (self.profile) , "value")}
-        )
+        self._api = {"pin": 
+            ("/configuration/profiles/profile[@name='%s']/param[@name='pin']" 
+                % (self.profile) , "value")}
+                
         XMLHandler.__init__(self)
         
 class DialplanHandler(XMLHandler):
