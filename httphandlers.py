@@ -76,17 +76,17 @@ class StreamHandler(FSUIHandler):
     def get_pipe(self):
         return self._get_pipe()
         
-class FSLogHandler(StreamHandler):
-    def _get_pipe(self):
-        # dirty way to kill previous tails
-        common.shell("killall tail")
-        return self._spawn_process("tail -f /usr/local/freeswitch/log/freeswitch.log").stdout
+#~ class FSLogHandler(StreamHandler):
+    #~ def _get_pipe(self):
+        #~ # dirty way to kill previous tails
+        #~ common.shell("killall tail")
+        #~ return self._spawn_process("tail -f /usr/local/freeswitch/log/freeswitch.log").stdout
 
-class SyslogHandler(StreamHandler):
-    def _get_pipe(self):
-        # dirty way to kill previous tails
-        common.shell("killall tail")
-        return self._spawn_process("tail -f /var/log/syslog").stdout
+#~ class SyslogHandler(StreamHandler):
+    #~ def _get_pipe(self):
+        #~ # dirty way to kill previous tails
+        #~ common.shell("killall tail")
+        #~ return self._spawn_process("tail -f /var/log/syslog").stdout
 
 class CLIHandler(FSUIHandler):
     def get(self):
@@ -169,12 +169,32 @@ class ConferenceHandler(FSUIHandler):
         # render shit
         self._render()    
         
+class FileCatter(FSUIHandler):        
+    input_path =  '/tmp/non-exists.log' 
+    output_name = 'null'
+    
+    def get(self):
+        fd = shell('[ -e %s ] && cat %s || echo "log file not found"' % (input_path, input_path))
+        self.set_header('Content-type', 'text/plain');
+        self.set_header('Content-disposition', 'attachment;filename=%s'% (output_name))
+        self.write(fd)
+
+class SyslogCatter(FileCatter):
+    input_path =  '/var/log/syslog' 
+    output_name = 'syslog'
+    
+class FSLogCatter(FileCatter):
+    input_path =  '/usr/local/freeswitch/log/freeswitch.log'
+    output_name = 'switch.log'
+    
+
         
 HTTP_HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
     (r"/cli", CLIHandler),
-    (r"/fslog", FSLogHandler),
-    (r"/admin/set/extension/password", ExtensionPasswordHandler),    
+    (r"/dl/syslog", SyslogCatter),
+    (r"/dl/switchlog", FSLogCatter),
+    (r"/admin/set/extension/password", ExtensionPasswordHandler),
     (r"/admin/conferences", ConferenceHandler),
 ]
