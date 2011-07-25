@@ -10,6 +10,7 @@ from lxml import etree
 FS_ROOT_DIR = "/usr/local/freeswitch" 
 FS_CLI_COMMAND = os.path.join(FS_ROOT_DIR, "bin", "fs_cli") + " -x '%s'"
 FS_DIR_PATH = os.path.join(FS_ROOT_DIR, "conf", "directory", "default")
+CONF_PROFILES_PATH = os.path.join(FS_ROOT_DIR, "conf/autoload_configs" "conference.conf.xml")
 
 class XMLHandler(object):
     def __init__(self, filename, _api):
@@ -72,7 +73,7 @@ class ExtensionFileHandler(XMLHandler):
 class ConferenceProfilesHandler(XMLHandler):
     def __init__(self):
         XMLHandler.__init__(self, 
-            "/home/tzury/Desktop/conference.conf.xml",
+            CONF_PROFILES_PATH,
             {"name": ("/configuration/profiles/profile[@name]", "name")}
         )
 
@@ -80,7 +81,7 @@ class ConferencePINHandler(XMLHandler):
     def __init__(self, profile):
         self.profile = profile
         XMLHandler.__init__(self, 
-            "/home/tzury/Desktop/conference.conf.xml",
+            CONF_PROFILES_PATH,
             {"pin": ("/configuration/profiles/profile[@name='%s']/param[@name='pin']" % (self.profile) , "value")}
         )
         
