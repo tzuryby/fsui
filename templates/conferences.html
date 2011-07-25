@@ -1,5 +1,5 @@
 {% for item in data %}
-    <div class="conference-profile-box ui-corner-all group-box">
+    <div class="group-box ui-corner-all ui-widget-content">
         <h3>{{ item['profile'] }}</h3>
         <label for="pin_{{item['profile']}}">{{_("Room Password (PIN)")}}</label><br />
         <input class="ui-widget-content ui-corner-all" id="pin_{{item['profile']}}" value="{{item['pin']}}" />

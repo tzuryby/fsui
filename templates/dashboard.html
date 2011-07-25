@@ -1,4 +1,5 @@
 {% if data['online_users']%}
+<div class="group-box ui-corner-all ui-widget-content">
     <h3>{{_("Online Users")}}</h3>
     {% for user in data['online_users'] %}
         <div class="user-entity-online ui-corner-all" rel="{{user[0]}}">
@@ -32,9 +33,11 @@
         </div>
     {% end %}
     <div class="clear" />
+<div>
 {% end %}
 
 {% if data['offline_users']%}
+<div class="group-box ui-corner-all ui-widget-content">
     <h3>{{_("Offline Users")}}</h3>
     {% for user in data['offline_users'] %}
         <div class="user-entity ui-corner-all">
@@ -42,6 +45,7 @@
             <span class="ui-icon ui-icon-pencil" style="float:left"></span>        
         </div>
     {% end %}
+</div>
 {% end %}
 <div class="clear" />
 
