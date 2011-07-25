@@ -123,8 +123,11 @@ class DashboardHandler(FSUIHandler):
         online_users_data = self._get_online_users()        
         online_users = [(user, 1) for user in online_users_data.iterkeys()]
 
-        offline_users = [(user, 0) for user in all_users_ids 
-            if (user, 1,) not in online_users]
+        offline_users = [
+            (user, 0, 
+                ExtensionFileHandler(user).get()['password'])
+                for user in all_users_ids 
+                    if (user, 1,) not in online_users]
                 
         return {
             "online_users_data": online_users_data,
