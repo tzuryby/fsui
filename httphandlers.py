@@ -45,21 +45,21 @@ class StreamHandler(FSUIHandler):
         self.ioloop.add_timeout(time.time()+5, self.close_pipe);
         
     def close_pipe(self):
-        log.info('self.ioloop.remove_handler(self.pipe.fileno())')
+        print ('self.ioloop.remove_handler(self.pipe.fileno())')
         self.ioloop.remove_handler(self.pipe.fileno())
-        log.info('self.write(self.end_page)')
+        print ('self.write(self.end_page)')
         self.write(self.end_page)
-        log.info('self.finish()')
+        print ('self.finish()')
         self.finish()
         
         try:
-            log.info('self.process.kill()')
+            print ('self.process.kill()')
             self.process.kill()
-            log.info('self.pipe.close()')
+            print ('self.pipe.close()')
             self.pipe.close()    
         
         except Exception, msg:
-            log.error(msg)
+            print (msg)
             
             
     def on_read(self, fd, events): 
