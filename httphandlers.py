@@ -215,7 +215,14 @@ class TCPDumpHandler(StreamHandler):
         # write to file and console at the same time 
         return self._spawn_process("tcpdump -s 0 -i eth1 -w - -U | tee /tmp/eth1.cap | tcpdump -xX -n -r -").stdout
 
+class FSRegexpHandler(FSUIHandler):
+    def get(self):
+        self.post()
         
+    def post(self):
+        exp = self.get_argument("exp", "false")
+        self.write(exp and common.shell(FS_CLI_COMMAND % ("regex 9657|^9(.*)$")).strip())
+
 HTTP_HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
@@ -226,4 +233,6 @@ HTTP_HANDLERS = [
     (r"/dl/pcap", PcapFileCatter),
     (r"/admin/set/extension/password", ExtensionPasswordHandler),
     (r"/admin/conferences", ConferenceHandler),
+    (r"/dialplan", DialplanHandler),
+    (r"/dialplan/test", FSRegexpHandler),
 ]

@@ -13,10 +13,11 @@ FS_DIR_PATH = os.path.join(FS_ROOT_DIR, "conf", "directory", "default")
 CONF_PROFILES_PATH = os.path.join(FS_ROOT_DIR, "conf/autoload_configs", "conference.conf.xml")
 
 class XMLHandler(object):
-    def __init__(self, filename, _api):
-        self.filename = filename
+    filename = None
+    _api = {}
+    
+    def __init__(self):
         self.et = etree.parse(self.filename)
-        self._api = _api
         
     def api(self):
         return self._api
@@ -60,29 +61,36 @@ class XMLHandler(object):
         return ret
         
 class ExtensionFileHandler(XMLHandler):
-    def __init__(self, xt_number):
-        XMLHandler.__init__(self, 
-            os.path.join(FS_DIR_PATH, xt_number + ".xml"),
-            {
-                "id": ("/include/user[@id]", "id"),
-                "password": ("/include/user/params/param[@name='password']", "value"),
-                "vm-password": ("/include/user/params/param[@name='vm-password']", "value")
-            }
-        )
+    filename = os.path.join(FS_DIR_PATH, xt_number + ".xml")
+    _api = {
+        "id": ("/include/user[@id]", "id"),
+        "password": ("/include/user/params/param[@name='password']", "value"),
+        "vm-password": ("/include/user/params/param[@name='vm-password']", "value")
+    }
 
 class ConferenceProfilesHandler(XMLHandler):
-    def __init__(self):
-        XMLHandler.__init__(self, 
-            CONF_PROFILES_PATH,
-            {"name": ("/configuration/profiles/profile[@name]", "name")}
-        )
+    filename = CONF_PROFILES_PATH
+    _api = {"name": ("/configuration/profiles/profile[@name]", "name")}
 
 class ConferencePINHandler(XMLHandler):
+    filename = CONF_PROFILES_PATH
+    
     def __init__(self, profile):
         self.profile = profile
-        XMLHandler.__init__(self, 
-            CONF_PROFILES_PATH,
+        , 
+            ,
             {"pin": ("/configuration/profiles/profile[@name='%s']/param[@name='pin']" % (self.profile) , "value")}
         )
+        XMLHandler.__init__(self)
         
+class DialplanHandler(XMLHandler):
+    filename = DIALPLAN_PATH
+    _api = {
+        "expression":
+        ("/context[@name='core']"
+            "/extension[@name='to-pstn']"
+                "/condition[@field='destination_number']", 
+            "expression")
+    }
+
 
