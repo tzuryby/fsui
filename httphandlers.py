@@ -135,7 +135,7 @@ class DashboardHandler(FSUIHandler):
     def get(self):
         self.render("dashboard.html", data=self.get_state())
         
-def PasswordHandler(FSUIHandler):
+class PasswordHandler(FSUIHandler):
     def post(self):
         extension = self.get_argument("extension")
         password = self.get_argument("password")
