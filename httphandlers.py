@@ -59,7 +59,7 @@ class StreamHandler(FSUIHandler):
         buffer = self.pipe.read(90)
         try: 
             assert buffer 
-            self.write(buffer)
+            self.write(xhtml_escape(buffer))
             self.flush()
         except: 
             self.close_pipe()
