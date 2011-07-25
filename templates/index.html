@@ -177,6 +177,9 @@ $(document).ready(function(){
         }
     }
     
+    
+    // -->
+    
     $(".conference_pin").live("keypress", 
         function(evt){
             var keyCode = evt.keyCode;
@@ -190,7 +193,11 @@ $(document).ready(function(){
     dashBoard.restart();
     conferences.load();
     $("button").button();
+    
+    $("#syslog-download").click(function(){ $.get("/dl/syslog")});
+    $("#fslog-download").click(function(){ $.get("/dl/switchlog")});
 
+    // <--
 });
 
 
