@@ -169,7 +169,7 @@ class FileCatter(FSUIHandler):
     
     def get(self):
         fd = common.shell('[ -e %s ] && cat %s || echo "file not found"' % (self.input_path, self.input_path))
-        self.set_header(self.header_type);
+        self.set_header(*self.header_type);
         self.set_header('Content-disposition', 'attachment;filename=%s'% (self.output_name))
         self.write(fd)
 
@@ -193,7 +193,7 @@ class TCPDumpHandler(StreamHandler):
         # dirty way to kill previous tails        
         common.shell("killall tcpdump")
         # write to file and console at the same time 
-        return self._spawn_process("tcpdump -s 0 -i eth1 -c 10 -w - -U | tee /tmp/eth1.cap | tcpdump -xX -n -r -").stdout
+        return self._spawn_process("tcpdump -s 0 -i eth1 -w - -U | tee /tmp/eth1.cap | tcpdump -xX -n -r -").stdout
 
         
 HTTP_HANDLERS = [
