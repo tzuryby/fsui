@@ -39,12 +39,15 @@
 {% if data['offline_users']%}
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{_("Offline Users")}}</h3>
+    <div>
     {% for user in data['offline_users'] %}
         <div class="user-entity ui-corner-all">
             <span class="xtn-no">{{user[0]}}</span>
             <span class="ui-icon ui-icon-pencil" style="float:left"></span>        
         </div>
     {% end %}
+    </div>
+    <div class="clear" />
 </div>
 {% end %}
 <div class="clear" />
