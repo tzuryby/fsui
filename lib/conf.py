@@ -92,7 +92,7 @@ class DialplanHandler(XMLHandler):
     filename = DIALPLAN_PATH
     _api = {
         "expression":
-        ("/context[@name='core']"
+        ("//context[@name='core']"
             "/extension[@name='to-pstn']"
                 "/condition[@field='destination_number']", 
             "expression")
