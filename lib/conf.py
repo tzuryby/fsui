@@ -61,12 +61,15 @@ class XMLHandler(object):
         return ret
         
 class ExtensionFileHandler(XMLHandler):
-    filename = os.path.join(FS_DIR_PATH, xt_number + ".xml")
     _api = {
         "id": ("/include/user[@id]", "id"),
         "password": ("/include/user/params/param[@name='password']", "value"),
         "vm-password": ("/include/user/params/param[@name='vm-password']", "value")
     }
+    
+    def __init__(self, xt_number):
+        self.filename = os.path.join(FS_DIR_PATH, xt_number + ".xml")
+        XMLHandler.__init__(self)
 
 class ConferenceProfilesHandler(XMLHandler):
     filename = CONF_PROFILES_PATH
