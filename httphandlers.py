@@ -172,5 +172,5 @@ HANDLERS = [
     (r"/cli", CLIHandler),
     (r"/fslog", FSLogHandler),
     (r"/admin/set/extension/password", ExtensionPasswordHandler),
-    (r"/admin/set/confrences", ConferenceHandler),
+    (r"/admin/set/conferences", ConferenceHandler),
 ]
