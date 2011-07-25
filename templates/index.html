@@ -133,9 +133,7 @@ $(document).ready(function(){
                 IAmBusy.show();
                 "/admin/set/password", 
                 { extension: extension, password: password, "vm-password": password },
-                function(){
-                    IAmBusy.hide();
-                }
+                function(){IAmBusy.hide()}
             );
         }        
     }
