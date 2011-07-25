@@ -109,7 +109,7 @@ class DashboardHandler(FSUIHandler):
         for user in online_users:
             extension = user["Auth-User"]
             ret[extension] = user
-            ret[extension]["password"] = ExtensionFileHandler(extension)get()['password']
+            ret[extension]["password"] = ExtensionFileHandler(extension).get()['password']
         
         return ret
         
