@@ -152,7 +152,7 @@ class ConferenceHandler(FSUIHandler):
             p['profile'] = profile['name']
             data.append(p)
         
-        self.render("confrences.html", data=data)
+        self.render("conferences.html", data=data)
         
     def post(self):
         self.get()
