@@ -160,9 +160,9 @@ class ConferenceHandler(FSUIHandler):
         self._render()
         
     def post(self):
-        profie = self.get_argument("profile", None) 
+        profile = self.get_argument("profile", None) 
         pin = self.get_argument("pin", None)
-        if profiles and pin:
+        if profile and pin:
             # save changes
             ConferencePINHandler(profile).set(**{"pin": pin})
         
