@@ -45,7 +45,9 @@
             <button id="tcpdump-start">{{_("Capture")}}</button>
             <p>
                 <label for="timeout">{{_("Number of seconds")}}:</label>
-                <input type="text" id="timeout" style="border:0; color:#f6931f; font-weight:bold; width:40px" disabled="disabled"/>
+                <input type="text" id="timeout" 
+                    style="border:0; font-weight:bold; width:30px; background-color:#fff" 
+                    disabled="disabled"/>
                 {{_("seconds")}}
             </p>
 
@@ -192,7 +194,7 @@ $(document).ready(function(){
         }
     }
     
-    function showTcpdumpDownloadLink(){
+    window.showTcpdumpDownloadLink = function(){
         $("#download-pcap-file").show();
     }
     
