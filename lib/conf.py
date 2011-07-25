@@ -10,7 +10,7 @@ from lxml import etree
 FS_ROOT_DIR = "/usr/local/freeswitch" 
 FS_CLI_COMMAND = os.path.join(FS_ROOT_DIR, "bin", "fs_cli") + " -x '%s'"
 FS_DIR_PATH = os.path.join(FS_ROOT_DIR, "conf", "directory", "default")
-CONF_PROFILES_PATH = os.path.join(FS_ROOT_DIR, "conf/autoload_configs" "conference.conf.xml")
+CONF_PROFILES_PATH = os.path.join(FS_ROOT_DIR, "conf/autoload_configs", "conference.conf.xml")
 
 class XMLHandler(object):
     def __init__(self, filename, _api):
