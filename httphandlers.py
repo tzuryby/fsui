@@ -155,7 +155,16 @@ class ConferenceHandler(FSUIHandler):
         self.render("conferences.html", data=data)
         
     def post(self):
-        self.get()
+        if not self.get_argument("password"):
+            self.get()
+        else:
+            # save changes
+            profile = self.get_argument("profile")
+            pin = self.get_argument("pin")
+            ConferencePINHandler(profile).set(**{"pin": pin})
+            
+            # render response
+            self.get()
         
 HANDLERS = [
     (r"/", MainHandler),

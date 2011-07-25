@@ -5,7 +5,6 @@
         <div class="user-entity-online ui-corner-all" rel="{{user[0]}}">
             <span class="xtn-no">{{user[0]}}</span>
             <span class="moreinfo-qtip ui-icon ui-icon-plusthick" style="float:left" rel="{{user[0]}}" title="{{_('More info')}}"></span>
-            <!--<span class="edit-xt-qtip ui-icon ui-icon-pencil" style="float:left" rel="{{user[0]}}" title="{{_('edit extension details')}}"></span>-->
             <div class="hideme tip_frame" id="tip_frame_{{user[0]}}" >
                 <div class="more_info_caption">{{_("Call-ID")}}:</div>
                 <div class="more_info_detail">{{data['online_users_data'][user[0]]['Call-ID']}}</div>
@@ -53,5 +52,5 @@
 <div class="clear" />
 
 <script>
-    var _online_users_data = {{data['online_users_data']}}
+    var _online_users_data = {{ data['online_users_data'] }}
 </script>

@@ -70,8 +70,8 @@ $(document).ready(function(){
         }
     );
     
-    dashBoard = {    
-        loopId:    0,
+    dashBoard = {
+        loopId: 0,
         uiHandler: function(){
             $(".hideme").hide();
             var more_info_button_selector = $(".moreinfo-qtip");
@@ -147,14 +147,22 @@ $(document).ready(function(){
     }
     
     var conferences = {        
-        load:   function(url, params, callback){
-            url = url || "/admin/set/confrences";
-            params = params || {};
-            callback = callback || function(){}            
-            $("#conferences-profiles").load(url, params, callback);
+        load: function(url, params, callback){
+                IAmBusy.show()
+                url = url || "/admin/set/confrences";
+                params = params || {};
+                callback = callback || IAmBusy.hide;
+                
+                $("#conferences-profiles").load(url, params, callback);
+        },
+        
+        save: function(){
+            var pin = $(this).val(),
+                profile = $(this).attr("rel");
+                
+            confrences.load(null, {pin: pin, profile: profile}, IAmBusy.hide);
         }
     }
-    
     
     dashBoard.restart();
     conferences.load();
