@@ -135,18 +135,29 @@ class DashboardHandler(FSUIHandler):
     def get(self):
         self.render("dashboard.html", data=self.get_state())
         
-class PasswordHandler(FSUIHandler):
+class ExtensionPasswordHandler(FSUIHandler):
     def post(self):
         extension = self.get_argument("extension")
         password = self.get_argument("password")
         
         if extension and password:
             ExtensionFileHandler(extension).set(**{"password": password})
-
+            
+class ConferenceHandler(FSUIHandler):        
+    def get(self):
+        data = []
+        profiles = ConferenceProfilesHandler().get_all()[0]
+        for profile in profiles:
+            p = ConferencePINHandler(profile['name']).get()
+            p['profile'] = profile['name']
+            data.append(p)
+        
+        self.render("confrences.html", data=data)
 HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
     (r"/cli", CLIHandler),
     (r"/fslog", FSLogHandler),
-    (r"/admin/set/password", PasswordHandler),
+    (r"/admin/set/extension/password", ExtensionPasswordHandler),
+    (r"/admin/set/confrences", ConferenceHandler),
 ]

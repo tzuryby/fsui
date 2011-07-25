@@ -1,0 +1,7 @@
+{% for item in data %}
+    <div class="conference-profile-box ui-corner-all">
+        <h4>{{ item['profile'] }}</h4>
+        <label for="pin_{{item['profile']}}">{{_("")}}</label>
+        <input class="ui-widget-content ui-corner-all" id="pin_{{item['profile']}}" />
+    </div>
+{% end %}

@@ -20,7 +20,9 @@
 	<div id="tabs-dashboard">
         <div id="dashboard-users"></div>
     </div>
-	<div id="tabs-conference">Comming Soon...</div>
+	<div id="tabs-conference">
+        <div id="conferences-profiles"></div>
+    </div>
 	<div id="tabs-cli">
         <input 
             id="cli-input" type="text" placeholder='{{_("Enter FS CLI command")}}' 
@@ -121,7 +123,7 @@ $(document).ready(function(){
         restart:   function(){ dashBoard.loader(); dashBoard.startLoop(); }
     }
         
-    dashBoard.restart();
+    
 
     function inline_editor_save(content){
         // checkbox click 
@@ -137,13 +139,29 @@ $(document).ready(function(){
             IAmBusy.show();
             
             $.post(
-                "/admin/set/password", 
+                "/admin/set/extension/password", 
                 { extension: extension, password: password, "vm-password": password },
                 function(){IAmBusy.hide();}
             );
         }        
     }
     
+    var conferences = {        
+        load:   function(url, params, callback){
+            url = url || "/admin/set/confrences";
+            params = params || {};
+            callback = callback || function(){}            
+            $("#conferences-profiles").load(url, params, callback);
+        }
+    }
+    
+    // init at load
+    (function(){
+    
+        dashBoard.restart();
+        conferences.load();
+        
+    })();
 
 });
 
