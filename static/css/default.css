@@ -36,7 +36,7 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 .more_info_caption { font-weight:700; }
 
 .reactor-in-action{
-	background-image: url(/static/pencil.png);
+	background-image: url(/static/ajax.gif);
 	background-position: center center;	background-repeat:no-repeat; 
 	display:box; position:fixed; top:0px; left:48%; width:16px; height:16px;
 }
