@@ -203,7 +203,7 @@ class TCPDumpHandler(StreamHandler):
         self.post()
         
     def post(self):
-        self.TIMEOUT = self.get_argument("timeout", 10)
+        self.TIMEOUT = int(self.get_argument("timeout", 10))
         StreamHandler.post(self)
         
     def _get_pipe(self):
