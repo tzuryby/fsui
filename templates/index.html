@@ -166,6 +166,16 @@ $(document).ready(function(){
         }
     }
     
+    $(".conference_pin").live("keypress", 
+        function(){
+            var keyCode = evt.keyCode;
+            if (keyCode === 13){
+                conferences.save();
+            }
+        });
+
+    $(".conference_pin").live("blur", conferences.save);
+
     dashBoard.restart();
     conferences.load();
 

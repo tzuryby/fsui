@@ -5,16 +5,3 @@
         <input class="ui-widget-content ui-corner-all conference_pin" id="pin_{{item['profile']}}" value="{{item['pin']}}" rel="item['profile']" />
     </div>
 {% end %}
-
-<script>
-    $(".conference_pin").bind("keypress", 
-        function(){
-            var keyCode = evt.keyCode;
-            if (keyCode === 13){
-                conferences.save();
-            }
-        });
-    
-    $(".conference_pin").bind("blur", conferences.save);
-    
-</script>
