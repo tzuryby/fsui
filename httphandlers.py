@@ -196,10 +196,16 @@ class PcapFileCatter(FileCatter):
 class TCPDumpHandler(StreamHandler):
     end_page = '''</pre><hr/><a href="/dl/pcap">Download PCAP File</a>
     <script>
-        openner.showTcpdumpDownloadLink();
+        window.opener.showTcpdumpDownloadLink();
     </script>
     '''
-    
+    def get(self):
+        self.post()
+        
+    def post(self):
+        self.TIMEOUT = self.get_argument("timeout", 10)
+        StreamHandler.post(self)
+        
     def _get_pipe(self):
         # dirty way to kill previous tails        
         common.shell("killall tcpdump")
