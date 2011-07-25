@@ -144,14 +144,8 @@ class ExtensionPasswordHandler(FSUIHandler):
             ExtensionFileHandler(extension).set(**{"password": password})
             
 
-class ConferenceHandler(FSUIHandler):        
-    def post(self):
-        if self.get_argument("password", None) and self.get_argument("pin", None):
-            # save changes
-            profile = self.get_argument("profile")
-            pin = self.get_argument("pin")
-            ConferencePINHandler(profile).set(**{"pin": pin})
-            
+class ConferenceHandler(FSUIHandler):
+    def _render(self):
         # render response
         data = []
         profiles = ConferenceProfilesHandler().get_all()[0]
@@ -159,8 +153,21 @@ class ConferenceHandler(FSUIHandler):
             p = ConferencePINHandler(profile['name']).get()
             p['profile'] = profile['name']
             data.append(p)
-        
+
         self.render("conferences.html", data=data)
+
+    def get(self):
+        self._render()
+        
+    def post(self):
+        profie = self.get_argument("profile", None) 
+        pin = self.get_argument("pin", None)
+        if profiles and pin:
+            # save changes
+            ConferencePINHandler(profile).set(**{"pin": pin})
+        
+        # render shit
+        self._render()    
         
         
 HTTP_HANDLERS = [
