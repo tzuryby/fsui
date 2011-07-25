@@ -44,6 +44,11 @@ $(document).ready(function(){
     $("#main_tabs").tabs({ cookie: { expires: 30 } });
     
     
+    var IAmBusy = {
+        show:   function(){ $('reactor-in-action').show()},
+        hide:   function(){ $('reactor-in-action').hide()}
+    }    
+    
     // bind cli interaction
     $("#cli-input").keypress(
         function(evt){
@@ -139,10 +144,7 @@ $(document).ready(function(){
         }        
     }
     
-    IAmBusy = {
-        show:   function(){ $('reactor-in-action').show()},
-        hide:   function(){ $('reactor-in-action').hide()}
-    }
+
 });
 
 
