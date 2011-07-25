@@ -146,7 +146,7 @@ class ExtensionPasswordHandler(FSUIHandler):
 
 class ConferenceHandler(FSUIHandler):        
     def post(self):
-        if self.get_argument("password") and self.get_argument("pin"):
+        if self.get_argument("password", None) and self.get_argument("pin", None):
             # save changes
             profile = self.get_argument("profile")
             pin = self.get_argument("pin")
