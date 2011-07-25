@@ -158,16 +158,14 @@ class ConferenceHandler(FSUIHandler):
         self._do_get()
         
     def post(self):
-        if not self.get_argument("password"):
-            self._do_get()
-        else:
+        if self.get_argument("password") and self.get_argument("pin"):            
             # save changes
             profile = self.get_argument("profile")
             pin = self.get_argument("pin")
             ConferencePINHandler(profile).set(**{"pin": pin})
             
-            # render response
-            self._do_get()
+        # render response
+        self._do_get()
         
 HANDLERS = [
     (r"/", MainHandler),
