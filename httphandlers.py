@@ -28,7 +28,7 @@ class MainHandler(FSUIHandler):
 class StreamHandler(FSUIHandler): 
     start_page = "<pre>"        
     end_page = "</pre>"
-    timeout = 5
+    TIMEOUT = 15
     
     @tornado.web.asynchronous 
     def get(self):
@@ -42,7 +42,7 @@ class StreamHandler(FSUIHandler):
         self.ioloop.add_handler(self.pipe.fileno(), self.async_callback (self.on_read), self.ioloop.READ)
         
         # close pipe after 180 seconds
-        self.ioloop.add_timeout(time.time()+5, self.close_pipe);
+        self.ioloop.add_timeout(time.time()+self.TIMEOUT, self.close_pipe);
         
     def close_pipe(self):
         print ('self.ioloop.remove_handler(self.pipe.fileno())')
