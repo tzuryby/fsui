@@ -23,6 +23,7 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 	background-position: bottom;
 	background-repeat: repeat-x;
 }
+.topbar * {color: #60C5FB!important}
 /*
 #header {
 	padding: 0em 1em 0em 1em;	
