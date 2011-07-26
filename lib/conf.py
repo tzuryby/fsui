@@ -122,7 +122,7 @@ def directory_reset(start=1000):
     os.system("rm -f *.xml")
     
     for xtn in range(start, start+30):
-        with open(xtn + ".xml", "wb") as xtn_file:
+        with open(s"%d.xml" % (xtn), "wb") as xtn_file:
             xtn_file.write(XTN_TEMPLATE % ({"xtn": xtn}))
             
     os.system(FS_CLI_COMMAND % ("reload_xml"))
