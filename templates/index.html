@@ -74,7 +74,7 @@
             <div class="raw-conf-fram mono" id="raw-edit-wanpipe1"></div>
         </pre>
         <div>
-            <button id="dl-wanpipe1">{{ _("Download a backup copy") }}</button>
+            <a class="button" href="/dl/wanpipe">{{ _("Download a backup copy") }}</a>
             <button id="edit-wanpipe1">{{ _("Edit File") }}</button>
             <button id="save-wanpipe1" class="hide-on-load">{{ _("Save Changes") }}</button>
         </div>
@@ -84,7 +84,7 @@
             <div class="raw-conf-fram mono" id="raw-edit-freetdm"></div>
         </pre>
         <div>
-            <button id="dl-freetdm">{{ _("Download a backup copy") }}</button>
+            <a class="button" href="/dl/freetdm">{{ _("Download a backup copy") }}</a>
             <button id="edit-freetdm">{{ _("Edit File") }}</button>
             <button id="save-freetdm" class="hide-on-load">{{ _("Save Changes") }}</button>
         </div>
@@ -312,7 +312,7 @@ $(document).ready(function(){
         conferences.load();
         dialplan.load();
         
-        $("button").button();
+        $("button, a.button").button();
         
         $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
         $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
