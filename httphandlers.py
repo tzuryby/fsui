@@ -236,6 +236,9 @@ class DialplanHandler(FSUIHandler):
 
 
 class MonitHandler(FSUIHandler):
+    def post(self):
+        self.get()
+        
     def get(self):        
         # simply read monit
         if not self.get_argument("action", None):
