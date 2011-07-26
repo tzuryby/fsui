@@ -1,0 +1,25 @@
+{% if items <> '<error/>' %}
+<div class="group-box ui-corner-all ui-widget-content">
+    <h3>{{_("System")}}</h3>
+    {{ items[1] }}
+</div>
+<div class="group-box ui-corner-all ui-widget-content">
+    <h3>{{_("Monitored Processes")}}</h3>
+    {{ items[2] }}
+</div>
+<div class="group-box ui-corner-all ui-widget-content">    
+    <h3>{{_("Monitored Objects")}}</h3>
+    {{ items[3] }}
+    {{ items[4] }}
+</div>
+<div class="group-box ui-corner-all ui-widget-content">    
+    <h3>{{_("Monitored Hosts")}}</h3>
+    {{ items[5] }}
+</div>
+    
+{% else %}
+    <pre>{{_("reloading data in few moments...")}}</pre>
+    <script>
+        window.setTimeout(function(){location.href = location.href;}, 10000)        
+    </script>
+{% end %}
