@@ -95,15 +95,6 @@
 
 $(document).ready(function(){
     
-    $("#raw-edit-wanpipe1").load("/dl/wanpipe");
-    
-    $(".hide-on-load").hide();
-    
-    // in case someone decided to use IE6 -- LULZec come over here ;-)
-    window.console = window.console || {log: function(){}}
-    
-    // tabify dashboard
-    $("#main_tabs").tabs({ cookie: { expires: 30 } });
     
     
     var IAmBusy = {
@@ -258,9 +249,6 @@ $(document).ready(function(){
             }
         });
 
-    $(".conference_pin").live("blur", conferences.save);    
-    
-    $("#save_dialplan_exp").live("click", dialplan.save);
 
     
     $("#regexp-snadbox").live("keyup", 
@@ -308,6 +296,22 @@ $(document).ready(function(){
     };
 
     function main(){
+    
+        $(".hide-on-load").hide();
+    
+        $("#raw-edit-wanpipe1").load("/dl/wanpipe");
+        $("#raw-edit-freetdm").load("/dl/freetdm");        
+
+        $(".conference_pin").live("blur", conferences.save);    
+        
+        $("#save_dialplan_exp").live("click", dialplan.save);
+
+        // in case someone decided to use IE6 -- LULZec come over here ;-)
+        window.console = window.console || {log: function(){}}
+        
+        // tabify dashboard
+        $("#main_tabs").tabs({ cookie: { expires: 30 } });
+    
         monitor.restart();
         dashBoard.restart();
         conferences.load();
