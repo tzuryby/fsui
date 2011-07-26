@@ -232,7 +232,7 @@ class DialplanHandler(FSUIHandler):
     def post(self):
         expression = self.get_argument("expression", None)
         if expression:
-            DialplanHandler().set(**{'expression': expression})
+            DialplanDestRegexpHandler().set(**{'expression': expression})
             
         self.render("dialplan.html", data=DialplanDestRegexpHandler().get())
         
