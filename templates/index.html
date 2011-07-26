@@ -258,7 +258,7 @@ $(document).ready(function(){
 
     var monitor = {
         loopId: 0,
-        load: function (url, params){
+        loader: function (url, params){
             url = url || "/monit/read";
             
             var callback = function(){
@@ -278,7 +278,7 @@ $(document).ready(function(){
             
             $("#monitoring").load(url, params, callback);         
         },
-        startLoop: function(){ monitor.loopId = window.setInterval(monitor.load, 24*1000) },
+        startLoop: function(){ monitor.loopId = window.setInterval(monitor.loader, 24*1000) },
         stopLoop:  function(){ monitor.loopId && window.clearInterval(monitor.loopId);},        
         restart:   function(){ monitor.stopLoop(); monitor.loader(); monitor.startLoop(); }
     };
