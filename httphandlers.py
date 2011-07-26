@@ -113,10 +113,6 @@ class DashboardHandler(FSUIHandler):
         
         return ret
         
-    #~ def _get_directory_entries(self):
-        #~ return [filename.strip().replace(".xml", "")
-            #~ for filename in common.shell("cd %s; ls -m *.xml" % FS_DIR_PATH).split(",")
-                #~ if filename]
         
     def get_state(self):
         all_users_ids = fs_directory_range() #[user for user in self._get_directory_entries()]

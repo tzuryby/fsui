@@ -125,7 +125,8 @@ def directory_reset(start=1000):
         with open("%d.xml" % (xtn), "wb") as xtn_file:
             xtn_file.write(XTN_TEMPLATE % ({"xtn": xtn}))
             
-    os.system(FS_CLI_COMMAND % ("reload_xml"))
+    os.system(FS_CLI_COMMAND % ("sofia profile internal flush_inbound_reg"))
+    os.system(FS_CLI_COMMAND % ("sofia profile internal rescan"))
     os.chdir(olddir)
 
 def fs_directory_range():
