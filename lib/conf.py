@@ -130,5 +130,5 @@ def directory_reset(start=1000):
 
 def fs_directory_range():
     xtns = common.shell("ls -m %s" % FS_DIR_PATH).strip().split(",")
-    return map(int, (xtn.strip().replace(".xml", "") for xtn in xtns))
+    return map(int, (xtn.strip().replace(".xml", "") for xtn in xtns if xtn.isdigit()))
     
