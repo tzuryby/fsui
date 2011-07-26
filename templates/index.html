@@ -275,7 +275,7 @@ $(document).ready(function(){
                 };
                 
             params = params || {};
-            
+            console.log("loading monit items");
             $("#monitoring").load(url, params, callback);         
         },
         startLoop: function(){ monitor.loopId = window.setInterval(monitor.loader, 24*1000) },
