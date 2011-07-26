@@ -247,7 +247,11 @@ $(document).ready(function(){
             var exp = $(".dialplan_exp").val(),
                 input = $(this).val();
             $.get("/dialplan/test", {exp:exp, input: input}, function(data){
-                $("#regexp-sandbox-output").val(data);
+                $("#regexp-sandbox-output")
+                    .val(data);
+                    .removeClass("true")
+                    .removeClass("false")
+                    .addClass(data);                
             });
         });
 
