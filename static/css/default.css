@@ -13,8 +13,12 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
  
 #header h3, #header a { color: #000000; font-weight: normal!important; }
 
-.footer{bottom:1em; position: absolute; width:98%; height:200; background-image: url(/static/snap-300.png); background-position: center center; background-repeat:no-repeat}
-.watermark {opacity: 0.4; filter:alpha(Opacity=40); z-index:-1}
+.footer{
+	z-index:-1000;
+	bottom:1em; 
+	position: absolute; 
+	width:98%; height:200; background-image: url(/static/snap-300.png); background-position: center center; background-repeat:no-repeat}
+
 #content { margin: 1em }
 
 #cli-output {overflow:auto}
