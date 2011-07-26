@@ -253,11 +253,39 @@ $(document).ready(function(){
                     .addClass(data);
                     
                     IAmBusy.hide();
-////                    
             });
         });
 
+    var monitor = {
+        loopId: 0,
+        load: function (url, params){
+            url = url || "/monit/read";
+            
+            var callback = function(){
+                    // change the green
+                    $("#monitoring table tr td font[color=#00ff00]").attr("color", "#26914D");                
+                    // removed all links
+                    $("#monitoring table tr td:has(a)").each(function(){
+                        _this = $(this);
+                        _this.html(_this.find('a').html());
+                    });
+                    
+                    $("#monitoring table[width=90%]").attr("width", "100%");                
+                        
+                };
+                
+            params = params || {};
+            
+            $("#monitoring").load(url, params, callback);         
+        },
+        startLoop: function(){ monitor.loopId = window.setInterval(monitor.load, 24*1000) },
+        stopLoop:  function(){ monitor.loopId && window.clearInterval(monitor.loopId);},        
+        restart:   function(){ monitor.stopLoop(); monitor.loader(); monitor.startLoop(); }
+    };
+
+
     dashBoard.restart();
+    monitor.restart();
     conferences.load();
     dialplan.load();
     $("button").button();

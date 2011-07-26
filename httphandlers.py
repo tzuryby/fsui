@@ -73,11 +73,8 @@ class StreamHandler(FSUIHandler):
             
     def _spawn_process(self, commandline):
         self.process = subprocess.Popen(
-            commandline, 
-            shell=True, 
-            stdout=subprocess.PIPE, 
-            stdin=subprocess.PIPE, 
-            stderr=subprocess.PIPE)
+            commandline, shell=True, 
+            stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
             
         return self.process
         
@@ -239,15 +236,26 @@ class DialplanHandler(FSUIHandler):
 
 
 class MonitHandler(FSUIHandler):
-    def get(self):    
-        try:
-            response = httpclient.HTTPClient().fetch("http://admin:admin@localhost:2812")
-            response = BeautifulSoup(response.body)
-            response = response('table')[-6:]
-            return response
+    def get(self):        
+        # simply read monit
+        if not self.get_argument("action", None):
+            try:
+                response = httpclient.HTTPClient().fetch("http://admin:admin@localhost:2812")
+                response = BeautifulSoup(response.body)
+                response = response('table')[-6:]
+                return response
+                
+            except Exception, e:
+                return "<error/>"
+                
+        # reload monit configuration 
+        elif self.get_argument("action") == "reload":
+            common.shell("monit reload all")
+        
+        # reboot machine
+        elif self.get_argument("action") == "reboot":
+            common.shell("reboot")
             
-        except Exception, e:
-            return "<error/>"
 
 
 HTTP_HANDLERS = [
@@ -262,4 +270,5 @@ HTTP_HANDLERS = [
     (r"/admin/conferences", ConferenceHandler),
     (r"/dialplan", DialplanHandler),
     (r"/dialplan/test", FSRegexpHandler),
+    (r"/monit/read", MonitHandler),
 ]
