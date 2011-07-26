@@ -1,22 +1,37 @@
 <div class="group-box ui-corner-all ui-widget-content">
-    <h3>{{_("LAN Port Address")}}</h3>    
-    <input 
-        type="text" 
-        class="text ui-widget-content ui-corner-all" 
-        id="eth0_addr" 
-        value="{{data['lan']['eth0']['addr']}}" />
-    <h3>{{_("WAN Port Address")}}</h3>    
-    <input 
-        type="text" 
-        class="text ui-widget-content ui-corner-all" 
-        id="eth1_addr" 
-        value="{{data['lan']['eth1']['addr']}}" />
-    <h3>{{_("WAN Port Gateway")}}</h3>    
-    <input 
-        type="text" 
-        class="text ui-widget-content ui-corner-all" 
-        id="eth1_gw" 
-        value="{{data['lan']['eth1']['gw']}}" />
+    <h3>{{_("Network Settings")}}
+    <table>
+        <tbody>
+            <tr>
+                <th class="linehead">{{_("LAN Port Address")}}:</th>
+                <td>
+                    <input 
+                        type="text" 
+                        class="text ui-widget-content ui-corner-all" 
+                        id="eth0_addr" 
+                        value="{{data['lan']['eth0']['addr']}}" /></td>
+            </tr>
+            <tr>
+                <th class="linehead">{{_("WAN Port Address")}}:</th>
+                <td><input 
+                        type="text" 
+                        class="text ui-widget-content ui-corner-all" 
+                        id="eth1_addr" 
+                        value="{{data['lan']['eth1']['addr']}}" /></td>
+            </tr>
+            <tr>
+                <th class="linehead">{{_("WAN Port Gateway")}}:</th>
+                <td>    
+                    <input 
+                        type="text" 
+                        class="text ui-widget-content ui-corner-all" 
+                        id="eth1_gw" 
+                        value="{{data['lan']['eth1']['gw']}}" />
+                </td>
+            </tr>            
+        </tbody>
+    </table>
+    <button id="save_net">{{_("Save Network Settings")}}</button>
 </div>
 
 
@@ -36,5 +51,6 @@
 </div>
 
 <script>
+    $("button").button();
     $("#network_accordion").accordion({autoHeight: false, navigation: true });
 </script>
