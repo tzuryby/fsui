@@ -1,0 +1,38 @@
+{% for iface in data['lan'] %}
+<div class="group-box ui-corner-all ui-widget-content">
+    <h3>{{_("LAN Port Address")}}</h3>    
+    <input 
+        type="text" 
+        class="text ui-widget-content ui-corner-all" 
+        id="eth0_addr" 
+        value="{{data['lan']['eth0']['addr']}}" />
+    <h3>{{_("WAN Port Address")}}</h3>    
+    <input 
+        type="text" 
+        class="text ui-widget-content ui-corner-all" 
+        id="eth1_addr" 
+        value="{{data['lan']['eth1']['addr']}}" />
+    <h3>{{_("WAN Port Gateway")}}</h3>    
+    <input 
+        type="text" 
+        class="text ui-widget-content ui-corner-all" 
+        id="eth1_gw" 
+        value="{{data['lan']['eth1']['addr']}}" />
+</div>
+{% end %}
+
+
+<div class="group-box ui-corner-all ui-widget-content">
+
+<h3>{{ _("More Info") }}</h3>
+<div id="network_accordion"><h3>
+<a href="#">{{_("Active Network Interfaces")}}</a></h3><div><pre>{{data['ifaces']}}</pre></div>
+<h3><a href="#">{{_("Routing Table")}}</a></h3><div><pre>{{data['routing']}}</pre>
+</div>
+
+{% if data['addr'] %}
+<h3><a href="#">{{_("Network Settings")}}</a></h3><div><pre>{{data['addr']}}</pre></div>
+{% end %}
+</div>
+
+</div>
