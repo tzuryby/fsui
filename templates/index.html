@@ -77,8 +77,7 @@
             <a class="button" href="/dl/wanpipe">{{ _("Download a backup copy") }}</a>
             <button id="edit-wanpipe1">{{ _("Edit File") }}</button>
             <button id="save-wanpipe1" class="hide-on-load">{{ _("Save Changes") }}</button>
-        </div>
-        
+        </div>        
         <h3>{{_("Edit Trunk Settings")}}</h3>
         <pre style="margin-bottom: -1.2em">
             <div class="raw-conf-fram mono" id="raw-edit-freetdm"></div>
@@ -313,6 +312,9 @@ $(document).ready(function(){
         dialplan.load();
         
         $("button, a.button").button();
+        
+        $("#edit-wanpipe1").click(function(){ $("#raw-edit-wanpipe1").attr("contentEditable", "true"); });
+        $("#edit-freetdm").click(function(){ $("#raw-edit-freetdm").attr("contentEditable", "true"); });
         
         $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
         $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
