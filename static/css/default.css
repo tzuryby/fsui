@@ -6,7 +6,7 @@ code, pre, .mono, .current_period, .raw-conf-fram {font-family: 'Droid Sans Mono
 
 .raw-conf-fram {
 	width: 80%;
-	height: 480px;
+	height: 280px;
 	overflow: auto;
 }
 
