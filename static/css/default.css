@@ -3,6 +3,7 @@ body {margin: 0em; background-color: #FFF}
 body, td {font-size:0.8em;}
 
 code, pre, .mono, .current_period, .raw-conf-fram {font-family: 'Droid Sans Mono', monospace !important; font-size: 0.9em}
+a {text-decoration:none} 
 
 .raw-conf-fram {
 	width: 80%;
