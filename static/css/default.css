@@ -26,6 +26,7 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 	padding: 0em 1em 0em 1em;	
 	border: 1px solid #aaaaaa; 
 	color: #aaaaaa;
+	background-color: #3D3D3D;
 	background-image: url(/static/snap.png); 
 	background-position: center right; 
 	background-repeat:no-repeat
