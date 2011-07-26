@@ -248,7 +248,7 @@ $(document).ready(function(){
                 input = $(this).val();
             $.get("/dialplan/test", {exp:exp, input: input}, function(data){
                 $("#regexp-sandbox-output")
-                    .html(data);
+                    .html(data)
                     .removeClass("true")
                     .removeClass("false")
                     .addClass(data);                
