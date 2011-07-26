@@ -192,6 +192,16 @@ class PcapFileCatter(FileCatter):
     output_name = 'traffic.cap'
     header_type = ('Content-type', 'application/octet-stream')
 
+
+class WANPIPEFileCatter(FileCatter):
+    input_path =  '/etc/wanpipe/wanpipe1.conf'
+    output_name = 'wanpipe1.conf'
+    
+class FREETDMFileCatter(FileCatter):
+    input_path =  '/usr/local/freeswitch/conf/freetdm.conf'
+    output_name = 'freetdm.conf'
+    
+
 class TCPDumpHandler(StreamHandler):
     end_page = '''
     </pre><hr/><a href="/dl/pcap">Download PCAP File</a>
@@ -281,6 +291,8 @@ HTTP_HANDLERS = [
     (r"/dl/syslog", SyslogCatter),
     (r"/dl/switchlog", FSLogCatter),
     (r"/dl/pcap", PcapFileCatter),
+    (r"/dl/wanpipe", WANPIPEFileCatter),
+    (r"/dl/freetdm", FREETDMFileCatter),
     (r"/admin/set/extension/password", ExtensionPasswordHandler),
     (r"/admin/conferences", ConferenceHandler),
     (r"/directory/recreate", RecreateDirectoryHandler),
