@@ -244,16 +244,12 @@ class MonitHandler(FSUIHandler):
         
     def get(self):        
         # simply read monit
-        if not self.get_argument("action", None):
-            try:
-                response = httpclient.HTTPClient().fetch("http://admin:admin@localhost:2812")
-                response = BeautifulSoup(response.body)
-                response = response('table')
-                return response
-                
-            except Exception, e:
-                raise
-                
+        if self.get_argument("action", None) is None:
+            response = httpclient.HTTPClient().fetch("http://admin:admin@localhost:2812")
+            response = BeautifulSoup(response.body)
+            response = response('table')
+            self.write(response)
+            
         # reload monit configuration 
         elif self.get_argument("action") == "reload":
             common.shell("monit reload all")
