@@ -232,7 +232,7 @@ class DialplanHandler(FSUIHandler):
         if expression:
             DialplanHandler().set(**{'expression': expression})
             
-        self.render("dialplan.html", data=DialplanHandler().get())
+        self.render("dialplan.html", data=DialplanDestRegexpHandler().get())
         
 
 

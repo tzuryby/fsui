@@ -88,7 +88,7 @@ class ConferencePINHandler(XMLHandler):
                 
         XMLHandler.__init__(self)
         
-class DialplanHandler(XMLHandler):
+class DialplanDestRegexpHandler(XMLHandler):
     filename = DIALPLAN_PATH
     _api = {
         "expression":
