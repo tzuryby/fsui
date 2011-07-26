@@ -25,6 +25,11 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 	background-image: url("/static/topbar_texture.png");	
 }
 .topbar * {color: #60C5FB!important}
+.topbar td.logo {
+	width: 1%;
+	padding-left: 13px;
+	vertical-align: middle;
+}
 /*
 #header {
 	padding: 0em 1em 0em 1em;	
