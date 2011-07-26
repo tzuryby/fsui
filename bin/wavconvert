@@ -36,7 +36,7 @@ def main_monitor_loop():
     notifier = ThreadedNotifier(wm, OggConverter())
     notifier.start()
 
-    wdd = wm.add_watch(options.recordings_dir, mask, rec=False)
+    wdd = wm.add_watch(options.monitored_dir, mask, rec=False)
 
     while True:
         try:
