@@ -20,6 +20,28 @@ def init_global_client_params():
 
 init_global_client_params()
 
+
+class OutputFormatter(object):
+    @classmethod
+    def monospacify(cls, value): 
+        return value.replace("\n", "<br>").replace("    ", "&nbsp;"*4)
+        
+    @classmethod
+    def markup_token(cls, value, token, markup): 
+        return value.replace(token, markup % token)
+        
+    @classmethod
+    def colorify(cls, value, token, color): 
+        markup = "<span style='color:%s'>%%s</span>" % color
+        return OutputFormatter.markup_token(value, token, markup)
+        
+    @classmethod
+    def highlight(cls, value):
+        value = OutputFormatter.monospacify(value)
+        value = OutputFormatter.colorify(value, "no link", "red")
+        value = OutputFormatter.colorify(value, "link ok", "green")
+        return value
+        
 class FSUIHandler(tornado.web.RequestHandler):
     pass
 
