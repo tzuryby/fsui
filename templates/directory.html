@@ -58,7 +58,7 @@
                     
                     var dialog_closer = function(){
                         $(this).dialog("close");
-                        location.pathname = "/"
+                        window.location.reload();
                     };
                     
                     $.post(url, {"new-start": $("#new-start").val()}, dialog_closer);
