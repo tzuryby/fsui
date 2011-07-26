@@ -4,7 +4,7 @@
 __author__ = "Tzury Bar Yochay <tzury.by@reguluslabs.com>"
 __version__ = "0.1"
 
-import os
+import os, json
 from lxml import etree
 from utils import common
 
