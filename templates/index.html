@@ -71,7 +71,7 @@
     <div id="tabs-ll-settings">
         <h3>{{_("Edit E1/PRI Interface Parameters")}}</h3>
         <pre style="margin-bottom: -1.2em">
-            <div class="raw-conf-fram mono" id="raw-edit-wanpipe1"></div>
+            <div class="raw-conf-fram mono" id="raw-edit-wanpipe1" disabled="disabled"></div>
         </pre>
         <div>
             <a class="button" href="/dl/wanpipe">{{ _("Download a backup copy") }}</a>
@@ -80,7 +80,7 @@
         </div>        
         <h3>{{_("Edit Trunk Settings")}}</h3>
         <pre style="margin-bottom: -1.2em">
-            <div class="raw-conf-fram mono" id="raw-edit-freetdm"></div>
+            <div class="raw-conf-fram mono" id="raw-edit-freetdm" disabled="disabled"></div>
         </pre>
         <div>
             <a class="button" href="/dl/freetdm">{{ _("Download a backup copy") }}</a>
@@ -313,8 +313,8 @@ $(document).ready(function(){
         
         $("button, a.button").button();
         
-        $("#edit-wanpipe1").click(function(){ $("#raw-edit-wanpipe1").attr("contentEditable", "true"); });
-        $("#edit-freetdm").click(function(){ $("#raw-edit-freetdm").attr("contentEditable", "true"); });
+        $("#edit-wanpipe1").click(function(){ $("#raw-edit-wanpipe1").attr("contentEditable", "true").removeAttr("disabled");});
+        $("#edit-freetdm").click(function(){ $("#raw-edit-freetdm").attr("contentEditable", "true").removeAttr("disabled"); });
         
         $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
         $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
