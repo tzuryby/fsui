@@ -19,7 +19,7 @@
             <tr><th class="linehead">{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
         </tbody>    
     </table>
-    <p/>
+    
     <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
     
 </div>
@@ -67,7 +67,7 @@
             
             $("#dialog-confirm-directory-reinit").dialog({resizable: false, modal: true, buttons:buttons});        
         }
-        $("#gen-new-range").click(confirmDirectoryRecreate);
+        $("#gen-new-range").click(function(){alert("shit");});
         
     })();
 </script>
