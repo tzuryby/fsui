@@ -7,12 +7,12 @@ __version__ = "0.1"
 import os, os.path, re
 
 import tornado, tornado.httpserver, tornado.ioloop, tornado.options, tornado.web
-
 from tornado.options import define, options
 
 from httphandlers import *
 from uimodules import *
-from session import session
+from lib import netconfig
+
 
 define("port", default=5678, help="fsui port 5678", type=int)
 
@@ -33,6 +33,9 @@ class Application(tornado.web.Application):
         tornado.web.Application.__init__(self, HTTP_HANDLERS, **settings)
 
 def main():
+    # SET IP ADDRESSES FOR WAN/LAN INTERFACES
+    netconfig.configure()
+    
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(options.port, "localhost")

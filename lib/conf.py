@@ -13,6 +13,8 @@ FS_DIR_PATH         = os.path.join(FS_ROOT_DIR, "conf", "directory", "default")
 DIALPLAN_PATH       = os.path.join(FS_ROOT_DIR, "conf", "dialplan", "snoip.xml")
 CONF_PROFILES_PATH  = os.path.join(FS_ROOT_DIR, "conf", "autoload_configs", "conference.conf.xml")
 FS_CLI_COMMAND      = os.path.join(FS_ROOT_DIR, "bin", "fs_cli") + " -x '%s'"
+FSUI_CONF_PATH      = "/opt/snoip/fsui/app.json"
+
 
 class XMLHandler(object):
     filename = None
@@ -133,3 +135,31 @@ def fs_directory_range():
     xtns = (xtn.strip().replace(".xml", "") for xtn in common.shell("ls -m %s" % FS_DIR_PATH).strip().split(","))
     return map(int, (xtn for xtn in xtns if xtn.isdigit()))
     
+
+
+class JSONConfHandler(object):
+    def __init__(self, path):
+        assert path:
+        self.path = path
+        
+    def reader(self):
+        try:
+            return open(self.path , 'rb')
+            
+        except IOError, msg:
+            print msg
+        
+    def writer(self):
+        try:
+            return open(self.path , 'wb')
+            
+        except IOError, msg:
+            print msg
+    
+    def get(self):
+        return json.load(self.reader())
+        
+    def set(self, tree):
+        json.dump(tree, self.writer(), indent=2)
+        
+appconfig = JSONConfHandler(FSUI_CONF_PATH)
