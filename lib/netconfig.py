@@ -7,8 +7,8 @@ from conf import appconfig
 
 def configure():
     net_conf = appconfig.get()['net']
-    for iface, set in net_conf.iteritems():
+    for iface, settings in net_conf.iteritems():
         os.system("ifconfig %s up" % iface)
-        os.system("ip addr add %s brd + dev %s" % (set['addr'], iface))
-        if iface.get("gw", None):
-            os.system("route add default gw %(gw)s dev %(name)s" % (set['gw'], iface))
+        os.system("ip addr add %s brd + dev %s" % (settings['addr'], iface))
+        if settings.get("gw", None):
+            os.system("route add default gw %(gw)s dev %(name)s" % (settings['gw'], iface))
