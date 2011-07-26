@@ -27,7 +27,7 @@ class OggConverter(ProcessEvent):
 
 def write_pid(options):
     with open(options.pid, "wb") as pidfile:
-        pidfile.write(os.getpid())
+        pidfile.write(str(os.getpid()))
         
 def main_monitor_loop():
     mask = pyinotify.IN_CLOSE_WRITE
