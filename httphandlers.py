@@ -113,14 +113,14 @@ class DashboardHandler(FSUIHandler):
         
         return ret
         
-    def _get_directory_entries(self):
-        return [filename.strip().replace(".xml", "")
-            for filename in common.shell("cd %s; ls -m *.xml" % FS_DIR_PATH).split(",")
-                if filename]
+    #~ def _get_directory_entries(self):
+        #~ return [filename.strip().replace(".xml", "")
+            #~ for filename in common.shell("cd %s; ls -m *.xml" % FS_DIR_PATH).split(",")
+                #~ if filename]
         
     def get_state(self):
-        all_users_ids = [user for user in self._get_directory_entries()]
-        online_users_data = self._get_online_users()        
+        all_users_ids = fs_directory_range() #[user for user in self._get_directory_entries()]
+        online_users_data = self._get_online_users()
         online_users = [(user, 1) for user in online_users_data.iterkeys()]
 
         offline_users = [
