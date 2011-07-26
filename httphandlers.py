@@ -223,6 +223,19 @@ class FSRegexpHandler(FSUIHandler):
         exp = self.get_argument("exp", "false")
         self.write(exp and common.shell(FS_CLI_COMMAND % ("regex 9657|^9(.*)$")).strip())
 
+class DialplanHandler(FSUIHandler):
+    def get(self):
+        self.post()
+        
+    def post(self):
+        expression = self.get_argument("expression", None)
+        if expression:
+            DialplanHandler().set(**{'expression': expression})
+            
+        self.render("dialplan.html", data=DialplanHandler().get())
+        
+
+
 HTTP_HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),

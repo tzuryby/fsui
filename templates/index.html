@@ -58,7 +58,11 @@
         </div>
         
     </div>
-	<div id="tabs-settings">Comming Soon...</div>
+	<div id="tabs-settings">
+        <div class="group-box ui-corner-all ui-widget-content" id="dialplan-container">
+        
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -194,6 +198,24 @@ $(document).ready(function(){
         }
     }
     
+    var dialplan = {
+        load: function(url, params, callback){
+                IAmBusy.show()
+                url = url || "/dialplan"
+                params = params || {};
+                callback = callback || IAmBusy.hide;
+                console.log(url, params, callback);
+                $("#dialplan-container").load(url, params, callback);
+        },
+        
+        save: function(evt){
+            IAmBusy.show()            
+            var expression = $(this).val();                
+            dialplan.load("/dialplan", {expression: expression});
+        }
+
+    }
+    
     window.showTcpdumpDownloadLink = function(){
         $("#download-pcap-file").show();
     }
@@ -208,10 +230,21 @@ $(document).ready(function(){
             }
         });
 
-    $(".conference_pin").live("blur", conferences.save);
+    $(".conference_pin").live("blur", conferences.save);    
+    
+    $(".dialplan_exp").live("keypress", 
+        function(evt){
+            var keyCode = evt.keyCode;
+            if (keyCode === 13){
+                dialplan.save();
+            }
+        });
+
+    $(".dialplan_exp").live("blur", dialplan.save);
 
     dashBoard.restart();
     conferences.load();
+    dialplan.load();
     $("button").button();
     
     $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
