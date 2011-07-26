@@ -22,6 +22,7 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 	padding-right: 15px;
 	background-position: bottom;
 	background-repeat: repeat-x;
+	background-image: url("/static/topbar_texture.png");	
 }
 .topbar * {color: #60C5FB!important}
 /*
