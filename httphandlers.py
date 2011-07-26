@@ -221,7 +221,9 @@ class FSRegexpHandler(FSUIHandler):
         
     def post(self):
         exp = self.get_argument("exp", "false")
-        self.write(exp and common.shell(FS_CLI_COMMAND % ("regex 9657|^9(.*)$")).strip())
+        input = self.get_argument("input")
+        
+        self.write(exp and common.shell(FS_CLI_COMMAND % ("regex %s|%s" % (input, exp))).strip())
 
 class DialplanHandler(FSUIHandler):
     def get(self):
