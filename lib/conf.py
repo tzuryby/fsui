@@ -129,5 +129,6 @@ def directory_reset(start=1000):
     os.chdir(olddir)
 
 def fs_directory_range():
-    return map(int, common.shell("ls -m %s" % FS_DIR_PATH).strip().split(","))
+    xtns = common.shell("ls -m %s" % FS_DIR_PATH).strip().split(",")
+    return map(int, (xtn.strip().replace(".xml", "") for xtn in xtns))
     
