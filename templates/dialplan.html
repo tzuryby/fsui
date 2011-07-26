@@ -11,5 +11,11 @@
 </div>
 
 <div class="group-box ui-corner-all ui-widget-content" id="new-directory">
-    <h3></h3>
+    <h3>{{_("Range of extensions")}}</h3>
+    <label for="new-start">{{_("Re-Initialize Directory")}}
+    <input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{items['first-xtn']}}" />
+    <span>{{items['last-xtn']}}</span>
+    <p/>
+    <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
+    
 </div>

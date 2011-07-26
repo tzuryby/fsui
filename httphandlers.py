@@ -235,7 +235,13 @@ class DialplanHandler(FSUIHandler):
         if expression:
             DialplanDestRegexpHandler().set(**{'expression': expression})
             
-        self.render("dialplan.html", data=DialplanDestRegexpHandler().get())
+        data = {}
+        data.update(DialplanDestRegexpHandler().get())
+        dir_range = fs_directory_range()
+        data['first-xtn'] = dir_range[0]
+        data['first-xtn'] = dir_range[-1:][0]
+        
+        self.render("dialplan.html", data=data)
 
 
 class MonitHandler(FSUIHandler):

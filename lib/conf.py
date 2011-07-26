@@ -128,6 +128,6 @@ def directory_reset(start=1000):
     os.system(FS_CLI_COMMAND % ("reload_xml"))
     os.chdir(olddir)
 
-def directory_range():
+def fs_directory_range():
     return map(int, common.shell("ls -m %s" % FS_DIR_PATH).strip().split(","))
     
