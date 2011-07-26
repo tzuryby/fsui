@@ -19,9 +19,6 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 .topbar { background: -webkit-gradient(linear, left center, right center, from(#53535D), to(#3C3C44)); }
 
 .topbar .texture {
-	background-image: url("/static/snap.png");
-}
-.topbar .texture {
 	padding-right: 15px;
 	background-position: bottom;
 	background-repeat: repeat-x;
