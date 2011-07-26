@@ -246,7 +246,9 @@ $(document).ready(function(){
         function(){
             var exp = $(".dialplan_exp").val(),
                 input = $(this).val();
-            $("#regexp-snadbox-output").text($.get("/dialplan/test", {exp:exp, input: input}))
+            $.get("/dialplan/test", {exp:exp, input: input}, function(data){
+                $("#regexp-sandbox-output").val(data);
+            });
         });
 
     dashBoard.restart();
