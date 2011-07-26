@@ -17,6 +17,7 @@
 		<li><a href="#tabs-conference">{{_("Confenernce Rooms")}}</a></li>
 		<li><a href="#tabs-cli">{{_("Switch CLI")}}</a></li>
 		<li><a href="#tabs-diagnostics">{{_("Diagnostics")}}</a></li>
+		<li><a href="#tabs-ll-settings">{{_("Lowlevel Settings")}}</a></li>
 		<li><a href="#tabs-settings">{{_("Settings")}}</a></li>
 	</ul>
 	<div id="tabs-monit">
@@ -67,6 +68,58 @@
         <div id="directory-container"></div>
     </div>
 	
+    <div id="tabs-ll-settings">
+        <div class="raw-conf-fram" id="wanpipe1" contentEditable="true">
+[devices]
+wanpipe1 = WAN_AFT_TE1, Comment
+
+[interfaces]
+w1g1 = wanpipe1, , TDM_VOICE_API, Comment
+
+[wanpipe1]
+CARD_TYPE           = AFT
+S514CPU             = A
+CommPort            = PRI
+AUTO_PCISLOT        = NO
+PCISLOT             = 4
+PCIBUS              = 4
+FE_MEDIA            = E1
+FE_LCODE            = HDB3
+FE_FRAME            = CRC4
+FE_LINE             = 1
+TE_CLOCK            = NORMAL
+TE_REF_CLOCK        = 0
+TE_SIG_MODE         = CCS
+TE_HIGHIMPEDANCE    = NO
+TE_RX_SLEVEL        = 430
+LBO                 = 120OH
+FE_TXTRISTATE       = NO
+MTU                 = 1500
+UDPPORT             = 9000
+TTL                 = 255
+IGNORE_FRONT_END    = NO
+TDMV_SPAN           = 1
+TDMV_DCHAN          = 16
+TE_AIS_MAINTENANCE  = NO
+TDMV_HW_DTMF        = NO
+TDMV_HW_FAX_DETECT  = NO
+HWEC_OPERATION_MODE = OCT_NORMAL
+HWEC_DTMF_REMOVAL   = NO
+HWEC_NOISE_REDUCTION = NO 
+HWEC_ACUSTIC_ECHO   = NO 
+HWEC_NLP_DISABLE    = NO 
+HWEC_TX_AUTO_GAIN   = 0  
+HWEC_RX_AUTO_GAIN   = 0  
+HWEC_TX_GAIN        = 0  
+HWEC_RX_GAIN        = 0  
+
+[w1g1]
+ACTIVE_CH           = ALL
+TDMV_HWEC           = NO
+MTU                 = 80
+        
+        </div>
+    </div>
     <div id="tabs-settings"></div>
 </div>
 
