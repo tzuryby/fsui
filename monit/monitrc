@@ -17,9 +17,9 @@ check process SNAPSwitch with pidfile "/usr/local/freeswitch/run/freeswitch.pid"
     stop program = "/usr/local/bin/freeswitchd stop"
     group snap
 
-check process SNAPAudio with pidfile "/var/run/waveconvert.pid"
-    start program = "/usr/local/bin/waveconvert --background"
-    stop program = "/usr/local/bin/waveconvert --stop"
+check process SNAPAudio with pidfile "/var/run/wavconvert.pid"
+    start program = "/usr/local/bin/wavconvert --background"
+    stop program = "/usr/local/bin/wavconvert --stop"
     group snap
 
 check directory SNAPConfig with path /usr/local/freeswitch/conf

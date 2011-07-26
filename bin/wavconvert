@@ -56,7 +56,7 @@ if __name__ == '__main__':
     parser.add_option('-b', '--background', action="store_true", default=True, dest='background', help='daemonize %s' % (name))
     parser.add_option('-f', '--foreground', action="store_false", default=True, dest='background', help='daemonize %s' % (name))
     parser.add_option('--stop', action="store_true", default=False, dest='stop', help='stop %s' % (name))
-    parser.add_option('--pid', type="string", dest='pid', default="/var/run/waveconvert.pid", help='pidfile')
+    parser.add_option('--pid', type="string", dest='pid', default="/var/run/wavconvert.pid", help='pidfile')
     parser.add_option('-l', '--list', dest='list_files', action="store_true", default=False, help='only list files within teh recording dir')
 
     (options, args) = parser.parse_args()
