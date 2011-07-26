@@ -1,17 +1,16 @@
 {% if items <> '<error/>' %}
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{_("System")}}</h3>
-    {{ items[1] }}
+    {{ items[2] }}
 </div>
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{_("Monitored Processes")}}</h3>
-    {{ items[2] }}
+    {{ items[3] }}
 </div>
 <div class="group-box ui-corner-all ui-widget-content">    
     <h3>{{_("Monitored Objects")}}</h3>
-    {{ items[3] }}
     {{ items[4] }}
-    {{ items[5] }}    
+    {{ items[5] }}
 </div>
     
 {% else %}
