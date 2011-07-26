@@ -69,23 +69,25 @@
     </div>
 	
     <div id="tabs-ll-settings">
-        <div>
-        </div>
+        <h3>{{_("Edit E1/PRI Interface Parameters")}}</h3>
         <pre>
-<a href="/dl/wanpipe1.conf">{{ _("Download a backup copy") }}</a> <a href="#" id="edit-wanpipe1">{{ _("Edit File") }}</a> <a href="#" id="save-wanpipe1" class="hide-on-load">{{ _("Save Changes") }}</a>
-<div class="raw-conf-fram mono" id="raw-edit-wanpipe1"></div>
+            <div class="raw-conf-fram mono" id="raw-edit-wanpipe1"></div>
+        </pre>
+        <div>
+            <a href="/dl/wanpipe1.conf">{{ _("Download a backup copy") }}</a>
+            <a href="#" id="edit-wanpipe1">{{ _("Edit File") }}</a> 
+            <a href="#" id="save-wanpipe1" class="hide-on-load">{{ _("Save Changes") }}</a>
+        </div>
+        
+        <h3>{{_("Edit Trunk Settings")}}</h3>
+        <pre>
+            <div class="raw-conf-fram mono" id="raw-edit-freetdm"></div>
         </pre>
         <div>
             <a href="/dl/freetdm">{{ _("Download a backup copy") }}</a>&nbsp;
             <a href="#" id="edit-freetdm">{{ _("Edit File") }}</a>&nbsp;
             <a href="#" id="save-freetdm" class="hide-on-load">{{ _("Save Changes") }}</a>
         </div>
-        <pre>
-            <code>
-                <div class="raw-conf-fram mono" id="raw-edit-freetdm"></div>
-            </code>
-        </pre>
-        
     </div>
     <div id="tabs-settings"></div>
 </div>
