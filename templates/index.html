@@ -241,6 +241,13 @@ $(document).ready(function(){
         });
 
     $(".dialplan_exp").live("blur", dialplan.save);
+    
+    $("#regexp-snadbox").live("keyup", 
+        function(){
+            var exp = $(".dialplan_exp").val(),
+                input = $(this).val();
+            $("#regexp-snadbox-output").val($.get("/dialplan/test", {exp:exp, input: input}))
+        });
 
     dashBoard.restart();
     conferences.load();
