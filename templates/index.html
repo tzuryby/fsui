@@ -237,6 +237,7 @@ $(document).ready(function(){
     
     $("#regexp-snadbox").live("keyup", 
         function(){
+            IAmBusy.show();
             var exp = $(".dialplan_exp").val(),
                 input = $(this).val();
             $.get("/dialplan/test", {exp:exp, input: input}, function(data){
@@ -246,6 +247,8 @@ $(document).ready(function(){
                     .removeClass("true")
                     .removeClass("false")
                     .addClass(data);
+                    
+                    IAmBusy.hide();
 ////                    
             });
         });
