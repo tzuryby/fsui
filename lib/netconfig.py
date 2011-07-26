@@ -11,4 +11,4 @@ def configure():
         os.system("ifconfig %s up" % iface)
         os.system("ip addr add %s brd + dev %s" % (settings['addr'], iface))
         if settings.get("gw", None):
-            os.system("route add default gw %(gw)s dev %(name)s" % (settings['gw'], iface))
+            os.system("route add default gw %s dev %s" % (settings['gw'], iface))
