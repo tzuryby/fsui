@@ -1,6 +1,9 @@
 * { font-family: 'Droid Sans', arial, serif !important; }
 body {margin: 0em; background-color: #FFF}
 body, td {font-size:0.8em;}
+body {background: -webkit-gradient(linear, left center, right center, from(#53535D), to(#3C3C44));
+	background-image: url("/static/topbar_texture.png");	
+	}
 
 code, pre, .mono, .current_period, .raw-conf-fram {font-family: 'Droid Sans Mono', monospace !important; font-size: 0.9em}
 a {text-decoration:none} 
