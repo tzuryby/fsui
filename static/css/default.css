@@ -42,7 +42,7 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 
 .true, .false {border: 1px;} 
 .true {background-color:#106E05!important; color:#FFFFFF!important;}
-.false {background-color:#9C1F1F!important; color:#FFFFFF!important;}
+.false {background-color:#FF0011!important; color:#FFFFFF!important;}
 
 /* FONT*/
 
