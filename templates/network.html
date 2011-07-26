@@ -1,4 +1,3 @@
-{% for iface in data['lan'] %}
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{_("LAN Port Address")}}</h3>    
     <input 
@@ -17,9 +16,8 @@
         type="text" 
         class="text ui-widget-content ui-corner-all" 
         id="eth1_gw" 
-        value="{{data['lan']['eth1']['addr']}}" />
+        value="{{data['lan']['eth1']['gw']}}" />
 </div>
-{% end %}
 
 
 <div class="group-box ui-corner-all ui-widget-content">
@@ -36,3 +34,7 @@
 </div>
 
 </div>
+
+<script>
+    $("#network_accordion").accordion({autoHeight: false, navigation: true });
+</script>
