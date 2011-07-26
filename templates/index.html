@@ -258,9 +258,9 @@ $(document).ready(function(){
 
     var monitor = {
         loopId: 0,
-        loader: function (url, params){
+        loader: function (url, params) {
             url = url || "/monit/read";
-            
+            console.log("starting monitoring loop with", url)
             var callback = function(){
                     // change the green
                     $("#monitoring table tr td font[color=#00ff00]").attr("color", "#26914D");                
@@ -284,7 +284,7 @@ $(document).ready(function(){
     };
 
     function main(){
-        monitor.restart();
+        monitor.startLoop();
         dashBoard.restart();
         conferences.load();
         dialplan.load();
