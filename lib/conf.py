@@ -6,6 +6,7 @@ __version__ = "0.1"
 
 import os
 from lxml import etree
+from utils import common
 
 FS_ROOT_DIR         = "/usr/local/freeswitch" 
 FS_DIR_PATH         = os.path.join(FS_ROOT_DIR, "conf", "directory", "default")
@@ -99,3 +100,34 @@ class DialplanDestRegexpHandler(XMLHandler):
     }
 
 
+
+
+
+XTN_TEMPLATE = '''<include>
+  <user id="%(xtn)s">
+    <params>
+      <param name="password" value="%(xtn)s"/>
+      <param name="vm-password" value="%(xtn)s"/>
+    </params>
+    <variables>
+      <variable name="user_context" value="from-sip"/>
+    </variables>
+  </user>
+</include>
+'''
+
+def directory_reset(start=1000):    
+    olddir = os.getcwd()
+    os.chdir(FS_DIR_PATH)
+    os.system("rm -f *.xml")
+    
+    for xtn in range(start, start+30):
+        with open(xtn + ".xml", "wb") as xtn_file:
+            xtn_file.write(XTN_TEMPLATE % ({"xtn": xtn}))
+            
+    os.system(FS_CLI_COMMAND % ("reload_xml"))
+    os.chdir(olddir)
+
+def directory_range():
+    return map(int, common.shell("ls -m %s" % FS_DIR_PATH).strip().split(","))
+    

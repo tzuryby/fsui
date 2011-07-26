@@ -13,6 +13,7 @@
 	<ul>
 		<li><a href="#tabs-monit">{{_("Monitoring")}}</a></li>
 		<li><a href="#tabs-dashboard">{{_("Dashboard")}}</a></li>
+		<li><a href="#tabs-directory">{{_("Directory")}}</a></li>
 		<li><a href="#tabs-conference">{{_("Confenernce Rooms")}}</a></li>
 		<li><a href="#tabs-cli">{{_("Switch CLI")}}</a></li>
 		<li><a href="#tabs-diagnostics">{{_("Diagnostics")}}</a></li>
@@ -60,13 +61,13 @@
             <br/>
             <a id="download-pcap-file" class="hide-on-load" href="/dl/pcap">{{_("Download PCAP file")}}</a>
         </div>
-        
     </div>
-	<div id="tabs-settings">
-        <div class="group-box ui-corner-all ui-widget-content" id="dialplan-container">
-        
-        </div>
+    
+	<div id="tabs-directory">
+        <div id="directory-container"></div>
     </div>
+	
+    <div id="tabs-settings"></div>
 </div>
 
 <script type="text/javascript">
@@ -209,7 +210,7 @@ $(document).ready(function(){
                 params = params || {};
                 callback = callback || function(){IAmBusy.hide; $("button").button();};
                 console.log(url, params, callback);
-                $("#dialplan-container").load(url, params, callback);
+                $("#directory-container").load(url, params, callback);
         },
         
         save: function(evt){
