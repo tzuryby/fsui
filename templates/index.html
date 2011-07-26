@@ -210,7 +210,7 @@ $(document).ready(function(){
         
         save: function(evt){
             IAmBusy.show()            
-            var expression = $(this).val();                
+            var expression = $(".dialplan_exp").val();                
             dialplan.load("/dialplan", {expression: expression});
         }
 
@@ -232,15 +232,8 @@ $(document).ready(function(){
 
     $(".conference_pin").live("blur", conferences.save);    
     
-    $(".dialplan_exp").live("keypress", 
-        function(evt){
-            var keyCode = evt.keyCode;
-            if (keyCode === 13){
-                dialplan.save();
-            }
-        });
+    $("#save_dialplan_exp").live("click", dialplan.save);
 
-    $(".dialplan_exp").live("blur", dialplan.save);
     
     $("#regexp-snadbox").live("keyup", 
         function(){
