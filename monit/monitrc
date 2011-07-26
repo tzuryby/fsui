@@ -7,9 +7,9 @@ set httpd port 2812 and
     allow @monit
     allow @users readonly
 
-check process SNAPUI with pidfile "/var/run/snoipui.pid"
-    start program = "/usr/local/bin/snoipui start"
-    stop program = "/usr/local/bin/snoipui stop"
+check process SNAPUI with pidfile "/var/run/fsui.pid"
+    start program = "/usr/local/bin/fsui start"
+    stop program = "/usr/local/bin/fsui stop"
     group snap
     
 check process SNAPSwitch with pidfile "/usr/local/freeswitch/run/freeswitch.pid"
