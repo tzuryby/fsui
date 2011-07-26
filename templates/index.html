@@ -305,17 +305,18 @@ $(document).ready(function(){
         $("#save-freetdm").show();
     });
     
-    $("#save-wanpipe1").click(){
+    $("#save-wanpipe1").click(
         function(){
             $.post("/ul/wanpipe", {data: $("#raw-edit-wanpipe").text()})
         }
-    }
+    );
+    
 
-    $("#save-freetdm").click(){
+    $("#save-freetdm").click(
         function(){
             $.post("/ul/freetdm", {data: $("#raw-edit-freetdm").text()})
         }
-    }
+    );
 
     function main(){
     
