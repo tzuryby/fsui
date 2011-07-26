@@ -248,11 +248,7 @@ class MonitHandler(FSUIHandler):
             try:
                 response = httpclient.HTTPClient().fetch("http://admin:admin@localhost:2812")
                 response = BeautifulSoup(response.body)
-                response = response('table')
-                
-                for t in reponse:
-                    print t
-                    
+                response = response('table')[-6:]
                 self.render("monit.html", items=response)
             except:    
                 self.render("monit.html", items="<error/>")
