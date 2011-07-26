@@ -271,7 +271,7 @@ class RecreateDirectoryHandler(FSUIHandler):
         start_extension = self.get_argument("new-start", 1000)
         directory_reset(int(start_extension))
         
-        self.render("directory.html", data=data)
+        self.redirect("/#tabs-dashboard")
 
 HTTP_HANDLERS = [
     (r"/", MainHandler),
