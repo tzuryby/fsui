@@ -4,6 +4,8 @@ body, td {font-size:0.8em;}
 
 code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !important; font-size: 0.9em}
 
+th.line-head {text-align:left; font-size: 0.8em}
+
 #header {
 	padding: 0em 1em 0em 1em;	
 	border: 1px solid #aaaaaa; background: #cccccc url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; color: #222222; font-weight: bold;
