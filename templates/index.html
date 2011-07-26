@@ -242,7 +242,7 @@ $(document).ready(function(){
 
     $(".dialplan_exp").live("blur", dialplan.save);
     
-    $("#regexp-snadbox").live("keypress", 
+    $("#regexp-snadbox").live("keyup", 
         function(){
             var exp = $(".dialplan_exp").val(),
                 input = $(this).val();
