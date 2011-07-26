@@ -1,0 +1,38 @@
+#!/bin/bash
+
+PIDFILE="/var/run/fsui.pid"
+WD="/opt/snoip/fsui"
+EXNAME="app.py"
+
+fsui_start(){
+    fsui_stop
+    cd $WD    
+    (./$EXNAME)&
+    echo $! > $PIDFILE
+    echo "fsui started with pid:$!"
+}
+
+fsui_stop(){
+    if [ -f $PIDFILE ]; then
+        kill $(cat $PIDFILE)        
+        rm $PIDFILE
+        echo "fsui stopped"
+    else
+        echo "Nothing to stop"
+    fi
+}
+
+fsui_restart(){
+    fsui_start
+}
+
+case "$1" in
+    'start')
+      fsui_start;;
+    'stop')
+      fsui_stop;;
+    'restart')
+      fsui_restart;;
+    *)
+      echo "Usage: $0 start|stop|restart";;
+esac

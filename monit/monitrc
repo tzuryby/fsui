@@ -1,0 +1,28 @@
+set daemon  10
+set logfile syslog facility log_daemon
+set httpd port 2812 and
+    allow 0.0.0.0/0
+    allow admin:admin
+    allow afikoman:afikoman readonly
+    allow @monit
+    allow @users readonly
+
+check process SNOIPUI with pidfile "/var/run/snoipui.pid"
+    start program = "/usr/local/bin/snoipui start"
+    stop program = "/usr/local/bin/snoipui stop"
+    group ams
+    
+check process SNOIP with pidfile "/usr/local/freeswitch/run/freeswitch.pid"
+    start program = "/usr/local/bin/freeswitchd start"
+    stop program = "/usr/local/bin/freeswitchd stop"
+    group afikoman
+
+check directory SNOIPConfig with path /usr/local/freeswitch/conf
+    if changed timestamp
+        then exec "/usr/local/bin/freeswitchd start"
+
+check file SNOIPLog with path /usr/local/freeswitch/log/freeswitch.log
+    if size > 20000 MB 
+        then exec "/bin/echo '' > /usr/local/freeswitch/log/freeswitch.log"
+
+

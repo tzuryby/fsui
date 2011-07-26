@@ -1,0 +1,34 @@
+#!/bin/bash
+
+PIDFILE=/usr/local/freeswitch/run/freeswitch.pid
+FS=/usr/local/freeswitch/bin/freeswitch
+
+fs_start(){
+    $FS -nc
+}
+
+fs_stop(){
+    $FS -stop
+}
+
+fs_restart(){
+    fs_stop
+    fs_start
+}
+
+fs_kill(){
+    kill $(cat $PIDFILE)
+}
+
+case "$1" in
+    'start')
+        fs_start;;
+    'stop')
+        fs_stop;;
+    'restart')
+        fs_restart;;
+    'kill')
+        fs_kill;;
+    *)
+        echo "Usage: $0 start|stop|restart|kill";;
+esac

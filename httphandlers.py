@@ -197,7 +197,8 @@ class PcapFileCatter(FileCatter):
     header_type = ('Content-type', 'application/octet-stream')
 
 class TCPDumpHandler(StreamHandler):
-    end_page = '''</pre><hr/><a href="/dl/pcap">Download PCAP File</a>
+    end_page = '''
+    </pre><hr/><a href="/dl/pcap">Download PCAP File</a>
     <script>
         window.opener.showTcpdumpDownloadLink();
     </script>
