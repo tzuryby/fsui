@@ -5,7 +5,7 @@
 # this script should monitor events just like:
 # inotifywait -e close_write -m /usr/local/freeswitch/recordings/
 
-import os, re, subprocess
+import os, sys, re, subprocess
 
 import pyinotify
 from pyinotify import WatchManager, ThreadedNotifier, ProcessEvent
