@@ -17,7 +17,11 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 	z-index:-1000;
 	bottom:1em; 
 	position: absolute; 
-	width:98%; height:200; background-image: url(/static/snap-300.png); background-position: center center; background-repeat:no-repeat}
+	width:98%; height:120; 
+	background-image: url(/static/snap-300.png); 
+	background-position: center center; 
+	background-repeat:no-repeat
+}
 
 #content { margin: 1em }
 
