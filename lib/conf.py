@@ -139,7 +139,7 @@ def fs_directory_range():
 
 class JSONConfHandler(object):
     def __init__(self, path):
-        assert path:
+        assert path
         self.path = path
         
     def reader(self):
