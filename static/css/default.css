@@ -41,7 +41,7 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 	display:box; position:fixed; top:24px; right:24px; width:16px; height:16px;
 }
 
-.true, .false {border: 1px;} 
+.true, .false {border: 1px solid!important;} 
 .true {background-color:#219C11!important; color:#FFFFFF!important;}
 .false {background-color:#FF0011!important; color:#FFFFFF!important;}
 
