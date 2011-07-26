@@ -11,7 +11,8 @@ import tornado.web
 from tornado.escape import xhtml_escape
 
 from lib.conf import *
-from lib.utils import common
+from lib.utils import common 
+from lib.utils.BeautifulSoup import BeautifulSoup
 
 global_client_params = {}
 def init_global_client_params():
