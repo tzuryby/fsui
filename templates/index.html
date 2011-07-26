@@ -71,7 +71,7 @@
     <div id="tabs-ll-settings">
         <h3>{{_("Edit E1/PRI Interface Parameters")}}</h3>
         <pre style="margin-bottom: -1.2em">
-            <div class="raw-conf-fram mono" id="raw-edit-wanpipe1" disabled="disabled"></div>
+            <div class="raw-conf-fram mono" id="raw-edit-wanpipe" disabled="disabled"></div>
         </pre>
         <div>
             <a class="button" href="/dl/wanpipe">{{ _("Download a backup copy") }}</a>
@@ -294,12 +294,34 @@ $(document).ready(function(){
         stopLoop:  function(){ monitor.loopId && window.clearInterval(monitor.loopId);},        
         restart:   function(){ monitor.stopLoop(); monitor.loader(); monitor.startLoop(); }
     };
+    
+    $("#edit-wanpipe1").click(function(){ 
+        $("#raw-edit-wanpipe").attr("contentEditable", "true").removeAttr("disabled");
+        $("#save-wanpipe1").show();
+    });
+    
+    $("#edit-freetdm").click(function(){ 
+        $("#raw-edit-freetdm").attr("contentEditable", "true").removeAttr("disabled"); 
+        $("#save-freetdm").show();
+    });
+    
+    $("#save-wanpipe1").click(){
+        function(){
+            $.post("/ul/wanpipe", {data: $("#raw-edit-wanpipe").text()})
+        }
+    }
+
+    $("#save-freetdm").click(){
+        function(){
+            $.post("/ul/freetdm", {data: $("#raw-edit-freetdm").text()})
+        }
+    }
 
     function main(){
     
         $(".hide-on-load").hide();
     
-        $("#raw-edit-wanpipe1").load("/dl/wanpipe");
+        $("#raw-edit-wanpipe").load("/dl/wanpipe");
         $("#raw-edit-freetdm").load("/dl/freetdm");        
 
         $(".conference_pin").live("blur", conferences.save);    
@@ -319,8 +341,6 @@ $(document).ready(function(){
         
         $("button, a.button").button();
         
-        $("#edit-wanpipe1").click(function(){ $("#raw-edit-wanpipe1").attr("contentEditable", "true").removeAttr("disabled");});
-        $("#edit-freetdm").click(function(){ $("#raw-edit-freetdm").attr("contentEditable", "true").removeAttr("disabled"); });
         
         $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
         $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });

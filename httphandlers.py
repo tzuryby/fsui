@@ -283,6 +283,30 @@ class RecreateDirectoryHandler(FSUIHandler):
         
         self.redirect("/#tabs-dashboard")
 
+class WANPIPEFileSaver(FSUIHandler):
+    def get(self):
+        self.post()
+        
+    def post(self):
+        data = self.get_argument("data", None)
+        if data:
+            with open('/etc/wanpipe/wanpipe1.conf', 'wb') as wanpipe:
+                wanpipe.write(data)
+            
+            # to do,reload wanrouter
+            
+class FREETDMFileSaver(FSUIHandler):
+    def get(self):
+        self.post()
+        
+    def post(self):
+        data = self.get_argument("data", None)
+        if data:
+            with open('/usr/local/freeswitch/conf/freetdm.conf', 'wb') as wanpipe:
+                wanpipe.write(data)
+            
+            # to do,reload wanrouter        
+        
 HTTP_HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
@@ -293,6 +317,8 @@ HTTP_HANDLERS = [
     (r"/dl/pcap", PcapFileCatter),
     (r"/dl/wanpipe", WANPIPEFileCatter),
     (r"/dl/freetdm", FREETDMFileCatter),
+    (r"/ul/wanpipe", WANPIPEFileSaver),
+    (r"/ul/freetdm", FREETDMFileSaver),
     (r"/admin/set/extension/password", ExtensionPasswordHandler),
     (r"/admin/conferences", ConferenceHandler),
     (r"/directory/recreate", RecreateDirectoryHandler),
