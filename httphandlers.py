@@ -221,7 +221,7 @@ class FSRegexpHandler(FSUIHandler):
         
     def post(self):
         exp = self.get_argument("exp", "false")
-        input = self.get_argument("input")
+        input = self.get_argument("input", '')
         
         self.write(exp and common.shell(FS_CLI_COMMAND % ("regex %s|%s" % (input, exp))).strip())
 

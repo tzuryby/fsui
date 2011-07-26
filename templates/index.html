@@ -242,11 +242,11 @@ $(document).ready(function(){
 
     $(".dialplan_exp").live("blur", dialplan.save);
     
-    $("#regexp-snadbox").live("keyup", 
+    $("#regexp-snadbox").live("keypress", 
         function(){
             var exp = $(".dialplan_exp").val(),
                 input = $(this).val();
-            $("#regexp-snadbox-output").val($.get("/dialplan/test", {exp:exp, input: input}))
+            $("#regexp-snadbox-output").text($.get("/dialplan/test", {exp:exp, input: input}))
         });
 
     dashBoard.restart();
