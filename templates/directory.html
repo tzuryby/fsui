@@ -13,10 +13,28 @@
 
 <div class="group-box ui-corner-all ui-widget-content" id="new-directory">
     <h3>{{_("Range of extensions")}}</h3>
-    <label for="new-start">{{_("Re-Initialize Directory")}}
-    <input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" />
-    <span>{{data['last-xtn']}}</span>
+    <h5>{{_("Re-Initialize Directory")}}</h5>
+    <table>
+        <tbody>
+            <tr><th>{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
+            <tr><th>{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
+        </tbody>    
+    </table>
     <p/>
     <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
     
 </div>
+
+<script>
+    (function(){
+        $("#new-start").keyup(function(){
+            var new_start = $(this).val();            
+            if (!new_start.test(/^\d+$/)){
+                alert("Numbers only!");
+            }
+            else{
+                $("#new-end").html((Number(new_start)+30).toString());
+            }
+        });
+    })();
+</script>
