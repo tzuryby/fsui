@@ -203,7 +203,7 @@ $(document).ready(function(){
                 IAmBusy.show()
                 url = url || "/dialplan"
                 params = params || {};
-                callback = callback || IAmBusy.hide;
+                callback = callback || function(){IAmBusy.hide; $("button").button();};
                 console.log(url, params, callback);
                 $("#dialplan-container").load(url, params, callback);
         },
