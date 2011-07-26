@@ -283,27 +283,29 @@ $(document).ready(function(){
         restart:   function(){ monitor.stopLoop(); monitor.loader(); monitor.startLoop(); }
     };
 
+    function main(){
+        monitor.restart();
+        dashBoard.restart();
+        conferences.load();
+        dialplan.load();
+        
+        $("button").button();
+        
+        $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
+        $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
+        $("#tcpdump-start").click(function(){ var win = window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); });
 
-    dashBoard.restart();
-    monitor.restart();
-    conferences.load();
-    dialplan.load();
-    $("button").button();
+        $( "#slider" ).slider({
+            value:30, min: 10, max: 600, step: 10,
+            slide: function( event, ui ) {
+                $( "#timeout" ).val( ui.value);
+            }
+        });
+        $( "#timeout" ).val( $("#slider").slider("value"));
+    }
     
-    $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
-    $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
-    $("#tcpdump-start").click(function(){ var win = window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); });
-
-    $( "#slider" ).slider({
-        value:30, min: 10, max: 600, step: 10,
-        slide: function( event, ui ) {
-            $( "#timeout" ).val( ui.value);
-        }
-    });
-    $( "#timeout" ).val( $("#slider").slider("value"));
-
-
-    // <--
+    main();
+    
 });
 
 
