@@ -55,14 +55,13 @@
 
             buttons["Yes. Please go ahead!"] = 
                 function() {
-                    $.post(url, {"new-start": $("#new-start").val()}, 
-                        function() {
-                        
-                            $(this).dialog("close");
-                            location.href = location.href;
-                            
-                        }
-                    );                    
+                    
+                    var dialog_closer = function(){
+                        $(this).dialog("close");
+                        location.href = location.href;                    
+                    };
+                    
+                    $.post(url, {"new-start": $("#new-start").val()}, dialog_closer);
                 };
 
             buttons["No. Thanks for warning me!"] = 
