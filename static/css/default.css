@@ -40,8 +40,8 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 	display:box; position:fixed; top:24px; right:24px; width:16px; height:16px;
 }
 
-.true {color:#106E05!important; }
-.false {color:#9C1F1F!important; }
+.true {background-color:#106E05; color:#FFFFFF;}
+.false {background-color:#9C1F1F; color:#FFFFFF;}
 
 /* FONT*/
 

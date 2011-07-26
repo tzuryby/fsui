@@ -249,7 +249,7 @@ $(document).ready(function(){
             $.get("/dialplan/test", {exp:exp, input: input}, function(data){
                 //$("#regexp-sandbox-output")
                     //.html(data)
-                $(this)
+                $("#regexp-snadbox")
                     .removeClass("true")
                     .removeClass("false")
                     .addClass(data);
