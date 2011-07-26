@@ -30,7 +30,7 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 	background-image: url(/static/snap.png); 
 	background-position: center right; 
 	background-repeat:no-repeat;
-	height:28px;
+	height:90px;
 }
  
 #header h3, #header a { color: #ffffff; font-weight: normal!important; }
