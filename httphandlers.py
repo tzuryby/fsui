@@ -305,24 +305,53 @@ class FREETDMFileSaver(FSUIHandler):
             with open('/usr/local/freeswitch/conf/freetdm.conf', 'wb') as wanpipe:
                 wanpipe.write(data)
             
-            # to do,reload wanrouter        
+            # to do,reload wanrouter 
+
+class NetworkManagerHandler(FSUIHandler):
+    def get_netinfo(self):
+        
+        addr = xhtml_escape(common.shell('ip addr'))
+        routing = xhtml_escape('\n'.join(common.shell('route -n').split("\n")[1:]))
+        ifaces = OutputFormatter.highlight(xhtml_escape(common.shell('mii-tool 2> /dev/null')))
+        lan = appconfig.get()['net']
+        
+        return {'addr': addr, 'routing': routing, 'lan': lan, 'ifaces': ifaces}
+    
+    def get(self):
+        self.post()
+        
+    def post(self):
+        action = self.get_argument("a", None)
+        if action:
+            net_config_tree = appconfig.get()['net']
+            net['eth0']['addr'] = self.get_argument('eth0_addr')
+            net['eth1']['addr'] = self.get_argument('eth1_addr')
+            net['eth1']['gw'] = self.get_argument('eth1_gw')
+            appconfig.set(net_config_tree)
+            
+        self.render("network.html", data=self.get_netinfo())
         
 HTTP_HANDLERS = [
     (r"/", MainHandler),
     (r"/dashboard", DashboardHandler),
     (r"/cli", CLIHandler),
     (r"/tcpdump", TCPDumpHandler),
+    
     (r"/dl/syslog", SyslogCatter),
     (r"/dl/switchlog", FSLogCatter),
     (r"/dl/pcap", PcapFileCatter),
     (r"/dl/wanpipe", WANPIPEFileCatter),
     (r"/dl/freetdm", FREETDMFileCatter),
+    
     (r"/ul/wanpipe", WANPIPEFileSaver),
     (r"/ul/freetdm", FREETDMFileSaver),
+    
     (r"/admin/set/extension/password", ExtensionPasswordHandler),
     (r"/admin/conferences", ConferenceHandler),
     (r"/directory/recreate", RecreateDirectoryHandler),
     (r"/dialplan", DialplanHandler),
     (r"/dialplan/test", FSRegexpHandler),
     (r"/monit/read", MonitHandler),
+    
+    (r"/admin/net", NetworkManagerHandler)
 ]

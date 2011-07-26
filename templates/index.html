@@ -16,9 +16,9 @@
 		<li><a href="#tabs-directory">{{_("Directory")}}</a></li>
 		<li><a href="#tabs-conference">{{_("Confenernce Rooms")}}</a></li>
 		<li><a href="#tabs-cli">{{_("Switch CLI")}}</a></li>
-		<li><a href="#tabs-diagnostics">{{_("Diagnostics")}}</a></li>
+		<li><a href="#tabs-net">{{_("Network")}}</a></li>
 		<li><a href="#tabs-ll-settings">{{_("Lowlevel Settings")}}</a></li>
-		<li><a href="#tabs-settings">{{_("Settings")}}</a></li>
+		<li><a href="#tabs-diagnostics">{{_("Diagnostics")}}</a></li>
 	</ul>
 	<div id="tabs-monit">
         <div id="monitoring"></div>
@@ -88,7 +88,9 @@
             <button id="save-freetdm" class="hide-on-load">{{ _("Save Changes") }}</button>
         </div>
     </div>
-    <div id="tabs-settings"></div>
+    <div id="tabs-net">
+        <div id="network"></div>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -295,6 +297,12 @@ $(document).ready(function(){
         restart:   function(){ monitor.stopLoop(); monitor.loader(); monitor.startLoop(); }
     };
     
+    var network = {
+        load: function(){
+            $("#network").load("/admin/net");
+        }
+    }
+    
     $("#edit-wanpipe1").click(function(){ 
         $("#raw-edit-wanpipe").attr("contentEditable", "true").removeAttr("disabled");
         $("#save-wanpipe1").show();
@@ -305,18 +313,11 @@ $(document).ready(function(){
         $("#save-freetdm").show();
     });
     
-    $("#save-wanpipe1").click(
-        function(){
-            $.post("/ul/wanpipe", {data: $("#raw-edit-wanpipe").text()})
-        }
-    );
-    
-
-    $("#save-freetdm").click(
-        function(){
-            $.post("/ul/freetdm", {data: $("#raw-edit-freetdm").text()})
-        }
-    );
+    $("#save-wanpipe1").click(function(){$.post("/ul/wanpipe", {data: $("#raw-edit-wanpipe").text()})});
+    $("#save-freetdm").click(function(){ $.post("/ul/freetdm", {data: $("#raw-edit-freetdm").text()})});
+    $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
+    $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
+    $("#tcpdump-start").click(function(){ window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); });
 
     function main(){
     
@@ -339,14 +340,10 @@ $(document).ready(function(){
         dashBoard.restart();
         conferences.load();
         dialplan.load();
+        network.load();
         
         $("button, a.button").button();
-        
-        
-        $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
-        $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
-        $("#tcpdump-start").click(function(){ var win = window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); });
-
+                
         $( "#slider" ).slider({
             value:30, min: 10, max: 600, step: 10,
             slide: function( event, ui ) {
