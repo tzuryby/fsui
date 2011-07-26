@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+
+# this script should monitor events just like:
+# inotifywait -e close_write -m /usr/local/freeswitch/recordings/
+
+import os, re, subprocess
+
+import pyinotify
+from pyinotify import WatchManager, ThreadedNotifier, ProcessEvent
+
+from optparse import OptionParser
+
+DEFAULT_DIR = '/usr/local/freeswitch/recordings'
+
+class OggConverter(ProcessEvent):
+    def process_IN_CLOSE_WRITE(self, event):
+        m = re.search('(.*).wav$', event.name)
+        if m is not None:
+            try:
+                #print "Wav file %s closed!" % event.name
+                subprocess.check_call(["oggenc", os.path.join(event.path, event.name)])
+                subprocess.check_call(["rm", os.path.join(event.path, event.name)])
+            except CalledProcessError:
+                print "Failed to convert and remove file %s" % os.path.join(event.path, event.name)
+
+def write_pid(options):
+    with open(options.pid, "wb") as pidfile:
+        pidfile.write(os.getpid())
+        
+def main_monitor_loop():
+    mask = pyinotify.IN_CLOSE_WRITE
+    wm = WatchManager()
+
+    notifier = ThreadedNotifier(wm, OggConverter())
+    notifier.start()
+
+    wdd = wm.add_watch(options.recordings_dir, mask, rec=False)
+
+    while True:
+        try:
+            notifier.process_events()
+            if notifier.check_events():
+                notifier.read_events()
+        except:
+            notifier.stop()
+            break
+
+
+if __name__ == '__main__':    
+    name = os.path.basename(sys.argv[0])
+    parser = OptionParser(usage='%s [-f] -d "/path/to/recording/repository" ' % (name))
+    
+    parser.add_option("-d", "--dir", type="string", dest="monitored_dir", help="monitored dir", metavar="DIRECTORY", default=DEFAULT_DIR)
+    parser.add_option('-b', '--background', action="store_true", default=True, dest='background', help='daemonize %s' % (name))
+    parser.add_option('-f', '--foreground', action="store_false", default=True, dest='background', help='daemonize %s' % (name))
+    parser.add_option('--stop', action="store_true", default=False, dest='stop', help='stop %s' % (name))
+    parser.add_option('--pid', type="string", dest='pid', default="/var/run/waveconvert.pid", help='pidfile')
+    parser.add_option('-l', '--list', dest='list_files', action="store_true", default=False, help='only list files within teh recording dir')
+
+    (options, args) = parser.parse_args()
+
+    if options.stop:
+        os.system("kill $(cat %s) && rm %s" % (options.pid, options.pid))        
+        sys.exit(0)
+            
+    if options.list_files:
+        os.system("ls -l %s" % (options.monitored_dir))
+        sys.exit(0)
+        
+    if options.background:
+        pid = os.fork()
+        if pid > 0:
+            sys.exit(0)
+        else:
+            pid = os.fork()
+            if pid > 0:
+                sys.exit(0)
+                
+        write_pid(options)
+        
+    main_monitor_loop()
+    
+    sys.exit(0)
+
