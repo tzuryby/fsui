@@ -16,8 +16,8 @@
     <h5>{{_("Re-Initialize Directory")}}</h5>
     <table>
         <tbody>
-            <tr><th>{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
-            <tr><th>{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
+            <tr><th style="text-align:right">{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
+            <tr><th style="text-align:right">{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
         </tbody>    
     </table>
     <p/>
@@ -29,7 +29,7 @@
     (function(){
         $("#new-start").keyup(function(){
             var new_start = $(this).val();            
-            if (!new_start.test(/^\d+$/)){
+            if (!/^\d+$/.test(new_start)){
                 alert("Numbers only!");
             }
             else{
