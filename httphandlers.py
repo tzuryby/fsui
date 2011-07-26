@@ -247,7 +247,7 @@ class MonitHandler(FSUIHandler):
             try:
                 response = httpclient.HTTPClient().fetch("http://admin:admin@localhost:2812")
                 response = BeautifulSoup(response.body)
-                response = response('table')[-6:]
+                response = response('table')
                 return response
                 
             except Exception, e:
