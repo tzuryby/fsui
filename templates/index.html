@@ -19,7 +19,7 @@
 		<li><a href="#tabs-settings">{{_("Settings")}}</a></li>
 	</ul>
 	<div id="tabs-monit">
-        <div id="monit-output"></div>
+        <div id="monitoring"></div>
     </div>
 	<div id="tabs-dashboard">
         <div id="dashboard-users"></div>
@@ -284,7 +284,7 @@ $(document).ready(function(){
     };
 
     function main(){
-        monitor.startLoop();
+        monitor.restart();
         dashBoard.restart();
         conferences.load();
         dialplan.load();
