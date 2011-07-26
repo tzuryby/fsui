@@ -252,7 +252,7 @@ class MonitHandler(FSUIHandler):
                 return response
                 
             except Exception, e:
-                return "<error/>"
+                raise
                 
         # reload monit configuration 
         elif self.get_argument("action") == "reload":
