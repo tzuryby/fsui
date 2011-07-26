@@ -239,7 +239,7 @@ class DialplanHandler(FSUIHandler):
         data.update(DialplanDestRegexpHandler().get())
         dir_range = fs_directory_range()
         data['first-xtn'] = dir_range[0]
-        data['first-xtn'] = dir_range[-1:][0]
+        data['last-xtn'] = dir_range[-1:][0]
         
         self.render("directory.html", data=data)
 
