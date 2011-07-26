@@ -50,14 +50,19 @@
             var url = "/directory/recreate";
                 
             var y = $(this).position().top - $(document).scrollTop();
+            
             var buttons = {}
 
             buttons["Yes. Please go ahead!"] = 
                 function() {
-                    $.post(url, {"new-start": $("#new-start").val()}, function(){
-                        $(this).dialog("close");
-                        location.href = location.href
-                    });                    
+                    $.post(url, {"new-start": $("#new-start").val()}, 
+                        function() {
+                        
+                            $(this).dialog("close");
+                            location.href = location.href;
+                            
+                        }
+                    );                    
                 };
 
             buttons["No. Thanks for warning me!"] = 
@@ -65,8 +70,9 @@
                     $( this ).dialog("close");
                 };
             
-            $("#dialog-confirm-directory-reinit").dialog({resizable: false, modal: true, buttons:buttons});        
+            $("#dialog-confirm-directory-reinit").dialog({resizable: false, modal: true, buttons:buttons});
         }
+                
         $("#gen-new-range").click(function(){alert("shit");});
         
     })();
