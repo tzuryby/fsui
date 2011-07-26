@@ -236,7 +236,18 @@ class DialplanHandler(FSUIHandler):
             DialplanDestRegexpHandler().set(**{'expression': expression})
             
         self.render("dialplan.html", data=DialplanDestRegexpHandler().get())
-        
+
+
+class MonitHandler(FSUIHandler):
+    def get(self):    
+        try:
+            response = httpclient.HTTPClient().fetch("http://admin:admin@localhost:2812")
+            response = BeautifulSoup(response.body)
+            response = response('table')[-6:]
+            return response
+            
+        except Exception, e:
+            return "<error/>"
 
 
 HTTP_HANDLERS = [
