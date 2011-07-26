@@ -2,7 +2,13 @@
 body {margin: 0em; background-color: #FFF}
 body, td {font-size:0.8em;}
 
-code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !important; font-size: 0.9em}
+code, pre, .mono, .current_period, .raw-conf-fram {font-family: 'Droid Sans Mono', monospace !important; font-size: 0.9em}
+
+.raw-conf-fram {
+	width: 80%;
+	height: 480px;
+	overflow: auto;
+}
 
 th.linehead {text-align:left; font-size: 0.8em; float:left}
 
@@ -56,6 +62,9 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 .true, .false {border: 1px solid!important;} 
 .true {background-color:#219C11!important; color:#FFFFFF!important;}
 .false {background-color:#FF0011!important; color:#FFFFFF!important;}
+
+
+
 
 /* FONT*/
 
