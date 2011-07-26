@@ -241,7 +241,7 @@ class DialplanHandler(FSUIHandler):
         data['first-xtn'] = dir_range[0]
         data['first-xtn'] = dir_range[-1:][0]
         
-        self.render("dialplan.html", data=data)
+        self.render("directory.html", data=data)
 
 
 class MonitHandler(FSUIHandler):
