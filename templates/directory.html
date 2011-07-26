@@ -13,7 +13,6 @@
 
 <div class="group-box ui-corner-all ui-widget-content" id="new-directory">
     <h3>{{_("Range of extensions")}}</h3>
-    <h5>{{_("Re-Initialize Directory")}}</h5>
     <table>
         <tbody>
             <tr><th class="linehead">{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
@@ -25,8 +24,17 @@
     
 </div>
 
+<div id="dialog-confirm-directory-reinit" title={{_("Re-Initialize The Directory?")}} class="hide_on_load">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+    {{_("This action will delete exitsing extensions/users permanently. <br/>And recreate a whole new set of 30 entries.<br/>Are you sure?")}}</p>
+</div>
+
 <script>
     (function(){
+        
+        $(".hide_on_load").hide();
+        $("button").button();
+        
         $("#new-start").keyup(function(){
             var new_start = $(this).val();            
             if (!/^\d+$/.test(new_start)){
@@ -36,5 +44,30 @@
                 $("#new-end").html((Number(new_start)+29).toString());
             }
         });
+        
+        
+        function confirmDirectoryRecreate(){
+            var url = "/directory/recreate";
+                
+            var y = $(this).position().top - $(document).scrollTop();
+            var buttons = {}
+
+            buttons["Yes. Please go ahead!"] = 
+                function() {
+                    $.post(url, {"new-start": $("#new-start").val()}, function(){
+                        $(this).dialog("close");
+                        location.href = location.href
+                    });                    
+                };
+
+            buttons["No. Thanks for warning me!"] = 
+                function() {
+                    $( this ).dialog("close");
+                };
+            
+            $("#dialog-confirm-directory-reinit").dialog({resizable: false, modal: true, buttons:buttons});        
+        }
+        $("#gen-new-range").click(confirmDirectoryRecreate);
+        
     })();
 </script>

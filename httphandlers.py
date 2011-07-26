@@ -267,7 +267,15 @@ class MonitHandler(FSUIHandler):
         elif self.get_argument("action") == "reboot":
             common.shell("reboot")
             
-
+class RecreateDirectoryHandler(FSUIHandler):
+    def get(self):
+        self.post()
+        
+    def post(self):
+        start_extension = self.get_argument("new-start", 1000)
+        directory_reset(int(start_extension))
+        
+        self.render("directory.html", data=data)
 
 HTTP_HANDLERS = [
     (r"/", MainHandler),
@@ -279,6 +287,7 @@ HTTP_HANDLERS = [
     (r"/dl/pcap", PcapFileCatter),
     (r"/admin/set/extension/password", ExtensionPasswordHandler),
     (r"/admin/conferences", ConferenceHandler),
+    (r"/directory/recreate", RecreateDirectoryHandler),
     (r"/dialplan", DialplanHandler),
     (r"/dialplan/test", FSRegexpHandler),
     (r"/monit/read", MonitHandler),
