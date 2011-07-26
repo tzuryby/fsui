@@ -70,7 +70,7 @@ class ExtensionFileHandler(XMLHandler):
     }
     
     def __init__(self, xt_number):
-        self.filename = os.path.join(FS_DIR_PATH, xt_number + ".xml")
+        self.filename = os.path.join(FS_DIR_PATH, "%s.xml" % (xt_number))
         XMLHandler.__init__(self)
         
 
