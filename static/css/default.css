@@ -38,7 +38,7 @@ code, pre, .mono, .current_period {font-family: 'Droid Sans Mono', monospace !im
 .reactor-in-action{
 	background-image: url(/static/ajax-loader.gif);
 	background-position: center center;	background-repeat:no-repeat; 
-	display:box; position:fixed; top:24px; right:24px; width:16px; height:16px;
+	display:box; position:fixed; top:18px; right:24px; width:16px; height:16px;
 }
 
 .true, .false {border: 1px solid!important;} 
