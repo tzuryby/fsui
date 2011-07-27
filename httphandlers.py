@@ -260,10 +260,10 @@ class DialplanHandler(FSUIHandler):
     def post(self):
         expression = self.get_argument("expression", None)
         if expression:
-            DialplanDestRegexpHandler().set(**{'expression': expression})
+            DialplanInternalContextRegexpHandler().set(**{'expression': expression})
             
         data = {}
-        data.update(DialplanDestRegexpHandler().get())
+        data.update(DialplanInternalContextRegexpHandler().get())
         dir_range = fs_directory_range()
         data['first-xtn'] = dir_range[0]
         data['last-xtn'] = dir_range[-1:][0]

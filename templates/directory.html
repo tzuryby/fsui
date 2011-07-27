@@ -1,28 +1,47 @@
-<div class="group-box ui-corner-all ui-widget-content" id="dialplan-container">
-    <h3>{{_("Destination Matching SIP/PRI Bridge")}}</h3>
-    <input type="text" class="ui-widget-content ui-corner-all dialplan_exp halfscreen-input" 
-        value="{{ data['expression'] }}"/>
-    <p/>
-    <button id="save_dialplan_exp">{{_("Save")}}</button>
-    <div class="group-box ui-corner-all ui-widget-content">
-        <h3>{{ _("Test matching numbers") }}</h3>
-        <input type="text" class="ui-corner-all" id="regexp-snadbox" value="{{data['first-xtn']}}"/>
-        <span id="regexp-sandbox-output"></span>
+<div class="group-box ui-corner-all ui-widget-content">
+    <h3>{{_("Internal Calls Context Settings")}}</h3>
+    <div class="group-box ui-corner-all ui-widget-content" id="new-directory">
+        <h3>{{_("Range of extensions")}}</h3>
+        <table>
+            <tbody>
+                <tr><th class="linehead">{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
+                <tr><th class="linehead">{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
+            </tbody>    
+        </table>
+        
+        <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
+        
+    </div>
+
+    <div class="group-box ui-corner-all ui-widget-content" id="dialplan-container">
+        <h3>{{_("Internal SIP/PRI Bridge")}}</h3>
+        <input type="text" class="ui-widget-content ui-corner-all dialplan_exp halfscreen-input" 
+            value="{{ data['expression'] }}"/>
+        <p/>
+        <button id="save_dialplan_exp">{{_("Save")}}</button>
+        <div class="group-box ui-corner-all ui-widget-content">
+            <h3>{{ _("Test matching numbers") }}</h3>
+            <input type="text" class="ui-corner-all" id="regexp-snadbox" value="{{data['first-xtn']}}"/>
+            <span id="regexp-sandbox-output"></span>
+        </div>
+    </div>
+</div>
+<div class="group-box ui-corner-all ui-widget-content">
+    <h3>{{_("External Calls Context Settings")}}</h3>
+    <div class="group-box ui-corner-all ui-widget-content" id="dialplan-external-container">
+        <h3>{{_("External SIP/PRI Bridge")}}</h3>
+        <input type="text" class="ui-widget-content ui-corner-all dialplan_ext_exp halfscreen-input" 
+            value="{{ data['expression'] }}"/>
+        <p/>
+        <button id="save_dialplan_ext_exp">{{_("Save")}}</button>
+        <div class="group-box ui-corner-all ui-widget-content">
+            <h3>{{ _("Test matching numbers") }}</h3>
+            <input type="text" class="ui-corner-all" id="regexp-ext-snadbox"/>
+            <span id="regexp-ext-sandbox-output"></span>
+        </div>
     </div>
 </div>
 
-<div class="group-box ui-corner-all ui-widget-content" id="new-directory">
-    <h3>{{_("Range of extensions")}}</h3>
-    <table>
-        <tbody>
-            <tr><th class="linehead">{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
-            <tr><th class="linehead">{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
-        </tbody>    
-    </table>
-    
-    <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
-    
-</div>
 
 <div id="dialog-confirm-directory-reinit" title={{_("Re-Initialize The Directory?")}} class="hide_on_load">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>

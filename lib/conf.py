@@ -91,8 +91,7 @@ class ConferencePINHandler(XMLHandler):
                 
         XMLHandler.__init__(self)
         
-class DialplanDestRegexpHandler(XMLHandler):
-    filename = DIALPLAN_PATH
+class DialplanInternalContextRegexpHandler(XMLHandler):
     _api = {
         "expression":
         ("//context[@name='from-pstn']"
@@ -100,6 +99,19 @@ class DialplanDestRegexpHandler(XMLHandler):
                 "/condition[@field='destination_number']", 
             "expression")
     }
+
+class DialplanExternalContextRegexpHandler(XMLHandler):
+    filename = DIALPLAN_PATH
+    _api = {
+        "expression":
+        ("//context[@name='core']"
+            "/extension[@name='to-pstn']"
+                "/condition[@field='destination_number']", 
+            "expression")
+    }
+
+
+
 
 
 
