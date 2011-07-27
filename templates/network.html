@@ -1,23 +1,26 @@
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{_("Network Settings")}}</h3>
-    <h5>{{_("LAN Port Address")}}:</h5>
+    <h5 class="side-header">{{_("LAN Port Address")}}:</h5>
     <input 
         type="text" 
         class="text ui-widget-content ui-corner-all" 
         id="eth0_addr" 
         value="{{data['lan']['eth0']['addr']}}" />
-    <h5>{{_("WAN Port Address")}}:</h5>
+        <div class="clear" />
+    <h5 class="side-header">{{_("WAN Port Address")}}:</h5>
     <input 
         type="text" 
         class="text ui-widget-content ui-corner-all" 
         id="eth1_addr" 
         value="{{data['lan']['eth1']['addr']}}" />
-    <h5>{{_("WAN Port Gateway")}}:</h5>
+        <div class="clear" />
+    <h5 class="side-header">{{_("WAN Port Gateway")}}:</h5>
     <input
         type="text" 
         class="text ui-widget-content ui-corner-all" 
         id="eth1_gw" 
         value="{{data['lan']['eth1']['gw']}}" />
+        <div class="clear" />
     <p/>
     <button id="save_net">{{_("Save Network Settings")}}</button>
 </div>

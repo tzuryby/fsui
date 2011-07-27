@@ -59,8 +59,14 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 .true {background-color:#219C11!important; color:#FFFFFF!important;}
 .false {background-color:#FF0011!important; color:#FFFFFF!important;}
 
+.raw-conf-frame {background-color: #EBEBEB}
 
-
+h5.side-header { 
+	display: block;
+	width: 128px;
+	float: left;
+	margin-top: 0.3em;		
+}
 
 /* FONT*/
 

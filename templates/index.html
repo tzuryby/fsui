@@ -15,7 +15,7 @@
 		<li><a href="#tabs-dashboard">{{_("Dashboard")}}</a></li>
 		<li><a href="#tabs-directory">{{_("Directory")}}</a></li>
 		<li><a href="#tabs-conference">{{_("Confenernce Rooms")}}</a></li>
-		<li><a href="#tabs-cli">{{_("Switch CLI")}}</a></li>
+		<li><a href="#tabs-cli">{{_("CLI Console")}}</a></li>
 		<li><a href="#tabs-net">{{_("Network")}}</a></li>
 		<li><a href="#tabs-ll-settings">{{_("E1/PRI Settings")}}</a></li>
 		<li><a href="#tabs-diagnostics">{{_("Diagnostics")}}</a></li>
@@ -50,9 +50,9 @@
             <h3>{{_("Capture Network Traffic")}}</h3>
             <button id="tcpdump-start">{{_("Capture")}}</button>
             <p>
-                <label for="timeout">{{_("Number of seconds")}}:</label>
+                <label for="timeout">{{_("Duration")}}:</label>
                 <input type="text" id="timeout" 
-                    style="border:0; font-weight:bold; width:30px; background-color:#fff" 
+                    style="border:0; font-weight:bold; width:24px; background-color:#fff" 
                     disabled="disabled"/>
                 {{_("seconds")}}
             </p>
@@ -71,7 +71,7 @@
     <div id="tabs-ll-settings">
         <h3>{{_("Edit E1/PRI Interface Parameters")}}</h3>
         <pre style="margin-bottom: -1.2em">
-            <div class="raw-conf-fram mono" id="raw-edit-wanpipe" disabled="disabled"></div>
+            <div class="raw-conf-frame mono" id="raw-edit-wanpipe" disabled="disabled"></div>
         </pre>
         <div>
             <a class="button" href="/dl/wanpipe">{{ _("Download a backup copy") }}</a>
@@ -80,7 +80,7 @@
         </div>        
         <h3>{{_("Edit Trunk Settings")}}</h3>
         <pre style="margin-bottom: -1.2em">
-            <div class="raw-conf-fram mono" id="raw-edit-freetdm" disabled="disabled"></div>
+            <div class="raw-conf-frame mono" id="raw-edit-freetdm" disabled="disabled"></div>
         </pre>
         <div>
             <a class="button" href="/dl/freetdm">{{ _("Download a backup copy") }}</a>
@@ -304,12 +304,12 @@ $(document).ready(function(){
     }
     
     $("#edit-wanpipe1").click(function(){ 
-        $("#raw-edit-wanpipe").attr("contentEditable", "true").removeAttr("disabled");
+        $("#raw-edit-wanpipe").attr("contentEditable", "true").removeAttr("disabled").removeClass("raw-conf-frame");
         $("#save-wanpipe1").show();
     });
     
     $("#edit-freetdm").click(function(){ 
-        $("#raw-edit-freetdm").attr("contentEditable", "true").removeAttr("disabled"); 
+        $("#raw-edit-freetdm").attr("contentEditable", "true").removeAttr("disabled").removeClass("raw-conf-frame"); 
         $("#save-freetdm").show();
     });
     
