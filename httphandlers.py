@@ -259,8 +259,12 @@ class DialplanHandler(FSUIHandler):
         
     def post(self):
         expression = self.get_argument("expression", None)
-        if expression:
+        ctx = self.get_argument("ctx", None)
+        if ctx == "internal":
             DialplanInternalContextRegexpHandler().set(**{'expression': expression})
+        
+        elif ctx == "external":
+            DialplanExternalContextRegexpHandler().set(**{'expression': expression})
             
         data = {}
         data.update(DialplanInternalContextRegexpHandler().get())

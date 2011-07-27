@@ -13,7 +13,7 @@
 	<ul>
 		<li><a href="#tabs-monit">{{_("Monitoring")}}</a></li>
 		<li><a href="#tabs-dashboard">{{_("Dashboard")}}</a></li>
-		<li><a href="#tabs-directory">{{_("Directory")}}</a></li>
+		<li><a href="#tabs-directory">{{_("Dialplan")}}</a></li>
 		<li><a href="#tabs-conference">{{_("Confenernce Rooms")}}</a></li>
 		<li><a href="#tabs-cli">{{_("CLI Console")}}</a></li>
 		<li><a href="#tabs-net">{{_("Network")}}</a></li>
@@ -224,15 +224,21 @@ $(document).ready(function(){
                 IAmBusy.show()
                 url = url || "/dialplan"
                 params = params || {};
-                callback = callback || function(){IAmBusy.hide; $("button").button();};
+                callback = callback || function(){IAmBusy.hide; /*$("button").button();*/};
                 console.log(url, params, callback);
                 $("#directory-container").load(url, params, callback);
         },
         
-        save: function(evt){
+        save_internal: function(evt){
             IAmBusy.show()            
             var expression = $("#dialplan_exp").val();                
-            dialplan.load("/dialplan", {expression: expression});
+            dialplan.load("/dialplan", {expression: expression, ctx: 'internal'});
+        },
+        
+        save_external: function(evt){
+            IAmBusy.show()            
+            var expression = $("#dialplan_ext_exp").val();                
+            dialplan.load("/dialplan", {expression: expression, ctx: 'external'});
         }
 
     }
@@ -252,40 +258,6 @@ $(document).ready(function(){
 
 
     
-    $("#regexp-snadbox").live("keyup", 
-        function(){
-            IAmBusy.show();
-            var exp = $("#dialplan_exp").val(),
-                input = $(this).val();
-            $.get("/dialplan/test", {exp:exp, input: input}, function(data){
-                //$("#regexp-sandbox-output")
-                    //.html(data)
-                $("#regexp-snadbox")
-                    .removeClass("true")
-                    .removeClass("false")
-                    .addClass(data);
-                    
-                    IAmBusy.hide();
-            });
-        }); 
-        
-    $("#regexp-ext-snadbox").live("keyup", 
-        function(){
-            IAmBusy.show();
-            var exp = $("#dialplan_ext_exp").val(),
-                input = $(this).val();
-            $.get("/dialplan/test", {exp:exp, input: input}, function(data){
-                //$("#regexp-sandbox-output")
-                    //.html(data)
-                $("#regexp-ext-snadbox")
-                    .removeClass("true")
-                    .removeClass("false")
-                    .addClass(data);
-                    
-                    IAmBusy.hide();
-            });
-        });
-
     var monitor = {
         loopId: 0,
         loader: function (url, params) {

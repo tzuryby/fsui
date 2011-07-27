@@ -69,6 +69,40 @@
             }
         });
         
+        $("#regexp-snadbox").keyup( 
+            function(){
+                IAmBusy.show();
+                var exp = $("#dialplan_exp").val(),
+                    input = $(this).val();
+                $.get("/dialplan/test", {exp:exp, input: input}, function(data){
+                    //$("#regexp-sandbox-output")
+                        //.html(data)
+                    $("#regexp-snadbox")
+                        .removeClass("true")
+                        .removeClass("false")
+                        .addClass(data);
+                        
+                        IAmBusy.hide();
+                });
+            }); 
+            
+        $("#regexp-ext-snadbox").keyup( 
+            function(){
+                IAmBusy.show();
+                var exp = $("#dialplan_ext_exp").val(),
+                    input = $(this).val();
+                $.get("/dialplan/test", {exp:exp, input: input}, function(data){
+                    //$("#regexp-sandbox-output")
+                        //.html(data)
+                    $("#regexp-ext-snadbox")
+                        .removeClass("true")
+                        .removeClass("false")
+                        .addClass(data);
+                        
+                        IAmBusy.hide();
+                });
+            });
+        
         
         function confirmDirectoryRecreate(){
             var url = "/directory/recreate";
