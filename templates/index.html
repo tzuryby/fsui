@@ -241,7 +241,6 @@ $(document).ready(function(){
         $("#download-pcap-file").show();
     }
     
-    // -->
     
     $(".conference_pin").live("keypress", 
         function(evt){
@@ -304,12 +303,12 @@ $(document).ready(function(){
     }
     
     $("#edit-wanpipe1").click(function(){ 
-        $("#raw-edit-wanpipe").attr("contentEditable", "true").removeAttr("disabled").removeClass("raw-conf-frame");
+        $("#raw-edit-wanpipe").attr("contentEditable", "true").removeAttr("disabled");
         $("#save-wanpipe1").show();
     });
     
     $("#edit-freetdm").click(function(){ 
-        $("#raw-edit-freetdm").attr("contentEditable", "true").removeAttr("disabled").removeClass("raw-conf-frame"); 
+        $("#raw-edit-freetdm").attr("contentEditable", "true").removeAttr("disabled"); 
         $("#save-freetdm").show();
     });
     

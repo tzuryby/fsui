@@ -58,7 +58,7 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 	-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px;		
 }
 
-.raw-conf-frame[@disabled]{ background-color: #EBEBEB }
+.raw-conf-frame[@disabled='disabled']{ background-color: #EBEBEB }
 
 h5.side-header { 
 	display: block;
