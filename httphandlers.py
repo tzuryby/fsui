@@ -144,7 +144,7 @@ class DashboardHandler(FSUIHandler):
             (user, 0, 
                 ExtensionFileHandler(user).get()['password'])
                 for user in fs_directory_range()
-                    if (user.strip(), 1) not in online_users]
+                    if (str(user).strip(), 1) not in online_users]
                 
         return {
             "online_users_data": online_users_data,
