@@ -51,8 +51,13 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 .true {background-color:#219C11!important; color:#FFFFFF!important;}
 .false {background-color:#FF0011!important; color:#FFFFFF!important;}
 
-.raw-conf-frame { 
+#raw-edit-wanpipe { 
 	height: 280px;
+}
+#raw-edit-freetdm { 
+	height: 100px;
+}
+raw-conf-frame { 
 	overflow: auto;
 	border: 1px gray solid;
 	background-color: #FFFCE3;
