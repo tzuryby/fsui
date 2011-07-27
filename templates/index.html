@@ -231,7 +231,7 @@ $(document).ready(function(){
         
         save: function(evt){
             IAmBusy.show()            
-            var expression = $(".dialplan_exp").val();                
+            var expression = $("#dialplan_exp").val();                
             dialplan.load("/dialplan", {expression: expression});
         }
 
@@ -255,12 +255,29 @@ $(document).ready(function(){
     $("#regexp-snadbox").live("keyup", 
         function(){
             IAmBusy.show();
-            var exp = $(".dialplan_exp").val(),
+            var exp = $("#dialplan_exp").val(),
                 input = $(this).val();
             $.get("/dialplan/test", {exp:exp, input: input}, function(data){
                 //$("#regexp-sandbox-output")
                     //.html(data)
                 $("#regexp-snadbox")
+                    .removeClass("true")
+                    .removeClass("false")
+                    .addClass(data);
+                    
+                    IAmBusy.hide();
+            });
+        }); 
+        
+    $("#regexp-ext-snadbox").live("keyup", 
+        function(){
+            IAmBusy.show();
+            var exp = $("#dialplan_ext_exp").val(),
+                input = $(this).val();
+            $.get("/dialplan/test", {exp:exp, input: input}, function(data){
+                //$("#regexp-sandbox-output")
+                    //.html(data)
+                $("#regexp-ext-snadbox")
                     .removeClass("true")
                     .removeClass("false")
                     .addClass(data);

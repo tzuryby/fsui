@@ -1,45 +1,49 @@
-<div class="group-box ui-corner-all ui-widget-content">
-    <h3>{{_("Internal Calls Context Settings")}}</h3>
-    <div class="group-box ui-corner-all ui-widget-content" id="new-directory">
-        <h3>{{_("Range of extensions")}}</h3>
-        <table>
-            <tbody>
-                <tr><th class="linehead">{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
-                <tr><th class="linehead">{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
-            </tbody>    
-        </table>
+<div id="dialplan-accordion">
+
+    <h3><a href="#">{{_("Internal Calls Context Settings")}}</a></h3>
+    <div>
+        <div class="group-box ui-corner-all ui-widget-content" id="new-directory">
+            <h3>{{_("Range of extensions")}}</h3>
+            <table>
+                <tbody>
+                    <tr><th class="linehead">{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
+                    <tr><th class="linehead">{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
+                </tbody>    
+            </table>
+            
+            <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
+            
+        </div>
+
+        <div class="group-box ui-corner-all ui-widget-content" id="dialplan-container">
+            <h3>{{_("Destination Number Matching")}}</h3>
+            <input type="text" class="ui-widget-content ui-corner-all dialplan_exp halfscreen-input" 
+                id="dialplan_exp",
+                value="{{ data['expression'] }}"/>
+            <p/>
+            <button id="save_dialplan_exp">{{_("Save")}}</button>
         
-        <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
-        
-    </div>
+            <h3>{{ _("Test matching expression") }}</h3>
+            <input type="text" class="ui-corner-all" id="regexp-snadbox" value="{{data['first-xtn']}}"/>
 
-    <div class="group-box ui-corner-all ui-widget-content" id="dialplan-container">
-        <h3>{{_("Destination Number Matching")}}</h3>
-        <input type="text" class="ui-widget-content ui-corner-all dialplan_exp halfscreen-input" 
-            value="{{ data['expression'] }}"/>
-        <p/>
-        <button id="save_dialplan_exp">{{_("Save")}}</button>
-    
-        <h3>{{ _("Test matching expression") }}</h3>
-        <input type="text" class="ui-corner-all" id="regexp-snadbox" value="{{data['first-xtn']}}"/>
-        <span id="regexp-sandbox-output"></span>
+        </div>
+    <div>
 
-    </div>
-</div>
-<div class="group-box ui-corner-all ui-widget-content">
-    <h3>{{_("External Calls Context Settings")}}</h3>
-    <div class="group-box ui-corner-all ui-widget-content" id="dialplan-external-container">
-        <h3>{{_("Destination Number Matching")}}</h3>
-        <input type="text" class="ui-widget-content ui-corner-all dialplan_ext_exp halfscreen-input" 
-            value="{{ data['ext-expression'] }}"/>
-        <p/>
-        <button id="save_dialplan_ext_exp">{{_("Save")}}</button>
-        <h3>{{ _("Test matching expression") }}</h3>
-        <input type="text" class="ui-corner-all" id="regexp-ext-snadbox"/>
-        <span id="regexp-ext-sandbox-output"></span>
+        <h3><a hre="#">{{_("External Calls Context Settings")}}</a></h3>
+        <div>
+            <div class="group-box ui-corner-all ui-widget-content" id="dialplan-external-container">
+                <h3>{{_("Destination Number Matching")}}</h3>
+                <input type="text" class="ui-widget-content ui-corner-all dialplan_ext_exp halfscreen-input" 
+                    id="dialplan_ext_exp"
+                    value="{{ data['ext-expression'] }}"/>
+                <p/>
+                <button id="save_dialplan_ext_exp">{{_("Save")}}</button>
+                <h3>{{ _("Test matching expression") }}</h3>
+                <input type="text" class="ui-corner-all" id="regexp-ext-snadbox"/>
 
+            </div>
+        </div>
     </div>
-</div>
 
 
 <div id="dialog-confirm-directory-reinit" title={{_("Re-Initialize The Directory?")}} class="hide_on_load">
@@ -52,6 +56,8 @@
         
         $(".hide_on_load").hide();
         $("button").button();
+        
+        $("#dialplan-accordion").accordion({autoHeight: false, navigation: true });
         
         $("#new-start").keyup(function(){
             var new_start = $(this).val();            
