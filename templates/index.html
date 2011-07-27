@@ -316,7 +316,8 @@ $(document).ready(function(){
 
         $(".conference_pin").live("blur", conferences.save);    
         
-        $("#save_dialplan_exp").live("click", dialplan.save);
+        $("#save_dialplan_exp").live("click", dialplan.save_internal);
+        $("#save_dialplan_ext_exp").live("click", dialplan.save_external);
 
         // in case someone decided to use IE6 -- LULZec come over here ;-)
         window.console = window.console || {log: function(){}}
