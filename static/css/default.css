@@ -57,7 +57,8 @@ th.linehead {text-align:left; font-size: 0.8em; float:left}
 #raw-edit-freetdm { 
 	height: 100px;
 }
-raw-conf-frame { 
+
+.raw-conf-frame { 
 	overflow: auto;
 	border: 1px gray solid;
 	background-color: #FFFCE3;
