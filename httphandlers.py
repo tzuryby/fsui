@@ -268,6 +268,7 @@ class DialplanHandler(FSUIHandler):
         data['first-xtn'] = dir_range[0]
         data['last-xtn'] = dir_range[-1:][0]
         
+        data['ext-expression'] = DialplanExternalContextRegexpHandler().get()['expression']
         self.render("directory.html", data=data)
 
 
