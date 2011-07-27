@@ -95,13 +95,11 @@ class DialplanDestRegexpHandler(XMLHandler):
     filename = DIALPLAN_PATH
     _api = {
         "expression":
-        ("//context[@name='core']"
-            "/extension[@name='to-pstn']"
+        ("//context[@name='from-pstn']"
+            "/extension[@name='to-sip']"
                 "/condition[@field='destination_number']", 
             "expression")
     }
-
-
 
 
 
