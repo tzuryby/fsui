@@ -46,8 +46,10 @@ ul.no-space {margin-bottom: 0px}
 
 .reactor-in-action{
 	background-image: url(/static/ajax-loader.gif);
-	background-position: center center;	background-repeat:no-repeat; 
-	display:box; position:fixed; top:18px; right:24px; width:16px; height:16px;
+	background-position: center left;	background-repeat:no-repeat; 
+	display:box; position:fixed; bottom:18px; left:18px; width:148px; height:22px;
+	text-align: left;
+	margin-left: 20px;
 }
 
 .true, .false {border: 1px solid!important;} 

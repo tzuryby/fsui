@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="reactor-in-action hide-on-load"></div>
+<div class="reactor-in-action hide-on-load">{{_("Synchronization in progress...")}}</div>
 <center>
     <div class="hide-on-load ui-corner-all" id="notification_div">
         <p id="notification_message">
@@ -99,9 +99,9 @@ $(document).ready(function(){
     
     
     
-    var IAmBusy = {
-        show: function(){ $('.reactor-in-action').show()},
-        hide: function(){ $('.reactor-in-action').hide()}
+    var SaveInProgress = {
+        show: function(){ $('.reactor-in-action').show('clip')},
+        hide: function(){ $('.reactor-in-action').hide('clip')}
     }    
     
     // bind cli interaction
@@ -167,10 +167,10 @@ $(document).ready(function(){
                         }
                   });
                 });
-            IAmBusy.hide();
+            SaveInProgress.hide();
             
         }, 
-        loader:    function(){ IAmBusy.show(); $("#dashboard-users").load("/dashboard", dashBoard.uiHandler); },
+        loader:    function(){ SaveInProgress.show(); $("#dashboard-users").load("/dashboard", dashBoard.uiHandler); },
         startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 8*1000) },
         stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);},        
         restart:   function(){ dashBoard.loader(); dashBoard.startLoop(); }
@@ -189,28 +189,28 @@ $(document).ready(function(){
                 extension = _this.attr("rel"),
                 password = content.current;
             
-            IAmBusy.show();
+            SaveInProgress.show();
             
             $.post(
                 "/admin/set/extension/password", 
                 { extension: extension, password: password, "vm-password": password },
-                function(){IAmBusy.hide();}
+                function(){SaveInProgress.hide();}
             );
         }        
     }
     
     var conferences = {        
         load: function(url, params, callback){
-                IAmBusy.show()
+                SaveInProgress.show()
                 url = url || "/admin/conferences"
                 params = params || {};
-                callback = callback || IAmBusy.hide;
+                callback = callback || SaveInProgress.hide;
                 console.log(url, params, callback);
                 $("#conferences-profiles").load(url, params, callback);
         },
         
         save: function(evt){
-            IAmBusy.show()
+            SaveInProgress.show()
             
             var params = {
                 'a': '1',
@@ -220,22 +220,22 @@ $(document).ready(function(){
                 'conferenceTwoDid': $('#conferenceTwoDid').val()
             }
             
-            conferences.load("/admin/conferences", params , IAmBusy.hide);
+            conferences.load("/admin/conferences", params , SaveInProgress.hide);
         }
     }
     
     var dialplan = {
         load: function(url, params, callback){
-                IAmBusy.show()
+                SaveInProgress.show()
                 url = url || "/dialplan"
                 params = params || {};
-                callback = callback || function(){IAmBusy.hide; /*$("button").button();*/};
+                callback = callback || function(){SaveInProgress.hide; /*$("button").button();*/};
                 console.log(url, params, callback);
                 $("#directory-container").load(url, params, callback);
         },
         
         save_internal: function(evt){
-            IAmBusy.show();
+            SaveInProgress.show();
             dialplan.load("/dialplan", {ctx: 'internal', internalDIDregex: $("#internalDIDregex").val()});
         }
     }
@@ -243,7 +243,7 @@ $(document).ready(function(){
     
     $("#regexp-snadbox").live("keyup", 
         function(){
-            IAmBusy.show();
+            SaveInProgress.show();
             var exp = $("#internalDIDregex").val(),
                 input = $(this).val();
             $.get("/dialplan/test", {exp:exp, input: input}, function(data){
@@ -254,7 +254,7 @@ $(document).ready(function(){
                     .removeClass("false")
                     .addClass(data);
                     
-                    IAmBusy.hide();
+                    SaveInProgress.hide();
             });
         }); 
         
