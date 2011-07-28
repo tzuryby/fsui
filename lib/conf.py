@@ -135,14 +135,14 @@ class SnoipBaseHandler(object):
     
     def get(self):
         if self.path_name:
-            value = self.svh.get(self.path_name)['data']
+            value = self.xmlhandler.get(self.path_name)['data']
             return {
-                self.path_name: value.replace(self.svh.paths[self.path_name], '')
+                self.path_name: value.replace(self.xmlhandler.paths[self.path_name], '')
             }
         
     def set(self, value):
         if self.path_name:
-            self.svh.set(self.path_name, value)
+            self.xmlhandler.set(self.path_name, value)
         
 class DialplanInternalContextRegexpHandler(SnoipBaseHandler):
     path_name = 'internalDIDregex'
