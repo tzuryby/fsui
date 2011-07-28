@@ -51,6 +51,7 @@ ul.no-space {margin-bottom: 0px}
 	display:box; position:fixed; bottom:18px; left:18px; width:250px; height:22px;
 	text-align: left;
 	margin-left: 20px;
+	-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px;		
 }
 
 .true, .false {border: 1px solid!important;} 
