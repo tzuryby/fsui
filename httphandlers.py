@@ -163,17 +163,27 @@ class ExtensionPasswordHandler(FSUIHandler):
         if extension and password:
             ExtensionFileHandler(extension).set(**{"password": password})
             
+'''
+>>> DialplanInternalContextRegexpHandler().get()
+{'internalDIDregex': '88976[1-3][0-9]'}
+>>> 
+>>> 
+>>> ConferenceOneHandler().get()
+{'conferenceOneDid': '8897641', 'conferenceOneName': '1001', 'conferenceOnePin': '1001'}
+>>> 
+>>> 
+>>> ConferenceTwoHandler().get()
+{'conferenceTwoPin': '1002', 'conferenceTwoName': '1002', 'conferenceTwoDid': '8897642'}
+>>> 
+>>> ConferenceAdminHandler().get()
+{'cancelMember': '*2', 'addMember': '*1'}
+>>> 
 
+'''
 class ConferenceHandler(FSUIHandler):
     def _render(self):
         # render response
-        data = []
-        profiles = ConferenceProfilesHandler().get_all()[0]
-        for profile in profiles:
-            p = ConferencePINHandler(profile['name']).get()
-            p['profile'] = profile['name']
-            data.append(p)
-
+        data = {'one', ConferenceOneHandler().get(), 'two': ConferenceTwoHandler().get()}        
         self.render("conferences.html", data=data)
 
     def get(self):
@@ -187,7 +197,7 @@ class ConferenceHandler(FSUIHandler):
             ConferencePINHandler(profile).set(**{"pin": pin})
         
         # render shit
-        self._render()    
+        self._render()
         
 class FileCatter(FSUIHandler):        
     input_path =  '/tmp/non-exists.log' 
@@ -258,21 +268,18 @@ class DialplanHandler(FSUIHandler):
         self.post()
         
     def post(self):
-        expression = self.get_argument("expression", None)
-        ctx = self.get_argument("ctx", None)
-        if ctx == "internal":
-            DialplanInternalContextRegexpHandler().set(**{'expression': expression})
-        
-        elif ctx == "external":
-            DialplanExternalContextRegexpHandler().set(**{'expression': expression})
+        ctx, regex = self.get_argument("ctx", None) , self.get_argument("internalDIDregex", None)
+        if ctx and regex:
+            DialplanInternalContextRegexpHandler().set(**{'internalDIDregex': regex})
             
-        data = {}
-        data.update(DialplanInternalContextRegexpHandler().get())
+            
+        
+        data = DialplanInternalContextRegexpHandler().get()        
         dir_range = fs_directory_range()
         data['first-xtn'] = dir_range[0]
         data['last-xtn'] = dir_range[-1:][0]
         
-        data['ext-expression'] = DialplanExternalContextRegexpHandler().get()['expression']
+        
         self.render("directory.html", data=data)
 
 

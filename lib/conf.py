@@ -114,21 +114,6 @@ class SnoipVarsXMLHandler(object):
     def set(self, name, value):
         SnoipVars({'data': (self.base_path % self.paths[name] ,'data')}).set(data=self.paths[name] + value)
         
-#~ class ConferenceProfilesHandler(XMLHandler):
-    #~ filename = CONF_PROFILES_PATH
-    #~ _api = {"name": ("/configuration/profiles/profile[@name]", "name")}
-
-#~ class ConferencePINHandler(XMLHandler):
-    #~ filename = CONF_PROFILES_PATH
-    
-    #~ def __init__(self, profile):
-        #~ self.profile = profile
-        #~ self._api = {"pin": 
-            #~ ("/configuration/profiles/profile[@name='%s']/param[@name='pin']" 
-                #~ % (self.profile) , "value")}
-                
-        #~ XMLHandler.__init__(self)
-        
 class SnoipBaseHandler(object):
     path_names = []
     xmlhandler = SnoipVarsXMLHandler()

@@ -1,7 +1,28 @@
-{% for item in data %}
-    <div class="group-box ui-corner-all ui-widget-content">
-        <h3>{{ 'Room #'+ item['profile'] }}</h3>
-        <label for="pin_{{item['profile']}}">{{_("Conference PIN")}}:</label>
-        <input class="ui-widget-content ui-corner-all conference_pin" id="pin_{{item['profile']}}" value="{{item['pin']}}" rel="{{item['profile']}}" />
-    </div>
-{% end %}
+<div class="group-box ui-corner-all ui-widget-content">
+    <h3>{{ 'Room #'+ data['one']['conferenceOneName'] }}</h3>
+    <label for="conferenceOnePin">{{_("Conference PIN")}}:</label>
+    <input 
+        class="ui-widget-content ui-corner-all conference_pin" 
+        id="conferenceOnePin" 
+        value="{{data['one']['conferenceOnePin']}}" />
+    <label for="conferenceOneDid">{{_("Conference DID")}}:</label>
+    <input 
+        class="ui-widget-content ui-corner-all conference_pin" 
+        id="conferenceOneDid" 
+        value="{{data['one']['conferenceOneDid']}}" />
+</div>
+
+
+<div class="group-box ui-corner-all ui-widget-content">
+    <h3>{{ 'Room #'+ data['two']['conferenceTwoName'] }}</h3>
+    <label for="conferenceTwoPin">{{_("Conference PIN")}}:</label>
+    <input 
+        class="ui-widget-content ui-corner-all conference_pin" 
+        id="conferenceTwoPin" 
+        value="{{data['two']['conferenceTwoPin']}}" />
+    <label for="conferenceTwoDid">{{_("Conference DID")}}:</label>
+    <input 
+        class="ui-widget-content ui-corner-all conference_pin" 
+        id="conferenceTwoDid" 
+        value="{{data['two']['conferenceTwoDid']}}" />
+</div>

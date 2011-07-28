@@ -212,10 +212,14 @@ $(document).ready(function(){
         save: function(evt){
             IAmBusy.show()
             
-            var pin = $(this).val(),
-                profile = $(this).attr("rel");
-                
-            conferences.load("/admin/conferences", {pin: pin, profile: profile}, IAmBusy.hide);
+            var params = {
+                'conferenceOnePin': $('#conferenceOnePin').val(), 
+                'conferenceOneDid': $('#conferenceOneDid').val(), 
+                'conferenceTwoPin': $('#conferenceTwoPin').val(), 
+                'conferenceTwoPin': $('#conferenceTwoPin').val()
+            }
+            
+            conferences.load("/admin/conferences", params , IAmBusy.hide);
         }
     }
     
@@ -230,17 +234,9 @@ $(document).ready(function(){
         },
         
         save_internal: function(evt){
-            IAmBusy.show()            
-            var expression = $("#dialplan_exp").val();                
-            dialplan.load("/dialplan", {expression: expression, ctx: 'internal'});
-        },
-        
-        save_external: function(evt){
-            IAmBusy.show()            
-            var expression = $("#dialplan_ext_exp").val();                
-            dialplan.load("/dialplan", {expression: expression, ctx: 'external'});
+            IAmBusy.show()                        
+            dialplan.load("/dialplan", {ctx: 'internal', internalDIDregex: $("#internalDIDregex").val()});
         }
-
     }
     
     

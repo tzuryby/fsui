@@ -1,47 +1,29 @@
-<div id="dialplan-accordion">
-
-    <h3><a href="#">{{_("Internal Calls Context Settings")}}</a></h3>
-    <div>
-        <div class="group-box ui-corner-all ui-widget-content" id="new-directory">
-            <h3>{{_("Range of extensions")}}</h3>
-            <table>
-                <tbody>
-                    <tr><th class="linehead">{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
-                    <tr><th class="linehead">{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
-                </tbody>    
-            </table>
-            
-            <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
-            
-        </div>
-
-        <div class="group-box ui-corner-all ui-widget-content" id="dialplan-container">
-            <h3>{{_("Destination Number Matching")}}</h3>
-            <input type="text" class="ui-widget-content ui-corner-all dialplan_exp halfscreen-input" 
-                id="dialplan_exp",
-                value="{{ data['expression'] }}"/>
-            <p/>
-            <button id="save_dialplan_exp">{{_("Save")}}</button>
+<h3>{{_("Internal Calls Context Settings")}}</h3>
+<div>
+    <div class="group-box ui-corner-all ui-widget-content" id="new-directory">
+        <h3>{{_("Range of extensions")}}</h3>
+        <table>
+            <tbody>
+                <tr><th class="linehead">{{_("Starting Number")}}:</th><td><input id="new-start" type="text" class="ui-widget-content ui-corner-all" value="{{data['first-xtn']}}" /></td></tr>
+                <tr><th class="linehead">{{_("Ending Number")}}:</th><td><span id="new-end">{{data['last-xtn']}}</span></td></tr>
+            </tbody>    
+        </table>
         
-            <h3>{{ _("Test matching expression") }}</h3>
-            <input type="text" class="ui-corner-all" id="regexp-snadbox" value="{{data['first-xtn']}}"/>
-
-        </div>
+        <button id="gen-new-range">{{_("Generate New Extensions")}}</button>
+        
     </div>
 
-    <h3><a hre="#">{{_("External Calls Context Settings")}}</a></h3>
-    <div>
-        <div class="group-box ui-corner-all ui-widget-content" id="dialplan-external-container">
-            <h3>{{_("Destination Number Matching")}}</h3>
-            <input type="text" class="ui-widget-content ui-corner-all dialplan_ext_exp halfscreen-input" 
-                id="dialplan_ext_exp"
-                value="{{ data['ext-expression'] }}"/>
-            <p/>
-            <button id="save_dialplan_ext_exp">{{_("Save")}}</button>
-            <h3>{{ _("Test matching expression") }}</h3>
-            <input type="text" class="ui-corner-all" id="regexp-ext-snadbox"/>
+    <div class="group-box ui-corner-all ui-widget-content" id="dialplan-container">
+        <h3>{{_("Destination Number Matching")}}</h3>
+        <input type="text" class="ui-widget-content ui-corner-all internalDIDregex halfscreen-input" 
+            id="internalDIDregex",
+            value="{{ data['internalDIDregex'] }}"/>
+        <p/>
+        <button id="save_dialplan_exp">{{_("Save")}}</button>
+    
+        <h3>{{ _("Test matching expression") }}</h3>
+        <input type="text" class="ui-corner-all" id="regexp-snadbox" value="{{data['first-xtn']}}"/>
 
-        </div>
     </div>
 </div>
 
@@ -56,9 +38,7 @@
         
         $(".hide_on_load").hide();
         $("button").button();
-        
-        $("#dialplan-accordion").accordion({autoHeight: false, navigation: true });
-        
+                
         $("#new-start").keyup(function(){
             var new_start = $(this).val();            
             if (!/^\d+$/.test(new_start)){
