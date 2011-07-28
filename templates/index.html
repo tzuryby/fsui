@@ -369,7 +369,7 @@ $(document).ready(function(){
         $("#raw-edit-freetdm").load("/dl/freetdm");
 
         $("#save_dialplan_exp").live("click", dialplan.save_internal);
-        $("#save_net").live(network.save);
+        $("#save_net").live("click", network.save);
         
         // tabify dashboard
         $("#main_tabs").tabs({ cookie: { expires: 30 } });
