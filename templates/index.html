@@ -243,7 +243,7 @@ $(document).ready(function(){
     $("#regexp-snadbox").live("keyup", 
         function(){
             IAmBusy.show();
-            var exp = $("#dialplan_exp").val(),
+            var exp = $("#internalDIDregex").val(),
                 input = $(this).val();
             $.get("/dialplan/test", {exp:exp, input: input}, function(data){
                 //$("#regexp-sandbox-output")
@@ -257,35 +257,13 @@ $(document).ready(function(){
             });
         }); 
         
-    $("#regexp-ext-snadbox").live("keyup",
-        function(){
-            IAmBusy.show();
-            var exp = $("#dialplan_ext_exp").val(),
-                input = $(this).val();
-            $.get("/dialplan/test", {exp:exp, input: input}, function(data){
-                //$("#regexp-sandbox-output")
-                    //.html(data)
-                $("#regexp-ext-snadbox")
-                    .removeClass("true")
-                    .removeClass("false")
-                    .addClass(data);
-                    
-                    IAmBusy.hide();
-            });
-        });    
     
     window.showTcpdumpDownloadLink = function(){
         $("#download-pcap-file").show();
     }
     
     
-    $(".conference_pin").live("keypress", 
-        function(evt){
-            var keyCode = evt.keyCode;
-            if (keyCode === 13){
-                conferences.save();
-            }
-        });
+    $("#save_conference").live("click", conferences.save);
 
 
     
@@ -345,7 +323,7 @@ $(document).ready(function(){
         $("#raw-edit-wanpipe").load("/dl/wanpipe");
         $("#raw-edit-freetdm").load("/dl/freetdm");        
 
-        $(".conference_pin").live("blur", conferences.save);    
+        
         
         $("#save_dialplan_exp").live("click", dialplan.save_internal);
         
