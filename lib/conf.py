@@ -149,7 +149,7 @@ class SnoipBaseHandler(object):
                 self.xmlhandler.set(self.path_names[name], value)
         
 class DialplanInternalContextRegexpHandler(SnoipBaseHandler):
-    path_name = 'internalDIDregex'
+    path_names = ['internalDIDregex']
         
 
     
