@@ -14,8 +14,6 @@ SNOIP_VARS_PATH     = os.path.join(FS_ROOT_DIR, "conf", "snoip-vars.xml")
 
 DIALPLAN_PATH       = os.path.join(FS_ROOT_DIR, "conf", "dialplan", "snoip.xml")
 
-#CONF_PROFILES_PATH  = os.path.join(FS_ROOT_DIR, "conf", "autoload_configs", "conference.conf.xml")
-
 FS_CLI_COMMAND      = os.path.join(FS_ROOT_DIR, "bin", "fs_cli") + " -x '%s'"
 FSUI_CONF_PATH      = "/opt/snoip/fsui/app.json"
 
@@ -72,14 +70,16 @@ class XMLHandler(object):
         
 # user's extensins password (and vm-password) handler
 class ExtensionFileHandler(XMLHandler):
-    filename = os.path.join(FS_DIR_PATH, "%s.xml" % (xt_number))    
-    _api = {
-        "id": ("/include/user[@id]", "id"),
-        "password": ("/include/user/params/param[@name='password']", "value"),
-        "vm-password": ("/include/user/params/param[@name='vm-password']", "value")
-    }
-    
+    def __init__(self, xt_number):
+        _api = {
+            "id": ("/include/user[@id]", "id"),
+            "password": ("/include/user/params/param[@name='password']", "value"),
+            "vm-password": ("/include/user/params/param[@name='vm-password']", "value")
+        }
         
+        XMLHandler.__init__(self, _api)
+        self.filename = os.path.join(FS_DIR_PATH, "%s.xml" % (xt_number))
+
 
 class SnoipVars(XMLHandler):
     filename = SNOIP_VARS_PATH
