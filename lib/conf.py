@@ -10,8 +10,12 @@ from utils import common
 
 FS_ROOT_DIR         = "/usr/local/freeswitch" 
 FS_DIR_PATH         = os.path.join(FS_ROOT_DIR, "conf", "directory", "default")
+SNOIP_VARS_PATH     = os.path.join(FS_ROOT_DIR, "conf", "snoip-vars.xml")
+
 DIALPLAN_PATH       = os.path.join(FS_ROOT_DIR, "conf", "dialplan", "snoip.xml")
-CONF_PROFILES_PATH  = os.path.join(FS_ROOT_DIR, "conf", "autoload_configs", "conference.conf.xml")
+
+#CONF_PROFILES_PATH  = os.path.join(FS_ROOT_DIR, "conf", "autoload_configs", "conference.conf.xml")
+
 FS_CLI_COMMAND      = os.path.join(FS_ROOT_DIR, "bin", "fs_cli") + " -x '%s'"
 FSUI_CONF_PATH      = "/opt/snoip/fsui/app.json"
 
@@ -20,8 +24,10 @@ class XMLHandler(object):
     filename = None
     _api = {}
     
-    def __init__(self):
+    def __init__(self, _api = {}):
         self.et = etree.parse(self.filename)
+        self._api = _api
+        
         
     def api(self):
         return self._api
@@ -64,6 +70,7 @@ class XMLHandler(object):
             
         return ret
         
+# user's extensins password (and vm-password) handler
 class ExtensionFileHandler(XMLHandler):
     _api = {
         "id": ("/include/user[@id]", "id"),
@@ -76,6 +83,37 @@ class ExtensionFileHandler(XMLHandler):
         XMLHandler.__init__(self)
         
 
+class SnoipVars(XMLHandler):
+    filename = SNOIP_VARS_PATH
+    def __init__(self, _api):
+        XMLHandler.__init__(self, _api)
+    
+class SnoipVarsHandler(object):
+    
+    def __init__(self):        
+        self.base_path = "/include/X-PRE-PROCESS[starts-with(@data,'%s')]"
+        
+        self.paths = {
+            'internalDIDregex': 'DID_REGEX=',
+         
+            'conferenceOneName': 'CONFERENCE_ONE=',
+            'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
+            'conferenceOneDid': 'DID_CONFERENCE_ONE=',
+         
+            'conferenceTwoName': 'CONFERENCE_TWO=',
+            'conferenceTwoPin': 'PIN_CONFERENCE_TWO=',
+            'conferenceTwoDid': 'DID_CONFERENCE_TWO=',
+            
+            'addMember': 'ADD_MEMBER_DIGITS=',
+            'cancelMember': 'CANCEL_MEMBER_DIGITS='
+        }
+        
+    def get(self, name):
+        return SnoipVars({'data': (self.base_path % self.paths[name] ,'data')}).get()
+    
+    def set(self, name, value):
+        SnoipVars({'data': (self.base_path % self.paths[name] ,'data')}).set(data=self.paths[name] + value)
+        
 class ConferenceProfilesHandler(XMLHandler):
     filename = CONF_PROFILES_PATH
     _api = {"name": ("/configuration/profiles/profile[@name]", "name")}
@@ -91,19 +129,21 @@ class ConferencePINHandler(XMLHandler):
                 
         XMLHandler.__init__(self)
         
-class DialplanContextRegexpHandler(XMLHandler):
+class DialplanInternalContextRegexpHandler(object):
+    svh = SnoipVarsHandler()
+    
+    def get(self):        
+        value = self.svh.get('internalDIDregex')
+        return {
+            'internalDIDregex': value.replace(self.svh.paths['internalDIDregex'], '')
+            }
+        
+    def set(self, value):
+        value = self.svh.paths['internalDIDregex'] + value
+        self.svh.set('internalDIDregex', value)
+
+class DialplanExternalContextRegexpHandler(XMLHandler):
     filename = DIALPLAN_PATH    
-
-class DialplanInternalContextRegexpHandler(DialplanContextRegexpHandler):
-    _api = {
-        "expression":
-        ("//context[@name='from-pstn']"
-            "/extension[@name='to-sip']"
-                "/condition[@field='destination_number']", 
-            "expression")
-    }
-
-class DialplanExternalContextRegexpHandler(DialplanContextRegexpHandler):
     _api = {
         "expression":
         ("//context[@name='core']"

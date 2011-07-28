@@ -35,7 +35,7 @@ class Application(tornado.web.Application):
 def main():
     # SET IP ADDRESSES FOR WAN/LAN INTERFACES
     netconfig.configure()
-    
+    os.system("/usr/local/bin/freeswitchd restart")
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(options.port, "localhost")
