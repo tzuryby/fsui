@@ -45,12 +45,15 @@ ul.no-space {margin-bottom: 0px}
 .more_info_caption { font-weight:700; }
 
 .reactor-in-action{
+	border: solid 1px #F09C00;
 	background-image: url(/static/ajax-loader.gif);
 	background-position: center left;	background-repeat:no-repeat; 
 	background-color:#FAFFC4;
 	display:box; position:fixed; 
-	bottom:0px; left:0px; width:250px; height:22px;
+	bottom:0px; left:0px; width:250px; height:28px;
 	text-align: left;
+	vertical-align:middle;
+	margin:0px;
 	padding-left: 20px;
 	-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px;		
 }
