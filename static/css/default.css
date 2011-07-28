@@ -44,17 +44,23 @@ ul.no-space {margin-bottom: 0px}
 .in-place-edit:hover { background-color:#FDFFBF; }
 .more_info_caption { font-weight:700; }
 
+.reactor-in-action-frame{
+	display:box; 
+	position:fixed; 
+	bottom:0px;
+	z-index: 1000;
+	width: 100%;
+	margin:0px;
+	padding:0px;
+}
 .reactor-in-action{
 	border: solid 1px #F09C00;
-	background-image: url(/static/ajax-loader.gif);
-	background-position: center left;	background-repeat:no-repeat; 
 	background-color:#FAFFC4;
-	display:box; position:fixed; 
-	bottom:0px; left:0px; width:250px; height:24px;
-	text-align: left;
-	vertical-align:middle;
+	display:box; 
+	width:250px; height:24px;
+	text-align: center;	
 	margin:0px;
-	padding-left: 20px;
+	padding: 4px 10px 4px 10px ;
 	-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px;		
 }
 

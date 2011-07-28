@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="reactor-in-action hide-on-load">{{_("Synchronization in progress...")}}</div>
+
+<div class="reactor-in-action-frame">
+    <center>
+        <div class="reactor-in-action hide-on-load">{{_("Synchronization in progress...")}}</div>
+    </center>
+</div>
+
 <center>
     <div class="hide-on-load ui-corner-all" id="notification_div">
         <p id="notification_message">
