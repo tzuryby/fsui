@@ -100,8 +100,24 @@ $(document).ready(function(){
     
     
     var SaveInProgress = {
-        show: function(){ $('.reactor-in-action').show()},
-        hide: function(){ $('.reactor-in-action').hide("slow")}
+        timer: 0,
+        show: function(){ 
+        
+            if (SaveInProgress.timer !== 0 ){
+                window.clearTimeout(SaveInProgress.timer)
+            }
+            
+            $('.reactor-in-action').show();
+                        
+        },
+        
+        hide: function(){
+            SaveInProgress.timer = setTimeout(SaveInProgress._hide, 2*1000)
+        }, 
+        
+        _hide: function(){
+            $('.reactor-in-action').hide("slow");
+        }
     }    
     
     // bind cli interaction
