@@ -130,48 +130,38 @@ class SnoipVarsXMLHandler(object):
         #~ XMLHandler.__init__(self)
         
 class SnoipBaseHandler(object):
-    path_name = ''
+    path_names = []
     xmlhandler = SnoipVarsXMLHandler()
     
     def get(self):
-        if self.path_name:
-            value = self.xmlhandler.get(self.path_name)['data']
-            return {
-                self.path_name: value.replace(self.xmlhandler.paths[self.path_name], '')
-            }
+        if self.path_names:
+            ret = {}
+            for name in self.path_names:                
+                value = self.xmlhandler.get(name)['data']
+                ret [name] = value.replace(self.xmlhandler.paths[name], '')
+                
+            return ret
+                
         
-    def set(self, value):
-        if self.path_name:
-            self.xmlhandler.set(self.path_name, value)
+    def set(self, **kwargs):
+        if self.path_names:
+            for name, value in kwargs.iteritems():
+                self.xmlhandler.set(self.path_names[name], value)
         
 class DialplanInternalContextRegexpHandler(SnoipBaseHandler):
     path_name = 'internalDIDregex'
         
-        
-#~ class DialplanInternalContextRegexpHandler(object):
-    #~ svh = SnoipVarsHandler()
+class ConferenceOneHandler
     
-    #~ def get(self):        
-        #~ value = self.svh.get('internalDIDregex')['data']
-        #~ return {
-            #~ 'internalDIDregex': value.replace(self.svh.paths['internalDIDregex'], '')
-            #~ }
-        
-    #~ def set(self, value):
-        #~ self.svh.set('internalDIDregex', value)
-        
-    
-        
-
-class DialplanExternalContextRegexpHandler(XMLHandler):
-    filename = DIALPLAN_PATH    
-    _api = {
-        "expression":
-        ("//context[@name='core']"
-            "/extension[@name='to-pstn']"
-                "/condition[@field='destination_number']", 
-            "expression")
-    }
+#~ class DialplanExternalContextRegexpHandler(XMLHandler):
+    #~ filename = DIALPLAN_PATH    
+    #~ _api = {
+        #~ "expression":
+        #~ ("//context[@name='core']"
+            #~ "/extension[@name='to-pstn']"
+                #~ "/condition[@field='destination_number']", 
+            #~ "expression")
+    #~ }
 
 
 
