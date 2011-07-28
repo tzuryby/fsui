@@ -116,7 +116,7 @@ class SnoipBaseHandler(object):
     xmlhandler = SnoipVarsXMLHandler()
     def get(self):
         ret = {}
-        for name, path in self.paths:                
+        for name, path in self.paths.iteritems():                
             value = self.xmlhandler.get(path)['data']
             ret [name] = value.replace(path, '')
             
