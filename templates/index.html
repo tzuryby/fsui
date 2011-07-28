@@ -100,7 +100,7 @@
     </div>
 </div>
 
-<div id="dialog-confirm-directory-reinit" title={{_("Restart System?")}} class="hide_on_load">
+<div id="dialog-confirm-reboot" title={{_("Restart System?")}} class="hide_on_load">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
     {{_("All current calls will be dropped, Are you sure?")}}</p>
 </div>
@@ -365,7 +365,7 @@ $(document).ready(function(){
                 $( this ).dialog("close");
             };
         
-        $("#dialog-confirm-directory-reinit").dialog({resizable: false, modal: true, buttons:buttons, width: "600px"});
+        $("#dialog-confirm-reboot").dialog({resizable: false, modal: true, buttons:buttons, width: "600px"});
     }
             
     $("#reboot-device").click(confirmRebootDevice);    
