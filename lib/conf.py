@@ -151,22 +151,15 @@ class SnoipBaseHandler(object):
 class DialplanInternalContextRegexpHandler(SnoipBaseHandler):
     path_names = ['internalDIDregex']
         
+class ConferenceOneHandler(SnoipBaseHandler):
+    path_names = ['conferenceOneName', 'conferenceOnePin', 'conferenceOneDid']
 
+class ConferenceTwoHandler(SnoipBaseHandler):
+    path_names = ['conferenceTwoName', 'conferenceTwoPin', 'conferenceTwoDid']
     
-#~ class DialplanExternalContextRegexpHandler(XMLHandler):
-    #~ filename = DIALPLAN_PATH    
-    #~ _api = {
-        #~ "expression":
-        #~ ("//context[@name='core']"
-            #~ "/extension[@name='to-pstn']"
-                #~ "/condition[@field='destination_number']", 
-            #~ "expression")
-    #~ }
-
-
-
-
-
+class ConferenceAdminHandler(SnoipBaseHandler):
+    path_names = ['addMember', 'cancelMember']
+    
 
 XTN_TEMPLATE = '''<include>
   <user id="%(xtn)s">
