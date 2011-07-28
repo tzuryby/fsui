@@ -15,6 +15,12 @@ label.linehead { width: 120px;}
  
 #header h3, #header a { color: #000000; font-weight: normal!important; }
 
+.logo {
+	z-index: -1000;
+	position: fixed;
+	left:0px;
+	bottom: 0px;
+}
 
 #content { margin: 1em }
 
