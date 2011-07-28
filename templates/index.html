@@ -360,16 +360,16 @@ $(document).ready(function(){
     $("#tcpdump-start").click(function(){ window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); });
 
     function main(){
+        // in case someone decided to use IE6 -- LULZec come over here ;-)
+        window.console = window.console || {log: function(){}}        
     
         $(".hide-on-load").hide();
     
         $("#raw-edit-wanpipe").load("/dl/wanpipe");
-        $("#raw-edit-freetdm").load("/dl/freetdm");        
+        $("#raw-edit-freetdm").load("/dl/freetdm");
 
-        $("#save_dialplan_exp").live("click", dialplan.save_internal);        
-
-        // in case someone decided to use IE6 -- LULZec come over here ;-)
-        window.console = window.console || {log: function(){}}
+        $("#save_dialplan_exp").live("click", dialplan.save_internal);
+        $("#save_net").live(network.save);
         
         // tabify dashboard
         $("#main_tabs").tabs({ cookie: { expires: 30 } });
