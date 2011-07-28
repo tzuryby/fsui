@@ -88,7 +88,7 @@ class SnoipVars(XMLHandler):
     def __init__(self, _api):
         XMLHandler.__init__(self, _api)
     
-class SnoipVarsHandler(object):
+class SnoipVarsXMLHandler(object):
     
     def __init__(self):        
         self.base_path = "/include/X-PRE-PROCESS[starts-with(@data,'%s')]"
@@ -129,19 +129,41 @@ class SnoipVarsHandler(object):
                 
         #~ XMLHandler.__init__(self)
         
-class DialplanInternalContextRegexpHandler(object):
-    svh = SnoipVarsHandler()
+class SnoipBaseHandler(object):
+    xmlhandler = SnoipVarsXMLHandler()
+    def __init__(self, path_name):
+        self.path_name = path_name
     
     def get(self):        
-        value = self.svh.get('internalDIDregex')['data']
+        value = self.svh.get(self.path_name)['data']
         return {
-            'internalDIDregex': value.replace(self.svh.paths['internalDIDregex'], '')
-            }
+            self.path_name: value.replace(self.svh.paths[self.path_name], '')
+        }
         
     def set(self, value):
-        self.svh.set('internalDIDregex', value)
+        self.svh.set(self.path_name, value)
+        
+class DialplanInternalContextRegexpHandler(SnoipBaseHandler):
+    def __init__(self):
+        SnoipBaseHandler(self, 'internalDIDregex')
         
 
+        
+        
+#~ class DialplanInternalContextRegexpHandler(object):
+    #~ svh = SnoipVarsHandler()
+    
+    #~ def get(self):        
+        #~ value = self.svh.get('internalDIDregex')['data']
+        #~ return {
+            #~ 'internalDIDregex': value.replace(self.svh.paths['internalDIDregex'], '')
+            #~ }
+        
+    #~ def set(self, value):
+        #~ self.svh.set('internalDIDregex', value)
+        
+    
+        
 
 class DialplanExternalContextRegexpHandler(XMLHandler):
     filename = DIALPLAN_PATH    
