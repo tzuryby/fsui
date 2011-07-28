@@ -91,20 +91,20 @@ class SnoipVarsXMLHandler(object):
     def __init__(self):        
         self.base_path = "/include/X-PRE-PROCESS[starts-with(@data,'%s')]"
         
-        self.paths = {
-            #'internalDIDregex': 'DID_REGEX=',
+        #~ self.paths = {
+            #~ #'internalDIDregex': 'DID_REGEX=',
          
-            'conferenceOneName': 'CONFERENCE_ONE=',
-            'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
-            'conferenceOneDid': 'DID_CONFERENCE_ONE=',
+            #~ 'conferenceOneName': 'CONFERENCE_ONE=',
+            #~ 'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
+            #~ 'conferenceOneDid': 'DID_CONFERENCE_ONE=',
          
-            'conferenceTwoName': 'CONFERENCE_TWO=',
-            'conferenceTwoPin': 'PIN_CONFERENCE_TWO=',
-            'conferenceTwoDid': 'DID_CONFERENCE_TWO=',
+            #~ 'conferenceTwoName': 'CONFERENCE_TWO=',
+            #~ 'conferenceTwoPin': 'PIN_CONFERENCE_TWO=',
+            #~ 'conferenceTwoDid': 'DID_CONFERENCE_TWO=',
             
-            'addMember': 'ADD_MEMBER_DIGITS=',
-            'cancelMember': 'CANCEL_MEMBER_DIGITS='
-        }
+            #~ 'addMember': 'ADD_MEMBER_DIGITS=',
+            #~ 'cancelMember': 'CANCEL_MEMBER_DIGITS='
+        #~ }
         
     def get(self, path):
         return SnoipVars({'data': (self.base_path % path ,'data')}).get()
@@ -114,12 +114,11 @@ class SnoipVarsXMLHandler(object):
         
 class SnoipBaseHandler(object):
     xmlhandler = SnoipVarsXMLHandler()
-    paths = {}
     def get(self):
         ret = {}
-        for name in self.paths:                
-            value = self.xmlhandler.get(name)['data']
-            ret [name] = value.replace(self.self.paths[name], '')
+        for name, path in self.paths:                
+            value = self.xmlhandler.get(path)['data']
+            ret [name] = value.replace(path, '')
             
         return ret
         
