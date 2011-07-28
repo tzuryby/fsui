@@ -177,15 +177,12 @@ class ConferenceHandler(FSUIHandler):
             # save changes
             ga = self.get_argument
             
-            settings = dict (
-                conferenceOnePin = ga("conferenceOnePin"),
-                conferenceOneDid = ga("conferenceOneDid"),
-                conferenceTwoPin = ga("conferenceTwoPin"),
-                conferenceTwoDid = ga("conferenceTwoDid"),
-                
-            )
+            c1 = dict (conferenceOnePin = ga("conferenceOnePin"),conferenceOneDid = ga("conferenceOneDid"))
+            c2 = dict(conferenceTwoPin = ga("conferenceTwoPin"),conferenceTwoDid = ga("conferenceTwoDid"))
             
-            ConferencePINHandler(profile).set(**settings)
+            ConferenceOneHandler().set(**c1)
+            ConferenceTwoHandler().set(**c2)
+            
         
         # render shit
         self._render()
