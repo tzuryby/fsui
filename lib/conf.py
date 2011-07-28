@@ -76,9 +76,9 @@ class ExtensionFileHandler(XMLHandler):
             "password": ("/include/user/params/param[@name='password']", "value"),
             "vm-password": ("/include/user/params/param[@name='vm-password']", "value")
         }
-        
-        XMLHandler.__init__(self, _api)
         self.filename = os.path.join(FS_DIR_PATH, "%s.xml" % (xt_number))
+        XMLHandler.__init__(self, _api)
+        
 
 
 class SnoipVars(XMLHandler):
