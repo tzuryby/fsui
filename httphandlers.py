@@ -169,7 +169,7 @@ class ConferenceHandler(FSUIHandler):
         data = {
             'one': ConferenceOneHandler().get(), 
             'two': ConferenceTwoHandler().get(),
-            'admin:': ConferenceAdminHandler().get()
+            'admin': ConferenceAdminHandler().get()
         }
         self.render("conferences.html", data=data)
 
