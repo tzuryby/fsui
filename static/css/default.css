@@ -19,10 +19,11 @@ label.linehead { width: 120px;}
 	
 	z-index:  70;
 	position: fixed;
-	right:0px;
+	right:12px;
 	top: 0px;
 	padding: 4px;
-	background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30);
+	background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+	opacity: .10;filter:Alpha(Opacity=10);
 	
 }
 
