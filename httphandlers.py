@@ -162,28 +162,11 @@ class ExtensionPasswordHandler(FSUIHandler):
         
         if extension and password:
             ExtensionFileHandler(extension).set(**{"password": password})
-            
-'''
->>> DialplanInternalContextRegexpHandler().get()
-{'internalDIDregex': '88976[1-3][0-9]'}
->>> 
->>> 
->>> ConferenceOneHandler().get()
-{'conferenceOneDid': '8897641', 'conferenceOneName': '1001', 'conferenceOnePin': '1001'}
->>> 
->>> 
->>> ConferenceTwoHandler().get()
-{'conferenceTwoPin': '1002', 'conferenceTwoName': '1002', 'conferenceTwoDid': '8897642'}
->>> 
->>> ConferenceAdminHandler().get()
-{'cancelMember': '*2', 'addMember': '*1'}
->>> 
 
-'''
 class ConferenceHandler(FSUIHandler):
     def _render(self):
         # render response
-        data = {'one', ConferenceOneHandler().get(), 'two': ConferenceTwoHandler().get()}        
+        data = {'one': ConferenceOneHandler().get(), 'two': ConferenceTwoHandler().get()}        
         self.render("conferences.html", data=data)
 
     def get(self):
