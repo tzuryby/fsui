@@ -151,7 +151,7 @@ class SnoipBaseHandler(object):
 class DialplanInternalContextRegexpHandler(SnoipBaseHandler):
     path_name = 'internalDIDregex'
         
-class ConferenceOneHandler
+
     
 #~ class DialplanExternalContextRegexpHandler(XMLHandler):
     #~ filename = DIALPLAN_PATH    
