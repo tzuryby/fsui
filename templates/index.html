@@ -323,7 +323,7 @@ $(document).ready(function(){
             params = params || {};
             callback = callback || SaveInProgress.hide;            
             $("#network").load(url, params, callback);
-        }
+        },
         save: function(){            
             SaveInProgress.show();
             params = {
