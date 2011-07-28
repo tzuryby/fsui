@@ -332,6 +332,15 @@ class FREETDMFileSaver(FSUIHandler):
             
             # to do,reload wanrouter 
 
+class RebootDeviceHandler(FSUIHandler):
+    def get(self):
+        self.post()
+        
+    def post(self):
+        confirm = self.get_argument("confirm")
+        if confirm:
+            common.reboot_device()
+        
 class NetworkManagerHandler(FSUIHandler):
     def get_netinfo(self):
         
@@ -378,5 +387,8 @@ HTTP_HANDLERS = [
     (r"/dialplan/test", FSRegexpHandler),
     (r"/monit/read", MonitHandler),
     
-    (r"/admin/net", NetworkManagerHandler)
+    (r"/admin/net", NetworkManagerHandler),
+    
+    (r"/admin/reboot", RebootDeviceHandler),
+    
 ]

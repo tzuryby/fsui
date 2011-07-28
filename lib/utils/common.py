@@ -66,7 +66,6 @@ def gen_dev_addresses(dev='eth0'):
             yield addr[1]
         
 def reboot_device(*args):    
-    os.system("lcdaemon --boot")
     os.system("sleep 4s && reboot")
 
 def get_hostname(execute="cat /etc/hostname"):

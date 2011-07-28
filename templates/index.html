@@ -28,6 +28,7 @@
 	</ul>
 	<div id="tabs-monit">
         <div id="monitoring"></div>
+        <button>{{_("Reboot Device")}}</button>
     </div>
 	<div id="tabs-dashboard">
         <div id="dashboard-users"></div>
@@ -97,6 +98,11 @@
     <div id="tabs-net">
         <div id="network"></div>
     </div>
+</div>
+
+<div id="dialog-confirm-directory-reinit" title={{_("Restart System?")}} class="hide_on_load">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+    {{_("All current calls will be dropped, Are you sure?")}}</p>
 </div>
 
 <script type="text/javascript">
@@ -336,6 +342,34 @@ $(document).ready(function(){
         }
     }
     
+    function confirmRebootDevice(){
+        var url = "admin/reboot";
+            
+        var y = $(this).position().top - $(document).scrollTop();
+        
+        var buttons = {}
+
+        buttons["Yes. Please go ahead!"] = 
+            function() {
+                
+                var dialog_closer = function(){
+                    $(this).dialog("close");
+                    window.location.reload();
+                };
+                
+                $.post(url, {"confirm":"1"}, dialog_closer);
+            };
+
+        buttons["No. Thanks for warning me!"] = 
+            function() {
+                $( this ).dialog("close");
+            };
+        
+        $("#dialog-confirm-directory-reinit").dialog({resizable: false, modal: true, buttons:buttons, width: "600px"});
+    }
+            
+    $("#reboot-device").click(confirmRebootDevice);    
+    
     $("#edit-wanpipe1").click(function(){ 
         $("#raw-edit-wanpipe").attr("contentEditable", "true").removeAttr("disabled");
         $("#save-wanpipe1").show();
@@ -357,8 +391,12 @@ $(document).ready(function(){
     });
     
     $("#syslog-download").click(function(){ location.href = location.href + "dl/syslog" });
+    
     $("#fslog-download").click(function(){ location.href = location.href + "dl/switchlog" });
-    $("#tcpdump-start").click(function(){ window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); });
+    
+    $("#tcpdump-start").click(function(){ 
+        window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); 
+    });
 
     function main(){
         // in case someone decided to use IE6 -- LULZec come over here ;-)
