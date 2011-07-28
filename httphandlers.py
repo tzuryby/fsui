@@ -346,12 +346,12 @@ class NetworkManagerHandler(FSUIHandler):
         self.post()
         
     def post(self):
-        action = self.get_argument("a", None)
+        action = self.get_argument("save", None)
         if action:
             net_config_tree = appconfig.get()['net']
-            net['eth0']['addr'] = self.get_argument('eth0_addr')
-            net['eth1']['addr'] = self.get_argument('eth1_addr')
-            net['eth1']['gw'] = self.get_argument('eth1_gw')
+            net_config_tree['eth0']['addr'] = self.get_argument('eth0_addr')
+            net_config_tree['eth1']['addr'] = self.get_argument('eth1_addr')
+            net_config_tree['eth1']['gw'] = self.get_argument('eth1_gw')
             appconfig.set(net_config_tree)
             
         self.render("network.html", data=self.get_netinfo())
