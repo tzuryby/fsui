@@ -166,7 +166,11 @@ class ExtensionPasswordHandler(FSUIHandler):
 class ConferenceHandler(FSUIHandler):
     def _render(self):
         # render response
-        data = {'one': ConferenceOneHandler().get(), 'two': ConferenceTwoHandler().get()}        
+        data = {
+            'one': ConferenceOneHandler().get(), 
+            'two': ConferenceTwoHandler().get()
+            'admin:': ConferenceAdminHandler().get()
+        }
         self.render("conferences.html", data=data)
 
     def get(self):
