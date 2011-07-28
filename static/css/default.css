@@ -38,6 +38,8 @@ label.linehead { width: 120px;}
 	background-color:#FFFDD1!important
 }
 
+ul.no-space {margin-bottom: 0px}
+
 .in-place-edit { background-image: url(/static/pencil.png);	background-position: right center;	background-repeat:no-repeat; display:box }
 .in-place-edit:hover { background-color:#FDFFBF; }
 .more_info_caption { font-weight:700; }
