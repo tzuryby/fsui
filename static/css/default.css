@@ -54,8 +54,8 @@ ul.no-space {margin-bottom: 0px}
 	padding:0px;
 }
 .reactor-in-action{
-	border: solid 1px #F09C00;
-	background-color:#FAFFC4;
+	border: solid 1px #FAFFC4;
+	background-color: #FFFDE6;
 	display:box; 
 	width:250px; height:24px;
 	text-align: center;	
