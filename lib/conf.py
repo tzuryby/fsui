@@ -133,13 +133,12 @@ class DialplanInternalContextRegexpHandler(object):
     svh = SnoipVarsHandler()
     
     def get(self):        
-        value = self.svh.get('internalDIDregex')
+        value = self.svh.get('internalDIDregex')['data']
         return {
             'internalDIDregex': value.replace(self.svh.paths['internalDIDregex'], '')
             }
         
     def set(self, value):
-        value = self.svh.paths['internalDIDregex'] + value
         self.svh.set('internalDIDregex', value)
         
 
