@@ -4,8 +4,9 @@ body, td {font-size:0.8em;}
 code, pre, .mono, .current_period, .raw-conf-fram {font-family: 'Droid Sans Mono', monospace !important; font-size: 0.9em}
 a {text-decoration:none} 
 
-th.linehead {text-align:left; font-size: 0.8em; float:left}
+th.linehead {text-align:left; font-size: 0.8em; float:left; font-weight:normal!important}
 
+label.linehead { width: 120px;}
 
 #header {
 	padding: 0em 1em 0em 1em;	

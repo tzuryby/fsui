@@ -173,11 +173,19 @@ class ConferenceHandler(FSUIHandler):
         self._render()
         
     def post(self):
-        profile = self.get_argument("profile", None) 
-        pin = self.get_argument("pin", None)
-        if profile and pin:
+        if self.get_argument('a', None):
             # save changes
-            ConferencePINHandler(profile).set(**{"pin": pin})
+            ga = self.get_argument
+            
+            settings = dict (
+                conferenceOnePin = ga("conferenceOnePin"),
+                conferenceOneDid = ga("conferenceOneDid"),
+                conferenceTwoPin = ga("conferenceTwoPin"),
+                conferenceTwoDid = ga("conferenceTwoDid"),
+                
+            )
+            
+            ConferencePINHandler(profile).set(**settings)
         
         # render shit
         self._render()

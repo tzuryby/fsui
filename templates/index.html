@@ -213,10 +213,11 @@ $(document).ready(function(){
             IAmBusy.show()
             
             var params = {
+                'a': '1',
                 'conferenceOnePin': $('#conferenceOnePin').val(), 
                 'conferenceOneDid': $('#conferenceOneDid').val(), 
                 'conferenceTwoPin': $('#conferenceTwoPin').val(), 
-                'conferenceTwoPin': $('#conferenceTwoPin').val()
+                'conferenceTwoDid': $('#conferenceTwoDid').val()
             }
             
             conferences.load("/admin/conferences", params , IAmBusy.hide);
@@ -234,7 +235,7 @@ $(document).ready(function(){
         },
         
         save_internal: function(evt){
-            IAmBusy.show()                        
+            IAmBusy.show();
             dialplan.load("/dialplan", {ctx: 'internal', internalDIDregex: $("#internalDIDregex").val()});
         }
     }

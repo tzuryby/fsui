@@ -1,11 +1,12 @@
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{ 'Room #'+ data['one']['conferenceOneName'] }}</h3>
-    <label for="conferenceOnePin">{{_("Conference PIN")}}:</label>
+    <label for="conferenceOnePin" class="linehead">{{_("Conference PIN")}}:</label>
     <input 
         class="ui-widget-content ui-corner-all conference_pin" 
         id="conferenceOnePin" 
         value="{{data['one']['conferenceOnePin']}}" />
-    <label for="conferenceOneDid">{{_("Conference DID")}}:</label>
+        <br/>
+    <label for="conferenceOneDid" class="linehead">{{_("Conference DID")}}:</label>
     <input 
         class="ui-widget-content ui-corner-all conference_pin" 
         id="conferenceOneDid" 
@@ -15,12 +16,13 @@
 
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{ 'Room #'+ data['two']['conferenceTwoName'] }}</h3>
-    <label for="conferenceTwoPin">{{_("Conference PIN")}}:</label>
+    <label for="conferenceTwoPin" class="linehead">{{_("Conference PIN")}}:</label>
     <input 
         class="ui-widget-content ui-corner-all conference_pin" 
         id="conferenceTwoPin" 
         value="{{data['two']['conferenceTwoPin']}}" />
-    <label for="conferenceTwoDid">{{_("Conference DID")}}:</label>
+        <br/>
+    <label for="conferenceTwoDid" class="linehead">{{_("Conference DID")}}:</label>
     <input 
         class="ui-widget-content ui-corner-all conference_pin" 
         id="conferenceTwoDid" 
