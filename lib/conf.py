@@ -92,7 +92,7 @@ class SnoipVarsXMLHandler(object):
         self.base_path = "/include/X-PRE-PROCESS[starts-with(@data,'%s')]"
         
         self.paths = {
-            'internalDIDregex': 'DID_REGEX=',
+            #'internalDIDregex': 'DID_REGEX=',
          
             'conferenceOneName': 'CONFERENCE_ONE=',
             'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
@@ -106,43 +106,50 @@ class SnoipVarsXMLHandler(object):
             'cancelMember': 'CANCEL_MEMBER_DIGITS='
         }
         
-    def get(self, name):
-        return SnoipVars({'data': (self.base_path % self.paths[name] ,'data')}).get()
+    def get(self, path):
+        return SnoipVars({'data': (self.base_path % path ,'data')}).get()
     
-    def set(self, name, value):
-        SnoipVars({'data': (self.base_path % self.paths[name] ,'data')}).set(data=self.paths[name] + value)
+    def set(self, path, value):
+        SnoipVars({'data': (self.base_path % path ,'data')}).set(data=path+ value)
         
 class SnoipBaseHandler(object):
-    path_names = []
     xmlhandler = SnoipVarsXMLHandler()
-    
+    paths = {}
     def get(self):
-        if self.path_names:
-            ret = {}
-            for name in self.path_names:                
-                value = self.xmlhandler.get(name)['data']
-                ret [name] = value.replace(self.xmlhandler.paths[name], '')
-                
-            return ret
-                
+        ret = {}
+        for name in self.paths:                
+            value = self.xmlhandler.get(name)['data']
+            ret [name] = value.replace(self.self.paths[name], '')
+            
+        return ret
         
     def set(self, **kwargs):
-        if self.path_names:
-            for name, value in kwargs.iteritems():
-                self.xmlhandler.set(self.path_names[name], value)
-        
+        for name, value in kwargs.iteritems():
+            self.xmlhandler.set(self.paths[name], value)
+    
 class DialplanInternalContextRegexpHandler(SnoipBaseHandler):
-    path_names = ['internalDIDregex']
+    paths = {'internalDIDregex': 'DID_REGEX='}
         
 class ConferenceOneHandler(SnoipBaseHandler):
-    path_names = ['conferenceOneName', 'conferenceOnePin', 'conferenceOneDid']
+    paths = {
+        'conferenceOneName': 'CONFERENCE_ONE=',
+        'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
+        'conferenceOneDid': 'DID_CONFERENCE_ONE='
+    }
 
 class ConferenceTwoHandler(SnoipBaseHandler):
-    path_names = ['conferenceTwoName', 'conferenceTwoPin', 'conferenceTwoDid']
+    paths = {
+        'conferenceTwoName': 'CONFERENCE_TWO=',
+        'conferenceTwoPin': 'PIN_CONFERENCE_TWO=',
+        'conferenceTwoDid': 'DID_CONFERENCE_TWO=',
+    }
+
     
 class ConferenceAdminHandler(SnoipBaseHandler):
-    path_names = ['addMember', 'cancelMember']
-    
+    paths = {
+        'addMember': 'ADD_MEMBER_DIGITS=',
+        'cancelMember': 'CANCEL_MEMBER_DIGITS='
+    }
 
 XTN_TEMPLATE = '''<include>
   <user id="%(xtn)s">
