@@ -9,6 +9,7 @@ th.linehead {text-align:left; font-size: 0.8em; float:left; font-weight:normal!i
 label.linehead { width: 120px;}
 
 #header {
+	height:72px;
 	padding: 0em 1em 0em 1em;	
 	border: 1px solid #aaaaaa; background: #cccccc url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; color: #222222; font-weight: bold;
 }
@@ -20,6 +21,7 @@ label.linehead { width: 120px;}
 	position: fixed;
 	right:0px;
 	top: 0px;
+	margin:4px;
 }
 
 #content { margin: 1em }
