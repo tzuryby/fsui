@@ -183,10 +183,11 @@ class ConferenceHandler(FSUIHandler):
             
             c1 = dict (conferenceOnePin = ga("conferenceOnePin"),conferenceOneDid = ga("conferenceOneDid"))
             c2 = dict(conferenceTwoPin = ga("conferenceTwoPin"),conferenceTwoDid = ga("conferenceTwoDid"))
+            admin = dict(pinAdmin = ga("pinAdmin"),didAdmin = ga("didAdmin"))
             
             ConferenceOneHandler().set(**c1)
             ConferenceTwoHandler().set(**c2)
-            
+            ConferenceAdminHandler().set(**admin)
         
         # render shit
         self._render()

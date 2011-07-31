@@ -131,6 +131,8 @@ class ConferenceTwoHandler(SnoipBaseHandler):
     
 class ConferenceAdminHandler(SnoipBaseHandler):
     paths = {
+        'pinAdmin': 'PIN_CONFERENCE_ADMIN=',
+        'didAdmin': 'DID_CONFERENCE_ADMIN=',
         'addMember': 'ADD_MEMBER_DIGITS=',
         'cancelMember': 'CANCEL_MEMBER_DIGITS='
     }

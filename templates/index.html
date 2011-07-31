@@ -199,7 +199,7 @@ $(document).ready(function(){
             
         }, 
         loader:    function(){ SaveInProgress.show(); $("#dashboard-users").load("/dashboard", dashBoard.uiHandler); },
-        startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 8*1000) },
+        startLoop: function(){ dashBoard.loopId = window.setInterval(dashBoard.loader, 12*1000) },
         stopLoop:  function(){ dashBoard.loopId && window.clearInterval(dashBoard.loopId);},        
         restart:   function(){ dashBoard.loader(); dashBoard.startLoop(); }
     }
@@ -246,6 +246,8 @@ $(document).ready(function(){
                 'conferenceOneDid': $('#conferenceOneDid').val(), 
                 'conferenceTwoPin': $('#conferenceTwoPin').val(), 
                 'conferenceTwoDid': $('#conferenceTwoDid').val()
+                'didAdmin': $('#didAdmin').val()
+                'pinAdmin': $('#pinAdmin').val()
             }
             
             conferences.load("/admin/conferences", params , SaveInProgress.hide);
