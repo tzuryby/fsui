@@ -194,7 +194,9 @@ def get_conference_state():
         users = [user for user in users if user in online_users]
         if users:
             rooms[room] = users
-        else:
+            
+    for room in rooms.keys():
+        if no rooms[room]:
             del rooms[room]
             
     return rooms
