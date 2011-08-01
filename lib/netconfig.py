@@ -15,7 +15,7 @@ def _assign_addr():
             
 def _setup_firewall():
     
-    lines = (        
+    closeall_lines = (        
         # CLEAR / FLUSH TABLE
         "iptables -F", 
         
@@ -37,8 +37,14 @@ def _setup_firewall():
         # DROP THE REST
         "iptables -A INPUT -j DROP"        
         )
+
+    tmp_lines = (
+        "iptables -F", 
+        "iptables -A INPUT -p tcp --dport 5060 -j DROP",
+        "iptables -A INPUT -p udp --dort 5060 -j DROP"
+    )
     
-    os.system(';'.join(lines))
+    os.system(';'.join(tmp_lines))
     
 def configure():
     _assign_addr()
