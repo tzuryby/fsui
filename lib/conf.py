@@ -196,7 +196,7 @@ def get_conference_state():
             rooms[room] = users
             
     for room in rooms.keys():
-        if no rooms[room]:
+        if not rooms[room]:
             del rooms[room]
             
     return rooms
