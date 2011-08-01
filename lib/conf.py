@@ -188,7 +188,7 @@ def get_conference_state():
         ConferenceTwoHandler().get()['conferenceTwoName']: None
     }
     
-    for room in rooms
+    for room in rooms:
         users = shell("%s | grep %s | head -n 1" % (FS_CLI_COMMAND % 'show calls', room))
         users = users.split(",")
         users = [user in users if user in online_users]
