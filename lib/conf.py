@@ -164,7 +164,7 @@ def directory_reset(start=1000):
     os.system(FS_CLI_COMMAND % ("sofia profile internal rescan"))
     os.chdir(olddir)
 
-def get_online_users(self):
+def get_online_users():
     output = common.shell(FS_CLI_COMMAND % "sofia status profile internal")
     items = re.findall("Call-ID.*?Auth-Realm:.*?\n", output, re.DOTALL)
     users = (line for line in (item.split("\n") for item in items))
