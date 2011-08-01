@@ -133,7 +133,7 @@ class DashboardHandler(FSUIHandler):
                     if (str(user).strip(), 1) not in online_users]
                 
         return {
-            "conference": get_conference_state(),
+            "conference": None, #get_conference_state(),
             "online_users_data": online_users_data,
             "online_users": online_users,
             "offline_users": offline_users
