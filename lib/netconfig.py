@@ -41,7 +41,7 @@ def _setup_firewall():
     tmp_lines = (
         "iptables -F", 
         "iptables -A INPUT -p tcp --dport 5060 -j DROP",
-        "iptables -A INPUT -p udp --dort 5060 -j DROP"
+        "iptables -A INPUT -p udp --dport 5060 -j DROP"
     )
     
     os.system(';'.join(tmp_lines))
