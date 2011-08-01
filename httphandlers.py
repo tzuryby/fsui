@@ -4,7 +4,7 @@
 __author__ = "Tzury Bar Yochay <tzury.by@reguluslabs.com>"
 __version__ = "0.1"
 
-import subprocess, re, time
+import subprocess, time
 
 from tornado import httpclient
 import tornado.web
