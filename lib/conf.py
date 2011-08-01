@@ -164,12 +164,41 @@ def directory_reset(start=1000):
     os.system(FS_CLI_COMMAND % ("sofia profile internal rescan"))
     os.chdir(olddir)
 
+def get_online_users(self):
+    output = common.shell(FS_CLI_COMMAND % "sofia status profile internal")
+    items = re.findall("Call-ID.*?Auth-Realm:.*?\n", output, re.DOTALL)
+    users = (line for line in (item.split("\n") for item in items))
+    online_users = (dict((map(str.strip, entry.split(": ")) for entry in user if entry)) for user in users)
+    ret = {}
+    for user in online_users:
+        extension = user["Auth-User"]
+        ret[extension] = user
+        ret[extension]["password"] = ExtensionFileHandler(extension).get()['password']
+    
+    return ret
+
 def fs_directory_range():
     xtns = (xtn.strip().replace(".xml", "") for xtn in common.shell("ls -m %s" % FS_DIR_PATH).strip().split(","))
     return map(int, (xtn for xtn in xtns if xtn.isdigit()))
     
-
-
+def get_conference_state():
+    online_users = get_online_users()
+    rooms = {
+        ConferenceOneHandler().get()['conferenceOneName']: None
+        ConferenceTwoHandler().get()['conferenceTwoName']: None
+    }
+    
+    for room in rooms
+        users = shell("%s | grep %s | head -n 1" % (FS_CLI_COMMAND % 'show calls', room))
+        users = users.split(",")
+        users = [user in users if user in online_users]
+        if users:
+            rooms[room] = users
+        else:
+            del rooms[room]
+            
+    return rooms
+        
 class JSONConfHandler(object):
     def __init__(self, path):
         assert path

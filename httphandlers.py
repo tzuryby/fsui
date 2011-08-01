@@ -122,22 +122,8 @@ class CLIHandler(FSUIHandler):
         self.write("</pre>")
         
 class DashboardHandler(FSUIHandler):
-    def _get_online_users(self):
-        output = common.shell(FS_CLI_COMMAND % "sofia status profile internal")
-        items = re.findall("Call-ID.*?Auth-Realm:.*?\n", output, re.DOTALL)
-        users = (line for line in (item.split("\n") for item in items))
-        online_users = (dict((map(str.strip, entry.split(": ")) for entry in user if entry)) for user in users)
-        ret = {}
-        for user in online_users:
-            extension = user["Auth-User"]
-            ret[extension] = user
-            ret[extension]["password"] = ExtensionFileHandler(extension).get()['password']
-        
-        return ret
-        
-        
     def get_state(self):
-        online_users_data = self._get_online_users()
+        online_users_data = get_online_users()
         online_users = [(user.strip(), 1) for user in online_users_data.iterkeys()]
 
         offline_users = [
@@ -147,6 +133,7 @@ class DashboardHandler(FSUIHandler):
                     if (str(user).strip(), 1) not in online_users]
                 
         return {
+            "conference": get_conference_state(),
             "online_users_data": online_users_data,
             "online_users": online_users,
             "offline_users": offline_users

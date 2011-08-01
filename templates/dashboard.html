@@ -1,3 +1,10 @@
+{% if data['conference']%}
+<div class="group-box ui-corner-all ui-widget-content">
+    <h3>{{_("Live Conferences")}}</h3>
+    {% for room in data['conference'] %}
+        {{ room }}<br />        
+    {% end %}
+{% end %}
 {% if data['online_users']%}
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{_("Online Users")}}</h3>
