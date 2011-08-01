@@ -184,7 +184,7 @@ def fs_directory_range():
 def get_conference_state():
     online_users = get_online_users()
     rooms = {
-        ConferenceOneHandler().get()['conferenceOneName']: None
+        ConferenceOneHandler().get()['conferenceOneName']: None,
         ConferenceTwoHandler().get()['conferenceTwoName']: None
     }
     
