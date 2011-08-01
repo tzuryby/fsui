@@ -182,7 +182,7 @@ def fs_directory_range():
     return map(int, (xtn for xtn in xtns if xtn.isdigit()))
     
 def get_conference_state():
-    online_users = get_online_users()
+    online_users = online_users = [(user.strip(), 1) for user in get_online_users().iterkeys()]
     rooms = {
         ConferenceOneHandler().get()['conferenceOneName']: None,
         ConferenceTwoHandler().get()['conferenceTwoName']: None
