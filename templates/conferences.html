@@ -1,16 +1,16 @@
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{ 'Room #'+ data['one']['conferenceOneName'] }}</h3>
-    <label for="conferenceOnePin" class="linehead">{{_("Conference PIN")}}:</label>
-    <input 
-        class="ui-widget-content ui-corner-all conference_pin" 
-        id="conferenceOnePin" 
-        value="{{data['one']['conferenceOnePin']}}" />
-        <br/>
     <label for="conferenceOneDid" class="linehead">{{_("Conference DID")}}:</label>
     <input 
         class="ui-widget-content ui-corner-all conference_pin" 
         id="conferenceOneDid" 
         value="{{data['one']['conferenceOneDid']}}" />
+        <br/>
+    <label for="conferenceOnePin" class="linehead">{{_("Conference PIN")}}:</label>
+    <input 
+        class="ui-widget-content ui-corner-all conference_pin" 
+        id="conferenceOnePin" 
+        value="{{data['one']['conferenceOnePin']}}" />
         <br/>
     <label for="conferenceOneModeratorPin" class="linehead">{{_("Moderation PIN")}}:</label>
     <input 
@@ -22,17 +22,17 @@
 
 <div class="group-box ui-corner-all ui-widget-content">
     <h3>{{ 'Room #'+ data['two']['conferenceTwoName'] }}</h3>
-    <label for="conferenceTwoPin" class="linehead">{{_("Conference PIN")}}:</label>
-    <input 
-        class="ui-widget-content ui-corner-all conference_pin" 
-        id="conferenceTwoPin" 
-        value="{{data['two']['conferenceTwoPin']}}" />
-        <br/>
     <label for="conferenceTwoDid" class="linehead">{{_("Conference DID")}}:</label>
     <input 
         class="ui-widget-content ui-corner-all conference_pin" 
         id="conferenceTwoDid" 
         value="{{data['two']['conferenceTwoDid']}}" />
+        <br/>
+    <label for="conferenceTwoPin" class="linehead">{{_("Conference PIN")}}:</label>
+    <input 
+        class="ui-widget-content ui-corner-all conference_pin" 
+        id="conferenceTwoPin" 
+        value="{{data['two']['conferenceTwoPin']}}" />
         <br/>
     <label for="conferenceTwoModeratorPin" class="linehead">{{_("Moderation PIN")}}:</label>
     <input 
@@ -44,8 +44,8 @@
 <div class="group-box ui-corner-all ui-widget-content">
     <ul class="no-space">
         <li>{{_("To invite someone into a conference, dial ")}}<code>{{ data['admin']['addMember']}}</code>{{ _(" while at a conference, and then the phone number you wish to invite.")}}</li>
-        <li>{{_("To cancel invitation dial ")}}<code>{{ data['admin']['cancelMember'] }}</code>{{_(" after inviting. <br/><strong>Note: dialing this sequence will 'kick-out' the last invited party.</strong>.")}}</li>
         <li>{{_("To lock a conference room for the current session, dial ")}}<code>{{ data['admin']['lockRoom']}}</code>.</li>
+        <li>{{_("To cancel invitation dial ")}}<code>{{ data['admin']['cancelMember'] }}</code>{{_(" after inviting. <br/><strong>Note: dialing this sequence will 'kick-out' the last invited party.</strong>.")}}</li>
     </ul>
 </div>
 

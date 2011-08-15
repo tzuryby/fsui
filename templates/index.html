@@ -244,10 +244,10 @@ $(document).ready(function(){
                 'a': '1',
                 'conferenceOnePin': $('#conferenceOnePin').val(), 
                 'conferenceOneDid': $('#conferenceOneDid').val(), 
+                'conferenceOneModeratorPin': $('#conferenceOneModeratorPin').val(), 
                 'conferenceTwoPin': $('#conferenceTwoPin').val(), 
                 'conferenceTwoDid': $('#conferenceTwoDid').val(),
-                'didAdmin': $('#didAdmin').val(),
-                'pinAdmin': $('#pinAdmin').val()
+                'conferenceTwoModeratorPin': $('#conferenceTwoModeratorPin').val()
             }
             
             conferences.load("/admin/conferences", params , SaveInProgress.hide);
