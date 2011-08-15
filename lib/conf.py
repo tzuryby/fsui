@@ -119,7 +119,7 @@ class ConferenceOneHandler(SnoipBaseHandler):
     paths = {
         'conferenceOneName': 'CONFERENCE_ONE=',
         'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
-        'conferenceOneDid': 'DID_CONFERENCE_ONE='
+        'conferenceOneDid': 'DID_CONFERENCE_ONE=',
         'conferenceOneModeratorPin': 'MODERATOR_PIN_CONFERENCE_ONE='
     }
 
