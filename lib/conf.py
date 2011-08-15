@@ -83,6 +83,7 @@ class ExtensionFileHandler(XMLHandler):
 
 class SnoipVars(XMLHandler):
     filename = SNOIP_VARS_PATH
+    
     def __init__(self, _api):
         XMLHandler.__init__(self, _api)
     
@@ -119,6 +120,7 @@ class ConferenceOneHandler(SnoipBaseHandler):
         'conferenceOneName': 'CONFERENCE_ONE=',
         'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
         'conferenceOneDid': 'DID_CONFERENCE_ONE='
+        'conferenceOneModeratorPin': 'MODERATOR_PIN_CONFERENCE_ONE='
     }
 
 class ConferenceTwoHandler(SnoipBaseHandler):
@@ -126,13 +128,14 @@ class ConferenceTwoHandler(SnoipBaseHandler):
         'conferenceTwoName': 'CONFERENCE_TWO=',
         'conferenceTwoPin': 'PIN_CONFERENCE_TWO=',
         'conferenceTwoDid': 'DID_CONFERENCE_TWO=',
+        'conferenceTwoModeratorPin': 'MODERATOR_PIN_CONFERENCE_TWO='        
     }
 
     
 class ConferenceAdminHandler(SnoipBaseHandler):
     paths = {
-        'pinAdmin': 'PIN_CONFERENCE_ADMIN=',
-        'didAdmin': 'DID_CONFERENCE_ADMIN=',
+        #~ 'pinAdmin': 'PIN_CONFERENCE_ADMIN=',
+        #~ 'didAdmin': 'DID_CONFERENCE_ADMIN=',
         'lockRoom': 'LOCK_CONFERENCE_DIGITS=',
         'addMember': 'ADD_MEMBER_DIGITS=',
         'cancelMember': 'CANCEL_MEMBER_DIGITS='

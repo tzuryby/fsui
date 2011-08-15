@@ -168,8 +168,16 @@ class ConferenceHandler(FSUIHandler):
             # save changes
             ga = self.get_argument
             
-            c1 = dict (conferenceOnePin = ga("conferenceOnePin"),conferenceOneDid = ga("conferenceOneDid"))
-            c2 = dict(conferenceTwoPin = ga("conferenceTwoPin"),conferenceTwoDid = ga("conferenceTwoDid"))
+            c1 = dict (
+                conferenceOnePin = ga("conferenceOnePin"),
+                conferenceOneDid = ga("conferenceOneDid"),
+                conferenceOneModeratorPin = ga("conferenceOneModeratorPin"))
+                
+            c2 = dict(
+                conferenceTwoPin = ga("conferenceTwoPin"),
+                conferenceTwoDid = ga("conferenceTwoDid"),
+                conferenceTwoModeratorPin = ga("conferenceTwoModeratorPin"))
+                
             admin = dict(pinAdmin = ga("pinAdmin"),didAdmin = ga("didAdmin"))
             
             ConferenceOneHandler().set(**c1)
