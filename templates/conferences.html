@@ -40,21 +40,6 @@
 </div>
 
 <div class="group-box ui-corner-all ui-widget-content">
-<!--
-
-    <h3>{{_("Conference Administration")}}</h3>
-    <label for="pinAdmin" class="linehead">{{_("Administration PIN")}}:</label>
-    <input 
-        class="ui-widget-content ui-corner-all conference_pin" 
-        id="pinAdmin" 
-        value="{{data['admin']['pinAdmin']}}" />
-        <br/>
-    <label for="didAdmin" class="linehead">{{_("Administration DID")}}:</label>
-    <input 
-        class="ui-widget-content ui-corner-all conference_pin" 
-        id="didAdmin" 
-        value="{{data['admin']['didAdmin']}}" />
--->    
     <ul class="no-space">
         <li>{{_("To invite someone into a conference, dial ")}}<code>{{ data['admin']['addMember']}}</code>{{ _(" while at a conference, and then the phone number you wish to invite.")}}</li>
         <li>{{_("To cancel invitation dial ")}}<code>{{ data['admin']['cancelMember'] }}</code>{{_(" after inviting. <br/><strong>Note: dialing this sequence will 'kick-out' the last invited party.</strong>.")}}</li>
