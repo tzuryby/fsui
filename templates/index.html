@@ -185,9 +185,9 @@ $(document).ready(function(){
                          api: {
                             onShow: function(e){
                                 dashBoard.stopLoop();
-                                $(".qtip-wrapper .in-place-edit").editable({
-                                    onSubmit:inline_editor_save
-                                });
+                                //~ $(".qtip-wrapper .in-place-edit").editable({
+                                    //~ onSubmit:inline_editor_save
+                                //~ });
                             },
                             onHide: function(e){
                                 dashBoard.startLoop()
@@ -206,17 +206,33 @@ $(document).ready(function(){
         
     
 
-    function inline_editor_save(content){
-        // checkbox click 
-        if (!content.previous){
-            content = {current:1, previous:0}
-        }
+    //~ function inline_editor_save(content){
+        //~ // checkbox click 
+        //~ if (!content.previous){
+            //~ content = {current:1, previous:0}
+        //~ }
         
-        if (content.current !== content.previous){
-            var _this = $(this),
-                extension = _this.attr("rel"),
-                password = content.current;
+        //~ if (content.current !== content.previous){
+            //~ var _this = $(this),
+                //~ extension = _this.attr("rel"),
+                //~ password = content.current;
             
+            //~ SaveInProgress.show();
+            
+            //~ $.post(
+                //~ "/admin/set/extension/password", 
+                //~ { extension: extension, password: password, "vm-password": password },
+                //~ function(){SaveInProgress.hide();}
+            //~ );
+        //~ }        
+    //~ }
+    
+    function change_password(){        
+        var _this = $(this),
+            extension = _this.attr("rel"),
+            password = prompt("please provide a new password");
+        
+        if (password && /^\d+$/.test(password)){            
             SaveInProgress.show();
             
             $.post(
@@ -224,7 +240,10 @@ $(document).ready(function(){
                 { extension: extension, password: password, "vm-password": password },
                 function(){SaveInProgress.hide();}
             );
-        }        
+        }
+        else {
+            alert("Password might contain digists only");
+        }
     }
     
     var conferences = {
@@ -443,6 +462,8 @@ $(document).ready(function(){
     $("#tcpdump-start").click(function(){ 
         window.open('/tcpdump?timeout=' + $('#timeout').val(), 'tcpdump', 'width=800,height=600'); 
     });
+    
+    $(".edit-password").live("click", change_password);
 
     function main(){
         // in case someone decided to use IE6 -- LULZec come over here ;-)
