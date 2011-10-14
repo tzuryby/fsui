@@ -42,6 +42,13 @@
 </div>
 
 <div class="group-box ui-corner-all ui-widget-content">
+    <label for="conferenceOneModeratorPin" class="linehead">{{_("IVR Delay (Milliseconds)")}}:</label>
+    <input 
+        class="ui-widget-content ui-corner-all conference_pin" 
+        id="ivrDelay" 
+        value="{{data['one']['ivrDelay']}}" />
+</div>
+<div class="group-box ui-corner-all ui-widget-content">
     <ul class="no-space">
         <li>{{_("To invite someone into a conference, dial ")}}<code>{{ data['admin']['addMember']}}</code>{{ _(" while at a conference, and then the phone number you wish to invite.")}}</li>
         <li>{{_("To lock a conference room for the current session, dial ")}}<code>{{ data['admin']['lockRoom']}}</code>.</li>
