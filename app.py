@@ -12,7 +12,9 @@ from tornado.options import define, options
 from httphandlers import *
 from uimodules import *
 from lib import netconfig
+from conf import appconfig
 
+lan_host = appconfig.get()['net']['eth0']['addr'].split("/")[0]
 
 define("port", default=5678, help="fsui port 5678", type=int)
 
@@ -39,7 +41,7 @@ def main():
     os.system("/usr/local/bin/freeswitchd restart")
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
-    http_server.listen(options.port, "localhost")
+    http_server.listen(options.port, lan_host)
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":
