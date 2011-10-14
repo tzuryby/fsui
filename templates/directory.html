@@ -40,9 +40,9 @@
         $("button").button();
                 
         $("#new-start").keyup(function(){
-            var new_start = $(this).val();            
+            var new_start = $(this).val();
             if (!/^\d+$/.test(new_start)){
-                alert("Numbers only!");
+                alert("Digits only!");
             }
             else{
                 $("#new-end").html((Number(new_start)+29).toString());
@@ -59,13 +59,17 @@
 
             buttons["Yes. Please go ahead!"] = 
                 function() {
-                    
-                    var dialog_closer = function(){
-                        $(this).dialog("close");
-                        window.location.reload();
-                    };
-                    
-                    $.post(url, {"new-start": $("#new-start").val()}, dialog_closer);
+                    if (/^\d+$/.test($("#new-start").val())){
+                        var dialog_closer = function(){
+                            $(this).dialog("close");
+                            window.location.reload();
+                        };
+                        
+                        $.post(url, {"new-start": $("#new-start").val()}, dialog_closer);
+                    }                    
+                    else{
+                        alert("Digits only!");
+                    }
                 };
 
             buttons["No. Thanks for warning me!"] = 

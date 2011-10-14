@@ -6,6 +6,7 @@
         class="text ui-widget-content ui-corner-all" 
         id="eth0_addr" 
         value="{{data['lan']['eth0']['addr']}}" />
+        <span class="eg">e.g. 192.168.0.1/24</span>
         <div class="clear" />
     <h5 class="side-header">{{_("WAN Port Address")}}:</h5>
     <input 
@@ -13,6 +14,7 @@
         class="text ui-widget-content ui-corner-all" 
         id="eth1_addr" 
         value="{{data['lan']['eth1']['addr']}}" />
+        <span class="eg">e.g. 192.168.0.1/24</span>
         <div class="clear" />
     <h5 class="side-header">{{_("WAN Port Gateway")}}:</h5>
     <input
@@ -20,6 +22,7 @@
         class="text ui-widget-content ui-corner-all" 
         id="eth1_gw" 
         value="{{data['lan']['eth1']['gw']}}" />
+        <span class="eg">e.g. 192.168.0.254</span>
         <div class="clear" />
     <p/>
     <button id="save_net">{{_("Save Network Settings")}}</button>

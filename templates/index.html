@@ -286,8 +286,14 @@ $(document).ready(function(){
         },
         
         save_internal: function(evt){
-            SaveInProgress.show();
-            dialplan.load("/dialplan", {ctx: 'internal', internalDIDregex: $("#internalDIDregex").val()}, SaveInProgress.hide);
+            var value = $("#internalDIDregex").val();
+            if (/.+/.test(value)){
+                SaveInProgress.show();
+                dialplan.load("/dialplan", {ctx: 'internal', internalDIDregex: value}, SaveInProgress.hide);
+            }
+            else {
+                alert("Empty pattern is not allowed");
+            }
         }
     }
     
@@ -347,21 +353,38 @@ $(document).ready(function(){
     };
     
     var network = {
+        validate: function(){
+            var eth0_addr = $("#eth0_addr").val(),
+                eth1_addr = $("#eth1_addr").val(),
+                eth1_gw = $("#eth1_gw").val();
+                
+            if (/^\d+\.\d+\.\d+\.\d+\/\d+$/.test(eth0_addr) && 
+                /^\d+\.\d+\.\d+\.\d+\/\d+$/.test(eth1_addr) &&
+                /^\d+\.\d+\.\d+\.\d+$/.test(eth1_gw))
+                return true;                
+                        
+            return false;
+        },
         load: function(url, params, callback){
             url= url || "/admin/net";
             params = params || {};
             callback = callback || SaveInProgress.hide;            
             $("#network").load(url, params, callback);
         },
-        save: function(){            
-            SaveInProgress.show();
-            params = {
-                save: "true",
-                eth0_addr: $("#eth0_addr").val(),
-                eth1_addr: $("#eth1_addr").val(),
-                eth1_gw:   $("#eth1_gw").val()
+        save: function(){
+            if (network.validate()){
+                SaveInProgress.show();
+                params = {
+                    save: "true",
+                    eth0_addr: $("#eth0_addr").val(),
+                    eth1_addr: $("#eth1_addr").val(),
+                    eth1_gw:   $("#eth1_gw").val()
+                }                
+                network.load(null, params);
             }
-            network.load(null, params);
+            else {
+                alert ("Network parameters are not well formatted");
+            }
         }
     }
     
