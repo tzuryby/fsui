@@ -235,7 +235,8 @@ $(document).ready(function(){
         // user hit cancel, password === null
         if (password !== null){
             
-            if (password && /^\d+$/.test(password)){            
+            if (password && /^\d+$/.test(password)){
+                $("div[rel=" + extension + "]").html(password);
                 SaveInProgress.show();
                 
                 $.post(
