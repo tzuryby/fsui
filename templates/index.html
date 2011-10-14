@@ -232,17 +232,21 @@ $(document).ready(function(){
             extension = _this.attr("rel"),
             password = prompt("please provide a new password");
         
-        if (password && /^\d+$/.test(password)){            
-            SaveInProgress.show();
+        // user hit cancel, password === null
+        if (password !== null){
             
-            $.post(
-                "/admin/set/extension/password", 
-                { extension: extension, password: password, "vm-password": password },
-                function(){SaveInProgress.hide();}
-            );
-        }
-        else {
-            alert("Password might contain digists only");
+            if (password && /^\d+$/.test(password)){            
+                SaveInProgress.show();
+                
+                $.post(
+                    "/admin/set/extension/password", 
+                    { extension: extension, password: password, "vm-password": password },
+                    function(){SaveInProgress.hide();}
+                );
+            }
+            else {
+                alert("Password may not be empty, and contains digists only");
+            }
         }
     }
     
