@@ -4,7 +4,7 @@ PIDFILE=/usr/local/freeswitch/run/freeswitch.pid
 FS=/usr/local/freeswitch/bin/freeswitch
 
 fs_start(){
-    $FS -nc
+    $FS -nc -core
 }
 
 fs_stop(){

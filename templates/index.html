@@ -227,7 +227,17 @@ $(document).ready(function(){
         }        
     }
     
-    var conferences = {        
+    var conferences = {
+        validate: function(){
+            // validate input, all digits, not empty, not loner that 24 digits
+            $("#tabs-conference input.conference_pin").each(function(){
+                value = $(this).val();
+                if (! /^\d+$/.test(value) && value.length <=24){
+                    return false;
+                }
+            })
+        },
+        
         load: function(url, params, callback){
                 SaveInProgress.show()
                 url = url || "/admin/conferences"
@@ -238,19 +248,24 @@ $(document).ready(function(){
         },
         
         save: function(evt){
-            SaveInProgress.show()
-            
-            var params = {
-                'a': '1',
-                'conferenceOnePin': $('#conferenceOnePin').val(), 
-                'conferenceOneDid': $('#conferenceOneDid').val(), 
-                'conferenceOneModeratorPin': $('#conferenceOneModeratorPin').val(), 
-                'conferenceTwoPin': $('#conferenceTwoPin').val(), 
-                'conferenceTwoDid': $('#conferenceTwoDid').val(),
-                'conferenceTwoModeratorPin': $('#conferenceTwoModeratorPin').val()
+            if (conferences.validate()){
+                SaveInProgress.show()
+                
+                var params = {
+                    'a': '1',
+                    'conferenceOnePin': $('#conferenceOnePin').val(), 
+                    'conferenceOneDid': $('#conferenceOneDid').val(), 
+                    'conferenceOneModeratorPin': $('#conferenceOneModeratorPin').val(), 
+                    'conferenceTwoPin': $('#conferenceTwoPin').val(), 
+                    'conferenceTwoDid': $('#conferenceTwoDid').val(),
+                    'conferenceTwoModeratorPin': $('#conferenceTwoModeratorPin').val()
+                }
+                
+                conferences.load("/admin/conferences", params , SaveInProgress.hide);
             }
-            
-            conferences.load("/admin/conferences", params , SaveInProgress.hide);
+            else{
+                alert("Parameters must be all digits, not empty, not loner that 24 digits");
+            }
         }
     }
     

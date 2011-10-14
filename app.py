@@ -27,7 +27,8 @@ class Application(tornado.web.Application):
                 "Header": HeaderModule, 
                 "Footer": FooterModule, 
                 "Title": TitleModule,
-            }
+            },
+            autoescape = None
         )
         
         tornado.web.Application.__init__(self, HTTP_HANDLERS, **settings)
