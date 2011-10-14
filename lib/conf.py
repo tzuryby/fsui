@@ -120,7 +120,7 @@ class ConferenceOneHandler(SnoipBaseHandler):
         'conferenceOneName': 'CONFERENCE_ONE=',
         'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
         'conferenceOneDid': 'DID_CONFERENCE_ONE=',
-        'conferenceOneModeratorPin': 'MODERATOR_PIN_CONFERENCE_ONE='
+        'conferenceOneModeratorPin': 'MODERATOR_PIN_CONFERENCE_ONE=',
         'ivrDelay' : 'IVR_INIT_DELAY='
     }
 
