@@ -235,7 +235,9 @@ $(document).ready(function(){
                 if ((! /^\d+$/.test(value)) || value.length > 24){
                     return false;
                 }
-            })
+            });
+            
+            return true;
         },
         
         load: function(url, params, callback){
