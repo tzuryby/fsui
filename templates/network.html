@@ -40,6 +40,11 @@
 {% if data['addr'] %}
 <h3><a href="#">{{_("Network Settings")}}</a></h3><div><pre>{{data['addr']}}</pre></div>
 {% end %}
+
+{% if data['sangoma'] %}
+<h3><a href="#">{{_("E1 Interface Status")}}</a></h3><div><pre>{{data['sangoma']}}</pre></div>
+{% end %}
+
 </div>
 
 </div>

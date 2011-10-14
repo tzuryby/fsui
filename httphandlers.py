@@ -344,8 +344,9 @@ class NetworkManagerHandler(FSUIHandler):
         routing = xhtml_escape('\n'.join(common.shell('route -n').split("\n")[1:]))
         ifaces = OutputFormatter.highlight(xhtml_escape(common.shell('mii-tool 2> /dev/null')))
         lan = appconfig.get()['net']
+        sangoma = common.shell("wanrouter status")
         
-        return {'addr': addr, 'routing': routing, 'lan': lan, 'ifaces': ifaces}
+        return {'addr': addr, 'routing': routing, 'lan': lan, 'ifaces': ifaces, 'sangoma': sangoma}
     
     def get(self):
         self.post()
