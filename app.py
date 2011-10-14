@@ -11,8 +11,8 @@ from tornado.options import define, options
 
 from httphandlers import *
 from uimodules import *
-from lib import conf, netconfig
-from conf import appconfig
+from lib import netconfig
+from lib.conf import appconfig
 
 lan_host = appconfig.get()['net']['eth0']['addr'].split("/")[0]
 
