@@ -229,15 +229,19 @@ $(document).ready(function(){
     
     var conferences = {
         validate: function(){
-            // validate input, all digits, not empty, not loner that 24 digits
+            var ret=true;
+            // validate input, all digits, not empty, not loner that 24 digits            
             $("#tabs-conference input.conference_pin").each(function(){
-                value = $(this).val();
-                if (! (/^\d+$/.test(value) && value.length <= 24) ){
-                    return false;
-                }
+                var value = $(this).val();
+                
+                if (! /^\d+$/.test(value))
+                    ret= false;
+                    
+                if (value.length > 24)
+                    ret= false;
             });
             
-            return true;
+            return ret;
         },
         
         load: function(url, params, callback){
