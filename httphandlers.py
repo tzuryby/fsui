@@ -172,7 +172,8 @@ class ConferenceHandler(FSUIHandler):
             c1 = dict (
                 conferenceOnePin = ga("conferenceOnePin"),
                 conferenceOneDid = ga("conferenceOneDid"),
-                conferenceOneModeratorPin = ga("conferenceOneModeratorPin"))
+                conferenceOneModeratorPin = ga("conferenceOneModeratorPin"),
+                ivrDelay = ga("ivrDelay"))
                 
             c2 = dict(
                 conferenceTwoPin = ga("conferenceTwoPin"),

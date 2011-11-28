@@ -120,7 +120,8 @@ class ConferenceOneHandler(SnoipBaseHandler):
         'conferenceOneName': 'CONFERENCE_ONE=',
         'conferenceOnePin': 'PIN_CONFERENCE_ONE=',
         'conferenceOneDid': 'DID_CONFERENCE_ONE=',
-        'conferenceOneModeratorPin': 'MODERATOR_PIN_CONFERENCE_ONE='
+        'conferenceOneModeratorPin': 'MODERATOR_PIN_CONFERENCE_ONE=',
+        'ivrDelay' : 'IVR_INIT_DELAY='
     }
 
 class ConferenceTwoHandler(SnoipBaseHandler):
@@ -141,6 +142,7 @@ class ConferenceAdminHandler(SnoipBaseHandler):
         'cancelMember': 'CANCEL_MEMBER_DIGITS='
     }
 
+    
 XTN_TEMPLATE = '''<include>
   <user id="%(xtn)s">
     <params>
