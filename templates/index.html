@@ -36,12 +36,13 @@
 	<div id="tabs-conference">
         <div id="conferences-profiles"></div>
     </div>
-	<div id="tabs-cli">
+<!--	<div id="tabs-cli">
         <input 
             id="cli-input" type="text" placeholder='{{_("enter command")}}' 
             class="wide-input ui-widget-content ui-corner-all" />
         <div id="cli-output"></div>
     </div>
+-->
 	<div id="tabs-diagnostics">
         <div class="group-box ui-corner-all ui-widget-content">
             <h3>{{_("Download Syslog")}}</h3>
@@ -133,24 +134,24 @@ $(document).ready(function(){
         }
     }    
     
-    // bind cli interaction
-    $("#cli-input").keypress(
-        function(evt){
-            var keyCode = evt.keyCode;        
-            if (keyCode === 13){
-                var user_input = $(this).val();
-                var xcommand =  user_input || "sofia status profile internal"
-                if (!user_input)
-                    $(this).val(xcommand);
+    //~ // bind cli interaction
+    //~ $("#cli-input").keypress(
+        //~ function(evt){
+            //~ var keyCode = evt.keyCode;        
+            //~ if (keyCode === 13){
+                //~ var user_input = $(this).val();
+                //~ var xcommand =  user_input || "sofia status profile internal"
+                //~ if (!user_input)
+                    //~ $(this).val(xcommand);
                     
-                var url = "/cli", 
-                    params = {"x": xcommand};
+                //~ var url = "/cli", 
+                    //~ params = {"x": xcommand};
                     
-                $("#cli-output").load(url, params);
-                $("#cli-output").css("height", "70%");
-            }
-        }
-    );
+                //~ $("#cli-output").load(url, params);
+                //~ $("#cli-output").css("height", "70%");
+            //~ }
+        //~ }
+    //~ );
     
     dashBoard = {
         loopId: 0,
@@ -477,8 +478,8 @@ $(document).ready(function(){
     
         $(".hide-on-load").hide();
     
-        $("#raw-edit-wanpipe").load("/dl/wanpipe");
-        $("#raw-edit-freetdm").load("/dl/freetdm");
+        //$("#raw-edit-wanpipe").load("/dl/wanpipe");
+        //$("#raw-edit-freetdm").load("/dl/freetdm");
 
         $("#save_dialplan_exp").live("click", dialplan.save_internal);
         $("#save_net").live("click", network.save);
