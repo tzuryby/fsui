@@ -290,7 +290,8 @@ $(document).ready(function(){
                     'conferenceOneModeratorPin': $('#conferenceOneModeratorPin').val(), 
                     'conferenceTwoPin': $('#conferenceTwoPin').val(), 
                     'conferenceTwoDid': $('#conferenceTwoDid').val(),
-                    'conferenceTwoModeratorPin': $('#conferenceTwoModeratorPin').val()
+                    'conferenceTwoModeratorPin': $('#conferenceTwoModeratorPin').val(),
+                    'ivrDelay': $('#ivrDelay').val()
                 }
                 
                 conferences.load("/admin/conferences", params , SaveInProgress.hide);
