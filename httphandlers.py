@@ -185,6 +185,7 @@ class ConferenceHandler(FSUIHandler):
             ConferenceOneHandler().set(**c1)
             ConferenceTwoHandler().set(**c2)
             #ConferenceAdminHandler().set(**admin)
+            
         
         # render shit
         self._render()

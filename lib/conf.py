@@ -79,6 +79,9 @@ class ExtensionFileHandler(XMLHandler):
         self.filename = os.path.join(FS_DIR_PATH, "%s.xml" % (xt_number))
         XMLHandler.__init__(self, _api)
         
+    def write(self):
+        XMLHandler.write(self)
+        shell("touch " + FS_DIR_PATH)
 
 
 class SnoipVars(XMLHandler):
@@ -87,6 +90,12 @@ class SnoipVars(XMLHandler):
     def __init__(self, _api):
         XMLHandler.__init__(self, _api)
     
+
+    def write(self):
+        XMLHandler.write(self)
+        shell("touch " + SNOIP_VARS_PATH)
+
+
 class SnoipVarsXMLHandler(object):
     
     def __init__(self):        
