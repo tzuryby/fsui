@@ -81,7 +81,7 @@ class ExtensionFileHandler(XMLHandler):
         
     def write(self):
         XMLHandler.write(self)
-        shell("touch " + FS_DIR_PATH)
+        common.shell("touch " + FS_DIR_PATH)
 
 
 class SnoipVars(XMLHandler):
@@ -93,7 +93,7 @@ class SnoipVars(XMLHandler):
 
     def write(self):
         XMLHandler.write(self)
-        shell("touch " + SNOIP_VARS_PATH)
+        common.shell("touch " + SNOIP_VARS_PATH)
 
 
 class SnoipVarsXMLHandler(object):
