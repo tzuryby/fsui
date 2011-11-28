@@ -149,6 +149,7 @@ class ExtensionPasswordHandler(FSUIHandler):
         
         if extension and password:
             ExtensionFileHandler(extension).set(**{"password": password})
+            common.shell('/usr/local/freeswitch/bin/fs_cli -x "reloadxml"')
 
 class ConferenceHandler(FSUIHandler):
     def _render(self):
