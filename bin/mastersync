@@ -4,5 +4,5 @@ CWD=$(pwd)
 GIT_DIR=$1
 MSG=${2:-auto_commit}
 
-cd $GIT_DIR && git -am $MSG 
+cd $GIT_DIR && git commit -am $MSG 
 cd $CWD
